@@ -13,6 +13,7 @@
 #import "SVProgressHUD.h"
 #import "FSQFoursquareAPIClient.h"
 #import "UIImageView+AFNetworking.h"
+#import "CREReviewNewViewController.h"
 
 
 
@@ -43,6 +44,35 @@
 
     [self updateLocation];
 }
+
+
+- (IBAction)unwindToTable:(UIStoryboardSegue *)segue
+{
+//    TestAddToDoItemViewController *source = [segue sourceViewController];
+//    TestToDoItem *item = source.toDoItem;
+//    if (item != nil)
+//    {
+//        [self.toDoItems addObject:item];
+//        [self.tableView reloadData];
+//    }
+    NSLog(@"Unwind to Table");
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"pushDetailView"])
+    {
+        // Sender is the table view cell.
+        NSArray *sourceArray = self.searchResults;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        CREReviewNewViewController *destinationController = [segue destinationViewController];
+        FSQVenue *venue = sourceArray[indexPath.row];
+        NSLog(@"Designation Controller class: %@",destinationController.class);
+        destinationController.venue = venue;
+    }
+}
+
 
 - (void) updateLocation {
     [self.locationManager startUpdatingLocation];

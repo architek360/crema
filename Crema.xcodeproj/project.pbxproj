@@ -11,6 +11,9 @@
 		321B35C71890AFFD00DF04A9 /* FSQVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35C61890AFFD00DF04A9 /* FSQVenue.m */; };
 		321B35CB1890DAF500DF04A9 /* placeholder-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35CA1890DAF500DF04A9 /* placeholder-2.png */; };
 		321B35CD1890DCA200DF04A9 /* placeholder-small1.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35CC1890DCA200DF04A9 /* placeholder-small1.png */; };
+		321B35D01890F9DF00DF04A9 /* CREReviewNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35CF1890F9DF00DF04A9 /* CREReviewNewViewController.m */; };
+		321B35D218919B0900DF04A9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321B35D118919B0900DF04A9 /* MapKit.framework */; };
+		321B35D518919FE400DF04A9 /* CREVenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35D418919FE400DF04A9 /* CREVenueAnnotation.m */; };
 		323AB02A188A5E1F00130EFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB029188A5E1F00130EFA /* Foundation.framework */; };
 		323AB02C188A5E1F00130EFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02B188A5E1F00130EFA /* CoreGraphics.framework */; };
 		323AB02E188A5E1F00130EFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02D188A5E1F00130EFA /* UIKit.framework */; };
@@ -71,6 +74,11 @@
 		321B35C81890B05700DF04A9 /* FSQVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSQVenue.h; sourceTree = "<group>"; };
 		321B35CA1890DAF500DF04A9 /* placeholder-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-2.png"; sourceTree = "<group>"; };
 		321B35CC1890DCA200DF04A9 /* placeholder-small1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-small1.png"; sourceTree = "<group>"; };
+		321B35CE1890F9DF00DF04A9 /* CREReviewNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREReviewNewViewController.h; sourceTree = "<group>"; };
+		321B35CF1890F9DF00DF04A9 /* CREReviewNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREReviewNewViewController.m; sourceTree = "<group>"; };
+		321B35D118919B0900DF04A9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		321B35D318919FE400DF04A9 /* CREVenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CREVenueAnnotation.h; path = Crema/Models/CREVenueAnnotation.h; sourceTree = SOURCE_ROOT; };
+		321B35D418919FE400DF04A9 /* CREVenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CREVenueAnnotation.m; path = Crema/Models/CREVenueAnnotation.m; sourceTree = SOURCE_ROOT; };
 		323AB026188A5E1F00130EFA /* Crema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		323AB029188A5E1F00130EFA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		323AB02B188A5E1F00130EFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -126,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				321B35D218919B0900DF04A9 /* MapKit.framework in Frameworks */,
 				32694E10188C5EAD0015213F /* Accounts.framework in Frameworks */,
 				32694E0F188C5EA30015213F /* FacebookSDK.framework in Frameworks */,
 				323AB06D188A5FFF00130EFA /* libz.dylib in Frameworks */,
@@ -202,6 +211,7 @@
 		323AB028188A5E1F00130EFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				321B35D118919B0900DF04A9 /* MapKit.framework */,
 				32694E0E188C5EA30015213F /* FacebookSDK.framework */,
 				326B8020188C5D69006DCD64 /* Accounts.framework */,
 				326B801B188C5656006DCD64 /* StoreKit.framework */,
@@ -279,6 +289,8 @@
 		323AB076188A61D200130EFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				321B35D318919FE400DF04A9 /* CREVenueAnnotation.h */,
+				321B35D418919FE400DF04A9 /* CREVenueAnnotation.m */,
 				32694E1D188CA6AA0015213F /* CREShop.h */,
 				32694E1E188CA6AA0015213F /* CREShop.m */,
 			);
@@ -288,6 +300,8 @@
 		323AB078188A61EE00130EFA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				321B35CE1890F9DF00DF04A9 /* CREReviewNewViewController.h */,
+				321B35CF1890F9DF00DF04A9 /* CREReviewNewViewController.m */,
 				32694E20188CACD30015213F /* CRESearchTableViewController.h */,
 				32694E21188CACD30015213F /* CRESearchTableViewController.m */,
 				326B800E188C53C3006DCD64 /* CREListViewController.h */,
@@ -453,6 +467,8 @@
 				32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */,
 				321B35C41890844900DF04A9 /* FSQFoursquareAPIClient.m in Sources */,
 				326B8010188C53C3006DCD64 /* CREListViewController.m in Sources */,
+				321B35D01890F9DF00DF04A9 /* CREReviewNewViewController.m in Sources */,
+				321B35D518919FE400DF04A9 /* CREVenueAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
