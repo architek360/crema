@@ -1,0 +1,688 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		321B35C41890844900DF04A9 /* FSQFoursquareAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35C31890844900DF04A9 /* FSQFoursquareAPIClient.m */; };
+		321B35C71890AFFD00DF04A9 /* FSQVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35C61890AFFD00DF04A9 /* FSQVenue.m */; };
+		321B35CB1890DAF500DF04A9 /* placeholder-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35CA1890DAF500DF04A9 /* placeholder-2.png */; };
+		321B35CD1890DCA200DF04A9 /* placeholder-small1.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35CC1890DCA200DF04A9 /* placeholder-small1.png */; };
+		323AB02A188A5E1F00130EFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB029188A5E1F00130EFA /* Foundation.framework */; };
+		323AB02C188A5E1F00130EFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02B188A5E1F00130EFA /* CoreGraphics.framework */; };
+		323AB02E188A5E1F00130EFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02D188A5E1F00130EFA /* UIKit.framework */; };
+		323AB034188A5E1F00130EFA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 323AB032188A5E1F00130EFA /* InfoPlist.strings */; };
+		323AB036188A5E1F00130EFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 323AB035188A5E1F00130EFA /* main.m */; };
+		323AB03A188A5E1F00130EFA /* CREAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 323AB039188A5E1F00130EFA /* CREAppDelegate.m */; };
+		323AB03C188A5E1F00130EFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 323AB03B188A5E1F00130EFA /* Images.xcassets */; };
+		323AB043188A5E2000130EFA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB042188A5E2000130EFA /* XCTest.framework */; };
+		323AB044188A5E2000130EFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB029188A5E1F00130EFA /* Foundation.framework */; };
+		323AB045188A5E2000130EFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02D188A5E1F00130EFA /* UIKit.framework */; };
+		323AB04D188A5E2000130EFA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 323AB04B188A5E2000130EFA /* InfoPlist.strings */; };
+		323AB04F188A5E2000130EFA /* CremaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 323AB04E188A5E2000130EFA /* CremaTests.m */; };
+		323AB059188A5ED000130EFA /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB058188A5ED000130EFA /* GoogleMaps.framework */; };
+		323AB05B188A5F1700130EFA /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 323AB05A188A5F1700130EFA /* GoogleMaps.bundle */; };
+		323AB05D188A5FA700130EFA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB05C188A5FA700130EFA /* AVFoundation.framework */; };
+		323AB05F188A5FAD00130EFA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB05E188A5FAD00130EFA /* CoreData.framework */; };
+		323AB061188A5FB600130EFA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB060188A5FB600130EFA /* CoreLocation.framework */; };
+		323AB063188A5FC000130EFA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB062188A5FC000130EFA /* CoreText.framework */; };
+		323AB065188A5FC700130EFA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB064188A5FC700130EFA /* GLKit.framework */; };
+		323AB067188A5FCF00130EFA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB066188A5FCF00130EFA /* ImageIO.framework */; };
+		323AB069188A5FE100130EFA /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB068188A5FE100130EFA /* libc++.dylib */; };
+		323AB06B188A5FF500130EFA /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB06A188A5FF500130EFA /* libicucore.dylib */; };
+		323AB06D188A5FFF00130EFA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB06C188A5FFF00130EFA /* libz.dylib */; };
+		323AB06F188A600C00130EFA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB06E188A600C00130EFA /* OpenGLES.framework */; };
+		323AB071188A601D00130EFA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB070188A601D00130EFA /* QuartzCore.framework */; };
+		323AB073188A602600130EFA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB072188A602600130EFA /* SystemConfiguration.framework */; };
+		323AB0BC188A62C800130EFA /* CREMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323AB0BB188A62C800130EFA /* CREMapViewController.m */; };
+		323AB0BE188A62F200130EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323AB0BD188A62F200130EFA /* Main.storyboard */; };
+		32694E0F188C5EA30015213F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32694E0E188C5EA30015213F /* FacebookSDK.framework */; };
+		32694E10188C5EAD0015213F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8020188C5D69006DCD64 /* Accounts.framework */; };
+		32694E1F188CA6AA0015213F /* CREShop.m in Sources */ = {isa = PBXBuildFile; fileRef = 32694E1E188CA6AA0015213F /* CREShop.m */; };
+		32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32694E21188CACD30015213F /* CRESearchTableViewController.m */; };
+		326B8010188C53C3006DCD64 /* CREListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326B800F188C53C3006DCD64 /* CREListViewController.m */; };
+		326B8014188C5606006DCD64 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8013188C5606006DCD64 /* AudioToolbox.framework */; };
+		326B8016188C5618006DCD64 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8015188C5618006DCD64 /* CFNetwork.framework */; };
+		326B8018188C563F006DCD64 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8017188C563E006DCD64 /* MobileCoreServices.framework */; };
+		326B801A188C564F006DCD64 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8019188C564F006DCD64 /* Security.framework */; };
+		326B801E188C59B1006DCD64 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B801B188C5656006DCD64 /* StoreKit.framework */; };
+		326B801F188C5A69006DCD64 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8011188C55F0006DCD64 /* Parse.framework */; };
+		B37F458BC81B41DA809A4467 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5DC032311D4FC8B0CE3E0E /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		323AB046188A5E2000130EFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 323AB01E188A5E1F00130EFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 323AB025188A5E1F00130EFA;
+			remoteInfo = Crema;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C5DC032311D4FC8B0CE3E0E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		321B35C21890844900DF04A9 /* FSQFoursquareAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSQFoursquareAPIClient.h; path = lib/FSQFoursquareAPIClient.h; sourceTree = SOURCE_ROOT; };
+		321B35C31890844900DF04A9 /* FSQFoursquareAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSQFoursquareAPIClient.m; path = lib/FSQFoursquareAPIClient.m; sourceTree = SOURCE_ROOT; };
+		321B35C61890AFFD00DF04A9 /* FSQVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSQVenue.m; path = lib/FSQVenue.m; sourceTree = SOURCE_ROOT; };
+		321B35C81890B05700DF04A9 /* FSQVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSQVenue.h; sourceTree = "<group>"; };
+		321B35CA1890DAF500DF04A9 /* placeholder-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-2.png"; sourceTree = "<group>"; };
+		321B35CC1890DCA200DF04A9 /* placeholder-small1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-small1.png"; sourceTree = "<group>"; };
+		323AB026188A5E1F00130EFA /* Crema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crema.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		323AB029188A5E1F00130EFA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		323AB02B188A5E1F00130EFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		323AB02D188A5E1F00130EFA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		323AB031188A5E1F00130EFA /* Crema-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Crema-Info.plist"; sourceTree = "<group>"; };
+		323AB033188A5E1F00130EFA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		323AB035188A5E1F00130EFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		323AB037188A5E1F00130EFA /* Crema-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Crema-Prefix.pch"; sourceTree = "<group>"; };
+		323AB038188A5E1F00130EFA /* CREAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CREAppDelegate.h; sourceTree = "<group>"; };
+		323AB039188A5E1F00130EFA /* CREAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CREAppDelegate.m; sourceTree = "<group>"; };
+		323AB03B188A5E1F00130EFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		323AB041188A5E2000130EFA /* CremaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CremaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		323AB042188A5E2000130EFA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		323AB04A188A5E2000130EFA /* CremaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CremaTests-Info.plist"; sourceTree = "<group>"; };
+		323AB04C188A5E2000130EFA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		323AB04E188A5E2000130EFA /* CremaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CremaTests.m; sourceTree = "<group>"; };
+		323AB058188A5ED000130EFA /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "GoogleMaps-iOS-1.6.2/GoogleMaps.framework"; sourceTree = "<group>"; };
+		323AB05A188A5F1700130EFA /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "GoogleMaps-iOS-1.6.2/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
+		323AB05C188A5FA700130EFA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		323AB05E188A5FAD00130EFA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		323AB060188A5FB600130EFA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		323AB062188A5FC000130EFA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		323AB064188A5FC700130EFA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		323AB066188A5FCF00130EFA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		323AB068188A5FE100130EFA /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		323AB06A188A5FF500130EFA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		323AB06C188A5FFF00130EFA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		323AB06E188A600C00130EFA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		323AB070188A601D00130EFA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		323AB072188A602600130EFA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		323AB0BA188A62C800130EFA /* CREMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREMapViewController.h; sourceTree = "<group>"; };
+		323AB0BB188A62C800130EFA /* CREMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREMapViewController.m; sourceTree = "<group>"; };
+		323AB0BD188A62F200130EFA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		32694E0E188C5EA30015213F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "facebook-ios-sdk-master/build/FacebookSDK.framework"; sourceTree = "<group>"; };
+		32694E1D188CA6AA0015213F /* CREShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREShop.h; sourceTree = "<group>"; };
+		32694E1E188CA6AA0015213F /* CREShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREShop.m; sourceTree = "<group>"; };
+		32694E20188CACD30015213F /* CRESearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRESearchTableViewController.h; sourceTree = "<group>"; };
+		32694E21188CACD30015213F /* CRESearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRESearchTableViewController.m; sourceTree = "<group>"; };
+		326B800E188C53C3006DCD64 /* CREListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREListViewController.h; sourceTree = "<group>"; };
+		326B800F188C53C3006DCD64 /* CREListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREListViewController.m; sourceTree = "<group>"; };
+		326B8011188C55F0006DCD64 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		326B8013188C5606006DCD64 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		326B8015188C5618006DCD64 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		326B8017188C563E006DCD64 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		326B8019188C564F006DCD64 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		326B801B188C5656006DCD64 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		326B8020188C5D69006DCD64 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		F9F639C66B594F4A9F4C2473 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		323AB023188A5E1F00130EFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32694E10188C5EAD0015213F /* Accounts.framework in Frameworks */,
+				32694E0F188C5EA30015213F /* FacebookSDK.framework in Frameworks */,
+				323AB06D188A5FFF00130EFA /* libz.dylib in Frameworks */,
+				326B8014188C5606006DCD64 /* AudioToolbox.framework in Frameworks */,
+				326B8016188C5618006DCD64 /* CFNetwork.framework in Frameworks */,
+				323AB02C188A5E1F00130EFA /* CoreGraphics.framework in Frameworks */,
+				323AB061188A5FB600130EFA /* CoreLocation.framework in Frameworks */,
+				326B8018188C563F006DCD64 /* MobileCoreServices.framework in Frameworks */,
+				323AB071188A601D00130EFA /* QuartzCore.framework in Frameworks */,
+				326B801A188C564F006DCD64 /* Security.framework in Frameworks */,
+				323AB073188A602600130EFA /* SystemConfiguration.framework in Frameworks */,
+				323AB06F188A600C00130EFA /* OpenGLES.framework in Frameworks */,
+				323AB06B188A5FF500130EFA /* libicucore.dylib in Frameworks */,
+				323AB069188A5FE100130EFA /* libc++.dylib in Frameworks */,
+				323AB067188A5FCF00130EFA /* ImageIO.framework in Frameworks */,
+				323AB065188A5FC700130EFA /* GLKit.framework in Frameworks */,
+				323AB063188A5FC000130EFA /* CoreText.framework in Frameworks */,
+				323AB05F188A5FAD00130EFA /* CoreData.framework in Frameworks */,
+				323AB05D188A5FA700130EFA /* AVFoundation.framework in Frameworks */,
+				326B801E188C59B1006DCD64 /* StoreKit.framework in Frameworks */,
+				323AB02E188A5E1F00130EFA /* UIKit.framework in Frameworks */,
+				323AB059188A5ED000130EFA /* GoogleMaps.framework in Frameworks */,
+				326B801F188C5A69006DCD64 /* Parse.framework in Frameworks */,
+				323AB02A188A5E1F00130EFA /* Foundation.framework in Frameworks */,
+				B37F458BC81B41DA809A4467 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		323AB03E188A5E2000130EFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				323AB043188A5E2000130EFA /* XCTest.framework in Frameworks */,
+				323AB045188A5E2000130EFA /* UIKit.framework in Frameworks */,
+				323AB044188A5E2000130EFA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		321B35C91890DAC100DF04A9 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				321B35CC1890DCA200DF04A9 /* placeholder-small1.png */,
+				321B35CA1890DAF500DF04A9 /* placeholder-2.png */,
+			);
+			name = Assets;
+			path = Crema/Assets;
+			sourceTree = "<group>";
+		};
+		323AB01D188A5E1F00130EFA = {
+			isa = PBXGroup;
+			children = (
+				321B35C91890DAC100DF04A9 /* Assets */,
+				3257D3A61890359C00C4608F /* Lib */,
+				323AB02F188A5E1F00130EFA /* Crema */,
+				323AB048188A5E2000130EFA /* CremaTests */,
+				323AB028188A5E1F00130EFA /* Frameworks */,
+				323AB027188A5E1F00130EFA /* Products */,
+				F9F639C66B594F4A9F4C2473 /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		323AB027188A5E1F00130EFA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				323AB026188A5E1F00130EFA /* Crema.app */,
+				323AB041188A5E2000130EFA /* CremaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		323AB028188A5E1F00130EFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32694E0E188C5EA30015213F /* FacebookSDK.framework */,
+				326B8020188C5D69006DCD64 /* Accounts.framework */,
+				326B801B188C5656006DCD64 /* StoreKit.framework */,
+				326B8019188C564F006DCD64 /* Security.framework */,
+				326B8017188C563E006DCD64 /* MobileCoreServices.framework */,
+				326B8015188C5618006DCD64 /* CFNetwork.framework */,
+				326B8013188C5606006DCD64 /* AudioToolbox.framework */,
+				326B8011188C55F0006DCD64 /* Parse.framework */,
+				323AB070188A601D00130EFA /* QuartzCore.framework */,
+				323AB06E188A600C00130EFA /* OpenGLES.framework */,
+				323AB06C188A5FFF00130EFA /* libz.dylib */,
+				323AB06A188A5FF500130EFA /* libicucore.dylib */,
+				323AB068188A5FE100130EFA /* libc++.dylib */,
+				323AB066188A5FCF00130EFA /* ImageIO.framework */,
+				323AB064188A5FC700130EFA /* GLKit.framework */,
+				323AB062188A5FC000130EFA /* CoreText.framework */,
+				323AB060188A5FB600130EFA /* CoreLocation.framework */,
+				323AB05E188A5FAD00130EFA /* CoreData.framework */,
+				323AB05C188A5FA700130EFA /* AVFoundation.framework */,
+				323AB05A188A5F1700130EFA /* GoogleMaps.bundle */,
+				323AB058188A5ED000130EFA /* GoogleMaps.framework */,
+				323AB029188A5E1F00130EFA /* Foundation.framework */,
+				323AB02B188A5E1F00130EFA /* CoreGraphics.framework */,
+				323AB02D188A5E1F00130EFA /* UIKit.framework */,
+				323AB042188A5E2000130EFA /* XCTest.framework */,
+				0C5DC032311D4FC8B0CE3E0E /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		323AB02F188A5E1F00130EFA /* Crema */ = {
+			isa = PBXGroup;
+			children = (
+				323AB0BD188A62F200130EFA /* Main.storyboard */,
+				323AB078188A61EE00130EFA /* Controllers */,
+				323AB076188A61D200130EFA /* Models */,
+				323AB038188A5E1F00130EFA /* CREAppDelegate.h */,
+				323AB039188A5E1F00130EFA /* CREAppDelegate.m */,
+				323AB03B188A5E1F00130EFA /* Images.xcassets */,
+				323AB030188A5E1F00130EFA /* Supporting Files */,
+			);
+			path = Crema;
+			sourceTree = "<group>";
+		};
+		323AB030188A5E1F00130EFA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				323AB031188A5E1F00130EFA /* Crema-Info.plist */,
+				323AB032188A5E1F00130EFA /* InfoPlist.strings */,
+				323AB035188A5E1F00130EFA /* main.m */,
+				323AB037188A5E1F00130EFA /* Crema-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		323AB048188A5E2000130EFA /* CremaTests */ = {
+			isa = PBXGroup;
+			children = (
+				323AB072188A602600130EFA /* SystemConfiguration.framework */,
+				323AB04E188A5E2000130EFA /* CremaTests.m */,
+				323AB049188A5E2000130EFA /* Supporting Files */,
+			);
+			path = CremaTests;
+			sourceTree = "<group>";
+		};
+		323AB049188A5E2000130EFA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				323AB04A188A5E2000130EFA /* CremaTests-Info.plist */,
+				323AB04B188A5E2000130EFA /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		323AB076188A61D200130EFA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				32694E1D188CA6AA0015213F /* CREShop.h */,
+				32694E1E188CA6AA0015213F /* CREShop.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		323AB078188A61EE00130EFA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				32694E20188CACD30015213F /* CRESearchTableViewController.h */,
+				32694E21188CACD30015213F /* CRESearchTableViewController.m */,
+				326B800E188C53C3006DCD64 /* CREListViewController.h */,
+				326B800F188C53C3006DCD64 /* CREListViewController.m */,
+				323AB0BA188A62C800130EFA /* CREMapViewController.h */,
+				323AB0BB188A62C800130EFA /* CREMapViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3257D3A61890359C00C4608F /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				321B35C21890844900DF04A9 /* FSQFoursquareAPIClient.h */,
+				321B35C31890844900DF04A9 /* FSQFoursquareAPIClient.m */,
+				321B35C81890B05700DF04A9 /* FSQVenue.h */,
+				321B35C61890AFFD00DF04A9 /* FSQVenue.m */,
+			);
+			name = Lib;
+			path = lib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		323AB025188A5E1F00130EFA /* Crema */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 323AB052188A5E2000130EFA /* Build configuration list for PBXNativeTarget "Crema" */;
+			buildPhases = (
+				3CED2AE0794847DDAEDCEE49 /* Check Pods Manifest.lock */,
+				323AB022188A5E1F00130EFA /* Sources */,
+				323AB023188A5E1F00130EFA /* Frameworks */,
+				323AB024188A5E1F00130EFA /* Resources */,
+				20FD695C36E244EF9113F009 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Crema;
+			productName = Crema;
+			productReference = 323AB026188A5E1F00130EFA /* Crema.app */;
+			productType = "com.apple.product-type.application";
+		};
+		323AB040188A5E2000130EFA /* CremaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 323AB055188A5E2000130EFA /* Build configuration list for PBXNativeTarget "CremaTests" */;
+			buildPhases = (
+				323AB03D188A5E2000130EFA /* Sources */,
+				323AB03E188A5E2000130EFA /* Frameworks */,
+				323AB03F188A5E2000130EFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				323AB047188A5E2000130EFA /* PBXTargetDependency */,
+			);
+			name = CremaTests;
+			productName = CremaTests;
+			productReference = 323AB041188A5E2000130EFA /* CremaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		323AB01E188A5E1F00130EFA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CRE;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Jeff Wells";
+				TargetAttributes = {
+					323AB040188A5E2000130EFA = {
+						TestTargetID = 323AB025188A5E1F00130EFA;
+					};
+				};
+			};
+			buildConfigurationList = 323AB021188A5E1F00130EFA /* Build configuration list for PBXProject "Crema" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 323AB01D188A5E1F00130EFA;
+			productRefGroup = 323AB027188A5E1F00130EFA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				323AB025188A5E1F00130EFA /* Crema */,
+				323AB040188A5E2000130EFA /* CremaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		323AB024188A5E1F00130EFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				323AB05B188A5F1700130EFA /* GoogleMaps.bundle in Resources */,
+				323AB0BE188A62F200130EFA /* Main.storyboard in Resources */,
+				321B35CB1890DAF500DF04A9 /* placeholder-2.png in Resources */,
+				323AB034188A5E1F00130EFA /* InfoPlist.strings in Resources */,
+				323AB03C188A5E1F00130EFA /* Images.xcassets in Resources */,
+				321B35CD1890DCA200DF04A9 /* placeholder-small1.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		323AB03F188A5E2000130EFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				323AB04D188A5E2000130EFA /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20FD695C36E244EF9113F009 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CED2AE0794847DDAEDCEE49 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		323AB022188A5E1F00130EFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32694E1F188CA6AA0015213F /* CREShop.m in Sources */,
+				323AB036188A5E1F00130EFA /* main.m in Sources */,
+				321B35C71890AFFD00DF04A9 /* FSQVenue.m in Sources */,
+				323AB03A188A5E1F00130EFA /* CREAppDelegate.m in Sources */,
+				323AB0BC188A62C800130EFA /* CREMapViewController.m in Sources */,
+				32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */,
+				321B35C41890844900DF04A9 /* FSQFoursquareAPIClient.m in Sources */,
+				326B8010188C53C3006DCD64 /* CREListViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		323AB03D188A5E2000130EFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				323AB04F188A5E2000130EFA /* CremaTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		323AB047188A5E2000130EFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 323AB025188A5E1F00130EFA /* Crema */;
+			targetProxy = 323AB046188A5E2000130EFA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		323AB032188A5E1F00130EFA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				323AB033188A5E1F00130EFA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		323AB04B188A5E2000130EFA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				323AB04C188A5E2000130EFA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		323AB050188A5E2000130EFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		323AB051188A5E2000130EFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		323AB053188A5E2000130EFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9F639C66B594F4A9F4C2473 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jeffrwells/Sites/Crema/GoogleMaps-iOS-1.6.2",
+					/Users/jeffrwells/Sites/Crema,
+					"/Users/jeffrwells/Sites/Crema/facebook-ios-sdk-master/build",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Crema/Crema-Prefix.pch";
+				INFOPLIST_FILE = "Crema/Crema-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		323AB054188A5E2000130EFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9F639C66B594F4A9F4C2473 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jeffrwells/Sites/Crema/GoogleMaps-iOS-1.6.2",
+					/Users/jeffrwells/Sites/Crema,
+					"/Users/jeffrwells/Sites/Crema/facebook-ios-sdk-master/build",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Crema/Crema-Prefix.pch";
+				INFOPLIST_FILE = "Crema/Crema-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		323AB056188A5E2000130EFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Crema.app/Crema";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Crema/Crema-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CremaTests/CremaTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		323AB057188A5E2000130EFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Crema.app/Crema";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Crema/Crema-Prefix.pch";
+				INFOPLIST_FILE = "CremaTests/CremaTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		323AB021188A5E1F00130EFA /* Build configuration list for PBXProject "Crema" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				323AB050188A5E2000130EFA /* Debug */,
+				323AB051188A5E2000130EFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		323AB052188A5E2000130EFA /* Build configuration list for PBXNativeTarget "Crema" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				323AB053188A5E2000130EFA /* Debug */,
+				323AB054188A5E2000130EFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		323AB055188A5E2000130EFA /* Build configuration list for PBXNativeTarget "CremaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				323AB056188A5E2000130EFA /* Debug */,
+				323AB057188A5E2000130EFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 323AB01E188A5E1F00130EFA /* Project object */;
+}
