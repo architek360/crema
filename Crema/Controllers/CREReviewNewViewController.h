@@ -16,6 +16,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 
 @property (nonatomic) FSQVenue *venue;
 

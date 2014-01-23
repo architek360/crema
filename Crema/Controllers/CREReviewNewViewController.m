@@ -8,7 +8,7 @@
 
 #import "CREReviewNewViewController.h"
 #import "CREVenueAnnotation.h"
-//#import "ObjectiveSugar"
+#import "ObjectiveSugar.h"
 
 @interface CREReviewNewViewController ()
 
@@ -17,6 +17,7 @@
 @implementation CREReviewNewViewController
 @synthesize nameLabel;
 @synthesize addressLabel;
+@synthesize cityLabel;
 @synthesize venue;
 
 
@@ -34,8 +35,13 @@
     [super viewDidLoad];
     
     nameLabel.text = self.venue.name;
+    NSArray* address = [self.venue.addressString split:@", "];
+    addressLabel.text = address[0];
+    cityLabel.text = [address[@"1..2"] componentsJoinedByString:@", "];
+    if (address[3]) {
+        cityLabel.text = [@[cityLabel.text, address[3]] componentsJoinedByString:@" "];
+    }
     
-    addressLabel.text = self.venue.addressString;
     
     [self updateMap];
     
