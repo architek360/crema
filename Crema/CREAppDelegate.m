@@ -7,13 +7,13 @@
 //
 
 #import "CREAppDelegate.h"
-#import <GoogleMaps/GoogleMaps.h>
 #import <Parse/Parse.h>
 #import "CREVenue.h"
 
 #define FOURSQUARE_API_KEY
 
 @implementation CREAppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -24,6 +24,16 @@
     
     return YES;
 }
+
+- (void)setCurrentLocation:(CLLocation *)location
+{
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject: location
+                                                         forKey:@"location"];
+    [[NSNotificationCenter defaultCenter] postNotificationName: kCRELocationChangeNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

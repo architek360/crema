@@ -5,7 +5,7 @@
 //  Created by Jeff Wells on 1/18/14.
 //  Copyright (c) 2014 Jeff Wells. All rights reserved.
 //
-
+#import "CREAppDelegate.h"
 #import "CREMapViewController.h"
 #import "CREParseAPIClient.h"
 #import "SVProgressHUD.h"
@@ -15,6 +15,10 @@
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSArray *venues;
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation;
 
 @end
 
@@ -35,6 +39,17 @@
     }
     return _locationManager;
 }
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    CREAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    // This is where the post happens
+    [appDelegate setCurrentLocation:newLocation];
+}
+
 
 - (void)updateLocation {
     [self.locationManager startUpdatingLocation];
@@ -74,6 +89,13 @@
     [super didReceiveMemoryWarning];
     self.locationManager = nil;
 }
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kCRELocationChangeNotification
+                                                  object:nil];
+}
+
 
 #pragma mark - CLLocationManagerDelegate methods
 
