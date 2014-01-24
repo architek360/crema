@@ -8,7 +8,7 @@
 
 #import "FSQFoursquareAPIClient.h"
 #import "AFNetworking.h"
-#import "FSQVenue.h"
+#import "CREVenue.h"
 #import "ObjectiveSugar.h"
 #import "CREParseAPIClient.h"
 
@@ -136,7 +136,7 @@
 - (NSArray *) venuesForResponse: (NSArray *) venueDictionaries {
     NSMutableArray *venues = [NSMutableArray arrayWithCapacity:[venueDictionaries count]];
     for (id venueDictionary in venueDictionaries) {
-        [venues addObject:[FSQVenue venueWithDictionary: venueDictionary]];
+        [venues addObject:[CREVenue venueWithDictionary: venueDictionary]];
     }
     return venues;
 }

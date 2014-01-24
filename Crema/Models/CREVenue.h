@@ -1,5 +1,5 @@
 //
-//  FSQVenue.h
+//  CREVenue.h
 //  Crema
 //
 //  Created by Jeff Wells on 1/22/14.
@@ -8,14 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-@interface FSQVenue : NSObject
+@interface CREVenue : PFObject<PFSubclassing>
+
++ (NSString *)parseClassName; //for Parse
+
+
 @property (nonatomic, copy) NSString *venueId;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) NSNumber *latitude;
 @property (nonatomic, strong) NSNumber *longitude;
 @property (nonatomic, copy) NSString *addressString;
-//@property (nonatomic, copy) NSString *photoUrl;
 @property (nonatomic, strong) NSNumber *saved;
+@property (nonatomic, strong) PFGeoPoint *location;
+//@property (nonatomic, copy) NSString *photoUrl;
+
 
 + (id)venueWithDictionary:(NSDictionary *)dictionary;
 - (id)initWithDictionary:(NSDictionary *)dictionary;

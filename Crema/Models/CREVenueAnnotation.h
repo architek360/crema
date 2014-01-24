@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "FSQVenue.h"
+#import "CREVenue.h"
 
 @interface CREVenueAnnotation : NSObject <MKAnnotation>
-    - (id)initWithVenue:(FSQVenue *)venue;
+    - (id)initWithVenue:(CREVenue *)venue;
 
 @end

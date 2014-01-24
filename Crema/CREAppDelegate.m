@@ -9,7 +9,7 @@
 #import "CREAppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <Parse/Parse.h>
-#import "CREShop.h"
+#import "CREVenue.h"
 
 #define FOURSQUARE_API_KEY
 
@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [GMSServices provideAPIKey:@"AIzaSyD6emvnZT2YVyGYNavze2LyGkSMHSZljs8"];
+    [CREVenue registerSubclass];
     [Parse setApplicationId:@"XopwGca2iFLDzrpCbccC64fKlIxlwVG7QpXNJODI"
                   clientKey:@"cJcLuyfspI5uc0tEq6mBsgi2zcbVA9svXOavhF2o"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FSQVenue.h"
+#import "CREVenue.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 
-@property (nonatomic) FSQVenue *venue;
+@property (nonatomic) CREVenue *venue;
 @property (nonatomic) NSIndexPath *index;
 
 @end

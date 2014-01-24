@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		321B35C41890844900DF04A9 /* FSQFoursquareAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35C31890844900DF04A9 /* FSQFoursquareAPIClient.m */; };
-		321B35C71890AFFD00DF04A9 /* FSQVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35C61890AFFD00DF04A9 /* FSQVenue.m */; };
 		321B35CB1890DAF500DF04A9 /* placeholder-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35CA1890DAF500DF04A9 /* placeholder-2.png */; };
 		321B35CD1890DCA200DF04A9 /* placeholder-small1.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35CC1890DCA200DF04A9 /* placeholder-small1.png */; };
 		321B35D01890F9DF00DF04A9 /* CREReviewNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35CF1890F9DF00DF04A9 /* CREReviewNewViewController.m */; };
 		321B35D218919B0900DF04A9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321B35D118919B0900DF04A9 /* MapKit.framework */; };
 		321B35D518919FE400DF04A9 /* CREVenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35D418919FE400DF04A9 /* CREVenueAnnotation.m */; };
 		321B35D81891BD1E00DF04A9 /* CREParseAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35D71891BD1E00DF04A9 /* CREParseAPIClient.m */; };
+		321B35DE1892342A00DF04A9 /* CREVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35DD1892342A00DF04A9 /* CREVenue.m */; };
 		323AB02A188A5E1F00130EFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB029188A5E1F00130EFA /* Foundation.framework */; };
 		323AB02C188A5E1F00130EFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02B188A5E1F00130EFA /* CoreGraphics.framework */; };
 		323AB02E188A5E1F00130EFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02D188A5E1F00130EFA /* UIKit.framework */; };
@@ -45,7 +45,6 @@
 		323AB0BE188A62F200130EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323AB0BD188A62F200130EFA /* Main.storyboard */; };
 		32694E0F188C5EA30015213F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32694E0E188C5EA30015213F /* FacebookSDK.framework */; };
 		32694E10188C5EAD0015213F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8020188C5D69006DCD64 /* Accounts.framework */; };
-		32694E1F188CA6AA0015213F /* CREShop.m in Sources */ = {isa = PBXBuildFile; fileRef = 32694E1E188CA6AA0015213F /* CREShop.m */; };
 		32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32694E21188CACD30015213F /* CRESearchTableViewController.m */; };
 		326B8010188C53C3006DCD64 /* CREListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326B800F188C53C3006DCD64 /* CREListViewController.m */; };
 		326B8014188C5606006DCD64 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8013188C5606006DCD64 /* AudioToolbox.framework */; };
@@ -71,8 +70,6 @@
 		0C5DC032311D4FC8B0CE3E0E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		321B35C21890844900DF04A9 /* FSQFoursquareAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSQFoursquareAPIClient.h; path = lib/FSQFoursquareAPIClient.h; sourceTree = SOURCE_ROOT; };
 		321B35C31890844900DF04A9 /* FSQFoursquareAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSQFoursquareAPIClient.m; path = lib/FSQFoursquareAPIClient.m; sourceTree = SOURCE_ROOT; };
-		321B35C61890AFFD00DF04A9 /* FSQVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSQVenue.m; path = lib/FSQVenue.m; sourceTree = SOURCE_ROOT; };
-		321B35C81890B05700DF04A9 /* FSQVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSQVenue.h; sourceTree = "<group>"; };
 		321B35CA1890DAF500DF04A9 /* placeholder-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-2.png"; sourceTree = "<group>"; };
 		321B35CC1890DCA200DF04A9 /* placeholder-small1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-small1.png"; sourceTree = "<group>"; };
 		321B35CE1890F9DF00DF04A9 /* CREReviewNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREReviewNewViewController.h; sourceTree = "<group>"; };
@@ -82,6 +79,8 @@
 		321B35D418919FE400DF04A9 /* CREVenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CREVenueAnnotation.m; path = Crema/Models/CREVenueAnnotation.m; sourceTree = SOURCE_ROOT; };
 		321B35D61891BD1E00DF04A9 /* CREParseAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREParseAPIClient.h; sourceTree = "<group>"; };
 		321B35D71891BD1E00DF04A9 /* CREParseAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREParseAPIClient.m; sourceTree = "<group>"; };
+		321B35DC1892342A00DF04A9 /* CREVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREVenue.h; sourceTree = "<group>"; };
+		321B35DD1892342A00DF04A9 /* CREVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenue.m; sourceTree = "<group>"; };
 		323AB026188A5E1F00130EFA /* Crema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		323AB029188A5E1F00130EFA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		323AB02B188A5E1F00130EFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,8 +115,6 @@
 		323AB0BB188A62C800130EFA /* CREMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREMapViewController.m; sourceTree = "<group>"; };
 		323AB0BD188A62F200130EFA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		32694E0E188C5EA30015213F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "facebook-ios-sdk-master/build/FacebookSDK.framework"; sourceTree = "<group>"; };
-		32694E1D188CA6AA0015213F /* CREShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREShop.h; sourceTree = "<group>"; };
-		32694E1E188CA6AA0015213F /* CREShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREShop.m; sourceTree = "<group>"; };
 		32694E20188CACD30015213F /* CRESearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRESearchTableViewController.h; sourceTree = "<group>"; };
 		32694E21188CACD30015213F /* CRESearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRESearchTableViewController.m; sourceTree = "<group>"; };
 		326B800E188C53C3006DCD64 /* CREListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREListViewController.h; sourceTree = "<group>"; };
@@ -292,10 +289,10 @@
 		323AB076188A61D200130EFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				321B35DC1892342A00DF04A9 /* CREVenue.h */,
+				321B35DD1892342A00DF04A9 /* CREVenue.m */,
 				321B35D318919FE400DF04A9 /* CREVenueAnnotation.h */,
 				321B35D418919FE400DF04A9 /* CREVenueAnnotation.m */,
-				32694E1D188CA6AA0015213F /* CREShop.h */,
-				32694E1E188CA6AA0015213F /* CREShop.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -320,8 +317,6 @@
 			children = (
 				321B35C21890844900DF04A9 /* FSQFoursquareAPIClient.h */,
 				321B35C31890844900DF04A9 /* FSQFoursquareAPIClient.m */,
-				321B35C81890B05700DF04A9 /* FSQVenue.h */,
-				321B35C61890AFFD00DF04A9 /* FSQVenue.m */,
 				321B35D61891BD1E00DF04A9 /* CREParseAPIClient.h */,
 				321B35D71891BD1E00DF04A9 /* CREParseAPIClient.m */,
 			);
@@ -464,10 +459,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32694E1F188CA6AA0015213F /* CREShop.m in Sources */,
+				321B35DE1892342A00DF04A9 /* CREVenue.m in Sources */,
 				323AB036188A5E1F00130EFA /* main.m in Sources */,
 				321B35D81891BD1E00DF04A9 /* CREParseAPIClient.m in Sources */,
-				321B35C71890AFFD00DF04A9 /* FSQVenue.m in Sources */,
 				323AB03A188A5E1F00130EFA /* CREAppDelegate.m in Sources */,
 				323AB0BC188A62C800130EFA /* CREMapViewController.m in Sources */,
 				32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */,

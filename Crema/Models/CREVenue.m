@@ -1,18 +1,31 @@
 //
-//  FSQVenue.m
+//  CREVenue.m
 //  Crema
 //
 //  Created by Jeff Wells on 1/22/14.
 //  Copyright (c) 2014 Jeff Wells. All rights reserved.
 //
 
-#import "FSQVenue.h"
+#import "CREVenue.h"
 #import <Parse/Parse.h>
 #import "CREParseAPIClient.h"
+#import <Parse/PFObject+Subclass.h>
 
-#define VENUE_PHOTO_TABLE_SIZE @"44x44"
+//#define VENUE_PHOTO_TABLE_SIZE @"44x44"
 
-@implementation FSQVenue
+@implementation CREVenue
+@dynamic venueId;
+@dynamic name;
+@dynamic latitude;
+@dynamic longitude;
+@dynamic addressString;
+@dynamic saved;
+
+
++ (NSString *)parseClassName {
+    return @"Venue";
+}
+
 
 + (id)venueWithDictionary:(NSDictionary *)dictionary {
     return [[self alloc] initWithDictionary: dictionary];
@@ -43,6 +56,7 @@
             [address addObject: location[@"postalCode"]];
         }
         self.addressString = [address componentsJoinedByString:@", "];
+        self.location = [PFGeoPoint geoPointWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
         
 //        NSDictionary *url = dictionary[@"photos"][@"groups"][0][@"items"][0];
 //        if (url) {

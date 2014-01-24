@@ -62,7 +62,7 @@
 }
 
 - (void)updateAnnotations {
-    for (PFObject *venue in self.venues) {
+    for (CREVenue *venue in self.venues) {
         CREVenueAnnotation *annotation = [[CREVenueAnnotation alloc] initWithVenue:venue];
         [self.mapView addAnnotation:annotation];
     }

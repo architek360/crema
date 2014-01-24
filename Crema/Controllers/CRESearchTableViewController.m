@@ -8,8 +8,7 @@
 
 #import "CRESearchTableViewController.h"
 #import "AFNetworking.h"
-#import "CREShop.h"
-#import "FSQVenue.h"
+#import "CREVenue.h"
 #import "SVProgressHUD.h"
 #import "FSQFoursquareAPIClient.h"
 #import "UIImageView+AFNetworking.h"
@@ -141,7 +140,7 @@
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-	FSQVenue *venue;
+	CREVenue *venue;
     
 	venue = [self.searchResults objectAtIndex:indexPath.row];
     if (venue.saved == nil)
@@ -170,7 +169,7 @@
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    FSQVenue *venue = self.searchResults[indexPath.row];
+    CREVenue *venue = self.searchResults[indexPath.row];
     
     if (venue.saved == nil) {
         venue.saved = [NSNumber numberWithBool:[CREParseAPIClient venuePersisted:venue]];
@@ -198,7 +197,7 @@
         }
         
         CREReviewNewViewController *destinationController = [segue destinationViewController];
-        FSQVenue *venue = self.searchResults[indexPath.row];
+        CREVenue *venue = self.searchResults[indexPath.row];
         destinationController.venue = venue;
         destinationController.index = indexPath;
     }
@@ -207,13 +206,9 @@
 - (IBAction)unwindToTable:(UIStoryboardSegue *)segue
 {
     CREReviewNewViewController *source = [segue sourceViewController];
-    FSQVenue *venue = source.venue;
+    CREVenue *venue = source.venue;
     [self.searchResults replaceObjectAtIndex:source.index.row withObject:venue];
-    if (venue.saved) {
-        [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationLeft];
-    } else {
-        [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationNone];
-    }
+    [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 
