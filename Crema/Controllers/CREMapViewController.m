@@ -7,76 +7,85 @@
 //
 
 #import "CREMapViewController.h"
-#import <GoogleMaps/GoogleMaps.h>
+#import "CREParseAPIClient.h"
+#import "SVProgressHUD.h"
+#import "CREVenueAnnotation.h"
 
-@interface CREMapViewController ()
+@interface CREMapViewController () <CLLocationManagerDelegate>
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) NSArray *venues;
 
 @end
 
-@implementation CREMapViewController {
-    GMSMapView *mapView_;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@implementation CREMapViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self updateLocation];
 }
 
-- (void)loadView
-{
-    // Create a GMSCameraPosition that tells the map to display the coordinate 33.43928, -111.95082 at zoom level 12.
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:33.43928
-                                                            longitude:-111.95082
-                                                                 zoom:12];
-    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    mapView_.myLocationEnabled = YES;
-    mapView_.indoorEnabled = NO;
-    mapView_.delegate = self;
-    mapView_.settings.myLocationButton = YES;
-    mapView_.settings.compassButton = YES;
-    
-    self.view = mapView_;
-    
-    // Creates a marker in the center of the map
-    
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(33.43928, -111.95082);
-    marker.title = @"The Lofts at Rio Salado";
-    marker.snippet = @"Tempe, AZ";
-    marker.map = mapView_;
-    NSLog(@"Done");
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        _locationManager.delegate = self;
+    }
+    return _locationManager;
 }
+
+- (void)updateLocation {
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)zoomToLocation:(CLLocation *)location radius:(CGFloat)radius {
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, radius * 2, radius * 2);
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (void)fetchVenuesForLocation:(CLLocation *)location {
+    [SVProgressHUD show];
+    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+    [CREParseAPIClient fetchVenuesNear:point
+                            completion:^(NSArray *venues, NSError *error) {
+                                if (error) {
+                                    [SVProgressHUD showErrorWithStatus:@"Sorry, there was an error."];
+                                } else {
+                                    [SVProgressHUD dismiss];
+                                    self.venues = venues;
+                                    [self updateAnnotations];
+                                }
+                            }];
+}
+
+- (void)updateAnnotations {
+    for (PFObject *venue in self.venues) {
+        CREVenueAnnotation *annotation = [[CREVenueAnnotation alloc] initWithVenue:venue];
+        [self.mapView addAnnotation:annotation];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.locationManager = nil;
 }
 
-#pragma mark - GMSMapViewDelegate
+#pragma mark - CLLocationManagerDelegate methods
 
-- (void)mapView:(GMSMapView *)mapView
-didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-    NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
-}
-
-- (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture {
-    NSLog(@"willMove");
-    [mapView clear];
-}
-
-- (void)mapView:(GMSMapView *)mapView
-idleAtCameraPosition:(GMSCameraPosition *)cameraPosition {
-    NSLog(@"Camera Position now at %f,%f", cameraPosition.targetAsCoordinate.latitude,cameraPosition.targetAsCoordinate.longitude);
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    static BOOL locationUpdated = NO;
+    if (!locationUpdated) {
+        locationUpdated = YES;
+        CLLocation *location = [locations lastObject];
+        [self fetchVenuesForLocation:location];
+        [self zoomToLocation:location radius:2000];
+        [self.locationManager stopUpdatingLocation];
+    }
 }
 
 @end

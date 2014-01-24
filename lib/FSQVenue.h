@@ -22,5 +22,5 @@
 - (NSDictionary *)toParseDictionary;
 - (BOOL) saveToPARSE;
 - (void) saveToPARSEWithBlock: (void (^)(BOOL success, NSError *failure) ) completion;
-+ (PFObject *) getParseObjectByVenueId: (NSString *)venueId;
+
 @end

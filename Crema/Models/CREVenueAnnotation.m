@@ -10,13 +10,13 @@
 
 
 @interface CREVenueAnnotation ()
-@property (nonatomic, strong) FSQVenue *venue;
+@property (nonatomic, strong) PFObject *venue;
 @end
 
 
 @implementation CREVenueAnnotation
 
-- (id)initWithVenue:(FSQVenue *)venue {
+- (id)initWithVenue:(PFObject *)venue {
     self = [super init];
     if (self) {
         self.venue = venue;
@@ -25,11 +25,12 @@
 }
 
 - (CLLocationCoordinate2D)coordinate {
-    return CLLocationCoordinate2DMake([self.venue.latitude doubleValue], [self.venue.longitude doubleValue]);
+    
+    return CLLocationCoordinate2DMake([self.venue[@"latitude"] doubleValue], [self.venue[@"longitude"] doubleValue]);
 }
 
 - (NSString *)title {
-    return self.venue.name;
+    return self.venue[@"name"];
 }
 
 @end

@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GoogleMaps/GoogleMaps.h>
+#import "FSQVenue.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <Parse/Parse.h>
 
-@interface CREMapViewController : UIViewController<GMSMapViewDelegate>
+@interface CREMapViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

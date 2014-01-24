@@ -13,7 +13,9 @@
 
 + (BOOL) venuePersisted: (FSQVenue * )venue;
 + (PFObject *) getVenueByFSQId: (NSString * )venueId;
-+ (NSArray *) getVenuesNear: (PFGeoPoint *) geoPoint;
++ (void) fetchVenuesNear: (PFGeoPoint *) geoPoint
+                   completion:( void (^)(NSArray *results, NSError *error) )completion;
+
 + (void) asyncVenuePersisted:(FSQVenue *) venue callback:(void (^)(BOOL success, NSError *failure) ) completion;
 
 @end

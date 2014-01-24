@@ -22,13 +22,17 @@
     return record;
 }
 
-+ (NSArray *) getVenuesNear: (PFGeoPoint *) geoPoint {
++ (void) fetchVenuesNear: (PFGeoPoint *) geoPoint
+                   completion:( void (^)(NSArray *results, NSError *error) )completion
+{
     PFQuery *query = [PFQuery queryWithClassName:@"Venue"];
     [query whereKey:@"location" nearGeoPoint:geoPoint withinKilometers:5.0];
+//    [query orderByAscending:@"upvotes"];
     query.limit = 20;
     NSArray *results = [query findObjects];
-    return results;
-    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        completion(results,error);
+    }];
 }
 
 + (void) asyncVenuePersisted:(FSQVenue *) venue callback:(void (^)(BOOL success, NSError *failure) ) completion {
