@@ -7,6 +7,8 @@
 //
 
 #import "FSQVenue.h"
+#import <Parse/Parse.h>
+#import "CREParseAPIClient.h"
 
 #define VENUE_PHOTO_TABLE_SIZE @"44x44"
 
@@ -50,6 +52,37 @@
     return self;
 }
 
+- (NSDictionary *)toParseDictionary {
+    NSDictionary *result;
+    if (self) {
+        result = [self dictionaryWithValuesForKeys:@[@"venueId",@"name",@"latitude",@"longitude",@"addressString"]];
+    }
+    return result;
+}
+- (BOOL) saveToPARSE {
+    if (![CREParseAPIClient venuePersisted:self]) {
+        PFObject *venueObject = [PFObject objectWithClassName:@"Venue"];
+        [venueObject setValuesForKeysWithDictionary:[self toParseDictionary]];
+        PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
+        venueObject[@"location"] = point;
+        
+        return [venueObject save];
+    }
+    return YES;
+}
+- (void) saveToPARSEWithBlock:(void (^)(BOOL success, NSError *failure) ) completion {
+    if (![CREParseAPIClient venuePersisted:self]) {
 
+        PFObject *venueObject = [PFObject objectWithClassName:@"Venue"];
+        [venueObject setValuesForKeysWithDictionary:[self toParseDictionary]];
+        PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
+        venueObject[@"location"] = point;
+        
+        [venueObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            completion(succeeded, error);
+        }];
+    }
+    
+}
 
 @end

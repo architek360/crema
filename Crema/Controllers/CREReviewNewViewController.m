@@ -9,8 +9,10 @@
 #import "CREReviewNewViewController.h"
 #import "CREVenueAnnotation.h"
 #import "ObjectiveSugar.h"
+#import "SVProgressHUD.h"
 
 @interface CREReviewNewViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 @end
 
@@ -21,14 +23,6 @@
 @synthesize venue;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -60,6 +54,21 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinates, radius * 2, radius * 2);
     [self.mapView setRegion:region animated:YES];
 }
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if (sender != self.saveButton) return; //do nothing, just segue back.
+    
+    [SVProgressHUD showWithStatus:@"Saving..."];
+    if ([venue saveToPARSE]) {
+        venue.saved = [NSNumber numberWithBool:YES];
+        [SVProgressHUD showSuccessWithStatus:@"Saved!"];
+    } else {
+        venue.saved = [NSNumber numberWithBool:NO];
+        [SVProgressHUD showErrorWithStatus:@"Sorry, an error occurred"];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {

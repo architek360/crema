@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "FSQVenue.h"
 #import "ObjectiveSugar.h"
+#import "CREParseAPIClient.h"
 
 #define FOURSQUARE_BASE_URL @"https://api.foursquare.com/v2/"
 
@@ -62,9 +63,9 @@
  
 }
 - (void) exploreVenuesNear:(CLLocationCoordinate2D) coordinates
-              searchTerm:(NSString *) searchTerm
+              searchTerm: (NSString *) searchTerm
            includePhotos: (BOOL) includePhotos
-              completion:( void (^)(NSArray *results, NSError *error) )completion
+              completion: ( void (^)(NSArray *results, NSError *error) )completion
 {
     id params = [self buildAuthParameters:@{
                                             @"ll": [self latLongValueForCoordinate: coordinates],

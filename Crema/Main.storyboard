@@ -157,6 +157,7 @@
                         <outlet property="cityLabel" destination="xN0-PF-fiA" id="NCf-6a-6t7"/>
                         <outlet property="mapView" destination="pKO-lw-n6b" id="2RU-UW-czz"/>
                         <outlet property="nameLabel" destination="SQN-nQ-40y" id="upU-pP-nym"/>
+                        <outlet property="saveButton" destination="YXw-Jc-6Eg" id="gtL-by-iIt"/>
                     </connections>
                 </viewController>
             </objects>

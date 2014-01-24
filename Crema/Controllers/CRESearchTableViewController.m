@@ -14,7 +14,8 @@
 #import "FSQFoursquareAPIClient.h"
 #import "UIImageView+AFNetworking.h"
 #import "CREReviewNewViewController.h"
-
+#import "CREParseAPIClient.h"
+#import "ObjectiveSugar.h"
 
 
 @interface CRESearchTableViewController () <CLLocationManagerDelegate>
@@ -41,38 +42,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     [self updateLocation];
 }
-
-
-- (IBAction)unwindToTable:(UIStoryboardSegue *)segue
-{
-//    TestAddToDoItemViewController *source = [segue sourceViewController];
-//    TestToDoItem *item = source.toDoItem;
-//    if (item != nil)
-//    {
-//        [self.toDoItems addObject:item];
-//        [self.tableView reloadData];
-//    }
-    NSLog(@"Unwind to Table");
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"pushDetailView"])
-    {
-        // Sender is the table view cell.
-        NSArray *sourceArray = self.searchResults;
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        CREReviewNewViewController *destinationController = [segue destinationViewController];
-        FSQVenue *venue = sourceArray[indexPath.row];
-        NSLog(@"Designation Controller class: %@",destinationController.class);
-        destinationController.venue = venue;
-    }
-}
-
 
 - (void) updateLocation {
     [self.locationManager startUpdatingLocation];
@@ -159,15 +130,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    if (tableView == self.searchDisplayController.searchResultsTableView)
-	{
-        return [self.searchResults count];
-    }
-	else
-	{
-        return [self.searchResults count];
-    }
+    return [self.searchResults count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -180,13 +143,24 @@
 
 	FSQVenue *venue;
     
-	if (tableView == self.searchDisplayController.searchResultsTableView)
-	{
-        venue = [self.searchResults objectAtIndex:indexPath.row];
-    }
-	else
-	{
-        venue = [self.searchResults objectAtIndex:indexPath.row];
+	venue = [self.searchResults objectAtIndex:indexPath.row];
+    if (venue.saved == nil)
+    {
+        [CREParseAPIClient asyncVenuePersisted:venue callback:^(BOOL persisted, NSError *failure) {
+            venue.saved = [NSNumber numberWithBool:persisted];
+            if (persisted) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            [cell reloadInputViews];
+        }];
+    } else {
+        if ([venue.saved isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
     }
     
 	cell.textLabel.text = venue.name;
@@ -195,36 +169,53 @@
     return cell;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    FSQVenue *venue = self.searchResults[indexPath.row];
+    
+    if (venue.saved == nil) {
+        venue.saved = [NSNumber numberWithBool:[CREParseAPIClient venuePersisted:venue]];
+    }
+
+    if ([venue.saved isEqualToNumber:[NSNumber numberWithBool:YES]]) return nil;
+    
+    return indexPath;
+}
 #pragma mark - Content Filtering
 
-- (void)updateFilteredContentForShopName:(NSString *)shopName
-{
 
-	/*
-	 Update the filtered array based on the search text and scope.
-	 */
-//    if ((shopName == nil) || [shopName length] == 0)
-//    {
-//        self.searchResults = [self.shops mutableCopy];
-//        return;
-//    }
-//    
-//    
-//    [self.searchResults removeAllObjects]; // First clear the filtered array.
-//	/*
-//	 Search the main list for shops whose name matches searchText; add items that match to the filtered array.
-//	 */
-//    for (CREShop *shop in self.shops)
-//	{
-//        NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
-//        NSRange shopNameRange = NSMakeRange(0, shop.name.length);
-//        NSRange foundRange = [shop.name rangeOfString:shopName options:searchOptions range:shopNameRange];
-//        if (foundRange.length > 0)
-//        {
-//            [self.searchResults addObject:shop];
-//        }
-//	}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"pushDetailView"])
+    {
+        NSIndexPath *indexPath;
+        
+        if (self.searchDisplayController.active) {
+            NSLog(@"Search Display Controller");
+            indexPath = self.searchDisplayController.searchResultsTableView.indexPathForSelectedRow;
+        } else {
+            NSLog(@"Default Display Controller");
+            indexPath = self.tableView.indexPathForSelectedRow;
+        }
+        
+        CREReviewNewViewController *destinationController = [segue destinationViewController];
+        FSQVenue *venue = self.searchResults[indexPath.row];
+        destinationController.venue = venue;
+        destinationController.index = indexPath;
+    }
 }
+
+- (IBAction)unwindToTable:(UIStoryboardSegue *)segue
+{
+    CREReviewNewViewController *source = [segue sourceViewController];
+    FSQVenue *venue = source.venue;
+    [self.searchResults replaceObjectAtIndex:source.index.row withObject:venue];
+    if (venue.saved) {
+        [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationLeft];
+    } else {
+        [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
 
 
 #pragma mark - UISearchDisplayController Delegate Methods
@@ -244,7 +235,6 @@
     
     if ([searchString length] >= 3) {
         [self autocompleteVenuesByLocation:self.location searchTerm:searchString];
-//        [self updateFilteredContentForShopName:searchString];
     }
     
     // Return YES to cause the search result table view to be reloaded.
@@ -252,57 +242,5 @@
 }
 
 
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

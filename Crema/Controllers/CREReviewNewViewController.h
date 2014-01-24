@@ -10,6 +10,8 @@
 #import "FSQVenue.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Parse/Parse.h>
+
 
 @interface CREReviewNewViewController : UIViewController
 
@@ -19,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 
 @property (nonatomic) FSQVenue *venue;
+@property (nonatomic) NSIndexPath *index;
 
 @end
