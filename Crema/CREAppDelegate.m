@@ -13,7 +13,7 @@
 #define FOURSQUARE_API_KEY
 
 @implementation CREAppDelegate
-
+@synthesize currentLocation;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -27,6 +27,7 @@
 
 - (void)setCurrentLocation:(CLLocation *)location
 {
+    currentLocation = location;
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject: location
                                                          forKey:@"location"];
     [[NSNotificationCenter defaultCenter] postNotificationName: kCRELocationChangeNotification

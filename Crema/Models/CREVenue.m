@@ -20,6 +20,7 @@
 @dynamic longitude;
 @dynamic addressString;
 @dynamic saved;
+@dynamic location;
 
 
 + (NSString *)parseClassName {

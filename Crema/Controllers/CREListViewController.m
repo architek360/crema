@@ -25,11 +25,6 @@
                                                  name:kCRELocationChangeNotification
                                                object:nil];
 }
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:kCRELocationChangeNotification
-                                                  object:nil];
-}
 
 - (void)locationDidChange:(NSNotification *)note {
     // Update the table with the new points
@@ -65,6 +60,12 @@
     // Configure the cell...
     
     return cell;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kCRELocationChangeNotification
+                                                  object:nil];
 }
 
 /*

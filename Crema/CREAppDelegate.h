@@ -10,9 +10,9 @@
 #import <CoreLocation/CoreLocation.h>
 
 static NSString* const kCRELocationChangeNotification= @"kCRELocationChangeNotification";
-
 @interface CREAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) CLLocation *currentLocation;
+
 @end

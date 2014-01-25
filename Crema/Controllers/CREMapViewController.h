@@ -12,8 +12,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
 
-@interface CREMapViewController : UIViewController
+@interface CREMapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

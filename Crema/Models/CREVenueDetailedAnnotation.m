@@ -1,20 +1,18 @@
 //
-//  CREVenueAnnotation.m
+//  CREVenueDetailedAnnotation.m
 //  Crema
 //
-//  Created by Jeff Wells on 1/23/14.
+//  Created by Jeff Wells on 1/24/14.
 //  Copyright (c) 2014 Jeff Wells. All rights reserved.
 //
 
-#import "CREVenueAnnotation.h"
+#import "CREVenueDetailedAnnotation.h"
 
-
-@interface CREVenueAnnotation ()
+@interface CREVenueDetailedAnnotation ()
 @property (nonatomic, strong) CREVenue *venue;
 @end
 
-
-@implementation CREVenueAnnotation
+@implementation CREVenueDetailedAnnotation
 
 - (id)initWithVenue:(CREVenue *)venue {
     self = [super init];
@@ -31,6 +29,10 @@
 
 - (NSString *)title {
     return self.venue.name;
+}
+
+- (NSString *) subtitle {
+    return self.venue.addressString;
 }
 
 @end
