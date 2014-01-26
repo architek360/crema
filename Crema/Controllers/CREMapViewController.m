@@ -11,6 +11,7 @@
 #import "SVProgressHUD.h"
 #import "CREVenueDetailedAnnotation.h"
 #import "ObjectiveSugar.h"
+#import "CREVenueDetailViewController.h"
 
 @interface CREMapViewController () <CLLocationManagerDelegate>
 
@@ -167,6 +168,32 @@
     CREAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     [appDelegate setCurrentLocation:location];
+}
+
+#pragma mark - Segue view
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"venueDetailModal"])
+    {
+        NSIndexPath *indexPath;
+        
+        indexPath = self.tableView.indexPathForSelectedRow;
+        
+        CREVenueDetailViewController *destinationController = [segue destinationViewController];
+        CREVenue *venue = self.venues[indexPath.row];
+        destinationController.venue = venue;
+        destinationController.index = indexPath;
+    }
+}
+
+- (IBAction)unwindToMainView:(UIStoryboardSegue *)segue
+{
+    //Will need unwind for reloading upvotes
+    CREVenueDetailViewController *source = [segue sourceViewController];
+    CREVenue *venue = source.venue;
+    [self.venues replaceObjectAtIndex:source.index.row withObject:venue];
+    [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Table view data source

@@ -57,6 +57,7 @@
 		326B801A188C564F006DCD64 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8019188C564F006DCD64 /* Security.framework */; };
 		326B801E188C59B1006DCD64 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B801B188C5656006DCD64 /* StoreKit.framework */; };
 		326B801F188C5A69006DCD64 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8011188C55F0006DCD64 /* Parse.framework */; };
+		32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */; };
 		B37F458BC81B41DA809A4467 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5DC032311D4FC8B0CE3E0E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +135,8 @@
 		326B8019188C564F006DCD64 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		326B801B188C5656006DCD64 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		326B8020188C5D69006DCD64 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		32AE8A3618948EF200244D3B /* CREVenueDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREVenueDetailViewController.h; sourceTree = "<group>"; };
+		32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenueDetailViewController.m; sourceTree = "<group>"; };
 		F9F639C66B594F4A9F4C2473 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -320,6 +323,8 @@
 				32694E21188CACD30015213F /* CRESearchTableViewController.m */,
 				323AB0BA188A62C800130EFA /* CREMapViewController.h */,
 				323AB0BB188A62C800130EFA /* CREMapViewController.m */,
+				32AE8A3618948EF200244D3B /* CREVenueDetailViewController.h */,
+				32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 				321B35DE1892342A00DF04A9 /* CREVenue.m in Sources */,
 				323AB036188A5E1F00130EFA /* main.m in Sources */,
 				321B35E418933C7F00DF04A9 /* CREVenueDetailedAnnotation.m in Sources */,
+				32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */,
 				321B35D81891BD1E00DF04A9 /* CREParseAPIClient.m in Sources */,
 				323AB03A188A5E1F00130EFA /* CREAppDelegate.m in Sources */,
 				323AB0BC188A62C800130EFA /* CREMapViewController.m in Sources */,
