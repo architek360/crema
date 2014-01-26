@@ -52,7 +52,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="a7g-7d-4lA" kind="modal" identifier="venueDetailModal" modalTransitionStyle="flipHorizontal" id="vi9-b3-GsR"/>
+                                            <segue destination="a7g-7d-4lA" kind="modal" identifier="venueDetailModal" trigger="accessoryAction" modalTransitionStyle="flipHorizontal" id="GGI-Tr-EV5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

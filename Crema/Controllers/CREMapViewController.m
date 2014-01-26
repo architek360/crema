@@ -18,7 +18,6 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSMutableArray *annotationPins;
 - (void)locationDidChange:(NSNotification *)note;
-//- (IBAction)addButtonSelected:(id)sender;
 
 @end
 
@@ -33,13 +32,6 @@
     
     [SVProgressHUD setOffsetFromCenter: UIOffsetMake(0.0f, -self.mapView.bounds.size.height/2.0)];
     
-//    [self.navigationController setNavigationBarHidden:NO animated:NO];
-//	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-//											  initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(addButtonSelected:)];
-//	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-//											 initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonSelected:)];
-//	self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Anywall.png"]];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(locationDidChange:)
                                                  name:kCRELocationChangeNotification
@@ -47,9 +39,6 @@
     
     [self startLocationUpdates];
 }
-//- (IBAction)addButtonSelected:(id)sender {
-//    
-//}
 
 - (void)zoomToLocation:(CLLocation *)location radius:(CGFloat)radius {
     
@@ -130,6 +119,23 @@
     return nil;
 }
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    CREVenueDetailedAnnotation *annotation = view.annotation;
+    NSInteger index = [self.annotationPins indexOfObject:annotation];
+    NSLog(@"Count: %ld, Index: %ld", (unsigned long)[self.annotationPins count], (long)index);
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view
+                      calloutAccessoryControlTapped:(UIControl *)control
+{
+    [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
+}
+
 
 #pragma mark - CLLocationManagerDelegate methods
 - (CLLocationManager *)locationManager {
@@ -171,13 +177,16 @@
 }
 
 #pragma mark - Segue view
-
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    return [sender isEqual:self];
+}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"venueDetailModal"])
     {
         NSIndexPath *indexPath;
-        
+        NSLog(@"Sender: %@", sender);
         indexPath = self.tableView.indexPathForSelectedRow;
         
         CREVenueDetailViewController *destinationController = [segue destinationViewController];
@@ -229,6 +238,19 @@
     return cell;
 
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Selected Row %ld", (long)indexPath.row);
+    [self.mapView selectAnnotation:[self.annotationPins objectAtIndex:indexPath.row] animated:YES];
+//    return nil;
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
+}
+
 #pragma mark - CREMapViewController memory management methods
 
 - (void)didReceiveMemoryWarning
