@@ -51,7 +51,6 @@
 		32694E0F188C5EA30015213F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32694E0E188C5EA30015213F /* FacebookSDK.framework */; };
 		32694E10188C5EAD0015213F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8020188C5D69006DCD64 /* Accounts.framework */; };
 		32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32694E21188CACD30015213F /* CRESearchTableViewController.m */; };
-		326B8010188C53C3006DCD64 /* CREListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326B800F188C53C3006DCD64 /* CREListViewController.m */; };
 		326B8014188C5606006DCD64 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8013188C5606006DCD64 /* AudioToolbox.framework */; };
 		326B8016188C5618006DCD64 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8015188C5618006DCD64 /* CFNetwork.framework */; };
 		326B8018188C563F006DCD64 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8017188C563E006DCD64 /* MobileCoreServices.framework */; };
@@ -128,8 +127,6 @@
 		32694E0E188C5EA30015213F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "facebook-ios-sdk-master/build/FacebookSDK.framework"; sourceTree = "<group>"; };
 		32694E20188CACD30015213F /* CRESearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRESearchTableViewController.h; sourceTree = "<group>"; };
 		32694E21188CACD30015213F /* CRESearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRESearchTableViewController.m; sourceTree = "<group>"; };
-		326B800E188C53C3006DCD64 /* CREListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREListViewController.h; sourceTree = "<group>"; };
-		326B800F188C53C3006DCD64 /* CREListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREListViewController.m; sourceTree = "<group>"; };
 		326B8011188C55F0006DCD64 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		326B8013188C5606006DCD64 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		326B8015188C5618006DCD64 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -321,8 +318,6 @@
 				321B35CF1890F9DF00DF04A9 /* CREReviewNewViewController.m */,
 				32694E20188CACD30015213F /* CRESearchTableViewController.h */,
 				32694E21188CACD30015213F /* CRESearchTableViewController.m */,
-				326B800E188C53C3006DCD64 /* CREListViewController.h */,
-				326B800F188C53C3006DCD64 /* CREListViewController.m */,
 				323AB0BA188A62C800130EFA /* CREMapViewController.h */,
 				323AB0BB188A62C800130EFA /* CREMapViewController.m */,
 			);
@@ -488,7 +483,6 @@
 				323AB0BC188A62C800130EFA /* CREMapViewController.m in Sources */,
 				32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */,
 				321B35C41890844900DF04A9 /* FSQFoursquareAPIClient.m in Sources */,
-				326B8010188C53C3006DCD64 /* CREListViewController.m in Sources */,
 				321B35D01890F9DF00DF04A9 /* CREReviewNewViewController.m in Sources */,
 				321B35D518919FE400DF04A9 /* CREVenueAnnotation.m in Sources */,
 			);

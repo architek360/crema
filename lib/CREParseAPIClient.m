@@ -7,6 +7,7 @@
 //
 
 #import "CREParseAPIClient.h"
+#import "CREAppDelegate.h"
 #import <Parse/Parse.h>
 @implementation CREParseAPIClient
 
@@ -22,13 +23,19 @@
 }
 
 + (void) fetchVenuesNear: (PFGeoPoint *) geoPoint
+                    page: (NSInteger) page
                    completion:( void (^)(NSArray *results, NSError *error) )completion
 {
     PFQuery *query = [CREVenue query];
     [query whereKey:@"location" nearGeoPoint:geoPoint withinKilometers:5.0];
 
     //    [query orderByAscending:@"upvotes"];
-    query.limit = 10;
+    query.limit = kCREVenuesPerPage;
+    if (page) {
+        query.skip = kCREVenuesPerPage * page;
+    }
+
+//    [query whereKey:<#(NSString *)#> withinGeoBoxFromSouthwest:<#(PFGeoPoint *)#> toNortheast:<#(PFGeoPoint *)#>]
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         completion(objects,error);
     }];

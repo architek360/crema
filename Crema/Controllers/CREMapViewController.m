@@ -11,33 +11,33 @@
 #import "SVProgressHUD.h"
 #import "CREVenueDetailedAnnotation.h"
 #import "ObjectiveSugar.h"
-#import "CREListViewController.h"
 
 @interface CREMapViewController () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) NSArray *venues;
 @property (nonatomic, strong) NSMutableArray *annotationPins;
 - (void)locationDidChange:(NSNotification *)note;
-@property (nonatomic, strong) CREListViewController *listViewController;
+//- (IBAction)addButtonSelected:(id)sender;
 
 @end
 
 @implementation CREMapViewController
-@synthesize listViewController;
 @synthesize mapView;
+@synthesize tableView;
+@synthesize venues;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.listViewController = [[CREListViewController alloc] initWithStyle:UITableViewStylePlain];
-	[self addChildViewController:self.listViewController];
-    
-    self.listViewController.view.frame = CGRectMake(0.0f, self.mapView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.mapView.bounds.size.height);
-	[self.view addSubview:self.listViewController.view];
     [SVProgressHUD setOffsetFromCenter: UIOffsetMake(0.0f, -self.mapView.bounds.size.height/2.0)];
     
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
+//	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+//											  initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(addButtonSelected:)];
+//	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+//											 initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonSelected:)];
+//	self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Anywall.png"]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(locationDidChange:)
@@ -46,6 +46,9 @@
     
     [self startLocationUpdates];
 }
+//- (IBAction)addButtonSelected:(id)sender {
+//    
+//}
 
 - (void)zoomToLocation:(CLLocation *)location radius:(CGFloat)radius {
     
@@ -58,13 +61,15 @@
     [SVProgressHUD show];
     PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
     [CREParseAPIClient fetchVenuesNear:point
-                            completion:^(NSArray *venues, NSError *error) {
+                            page: 1
+                            completion:^(NSArray *results, NSError *error) {
                                 if (error) {
                                     [SVProgressHUD showErrorWithStatus:@"Sorry, there was an error."];
                                 } else {
                                     [SVProgressHUD dismiss];
-                                    self.venues = venues;
+                                    self.venues = [results mutableCopy];
                                     [self updateAnnotations];
+                                    [self.tableView reloadData];
                                 }
                             }];
 }
@@ -85,37 +90,31 @@
     }
 }
 
+
 - (MKAnnotationView *)mapView:(MKMapView *)aMapView
             viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    // We will let the system handle the user location annotation (the blue dot)
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
     
     static NSString *pinId = @"CustomPinAnnotation";
     
-    // Handle any other annotations
     if ([annotation isKindOfClass:[CREVenueDetailedAnnotation class]])
     {
-        // Try to dequeue an existing pin view first
         MKPinAnnotationView *pinView =
         (MKPinAnnotationView*)[aMapView dequeueReusableAnnotationViewWithIdentifier:pinId];
         
-        // If an existing pin view was not available, create one
         if (!pinView)
         {
-            // Create a new annotation view (Note MKPinAnnotationView is a
-            // subclass of MKAnnotationView)
             pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
                                                       reuseIdentifier:pinId];
         }
-        else // If one did exist, then set the parameter MKAnnotation to the new pinView
+        else
         {
             pinView.annotation = annotation;
         }
         
-        // Set the characteristics of the annotation view
 //        pinView.animatesDrop = YES;
         pinView.canShowCallout = YES;
         pinView.image = [UIImage imageNamed:@"rocket-cup.png"];
@@ -127,7 +126,6 @@
         
         return pinView;
     }
-    // Return nil for any other (undefined) MKAnnotation
     return nil;
 }
 
@@ -159,6 +157,7 @@
     NSLog(@"locationDidChange: %@", appDelegate.currentLocation);
     
     [self fetchVenuesForLocation:appDelegate.currentLocation];
+
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -168,6 +167,40 @@
     CREAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     [appDelegate setCurrentLocation:location];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.venues count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"cellForRowAtIndexPath");
+    static NSString *CellIdentifier = @"MapListCell";
+    
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+	CREVenue *venue;
+    
+	venue = (CREVenue*) [self.venues objectAtIndex:indexPath.row];
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    NSLog(@"Venue: %@", venue.name);
+	cell.textLabel.text = venue.name;
+    NSLog(@"cell label: %@", cell.textLabel.text);
+    [cell.detailTextLabel setText:venue.addressString];
+    
+    return cell;
+
 }
 #pragma mark - CREMapViewController memory management methods
 

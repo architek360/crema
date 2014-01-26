@@ -12,6 +12,7 @@
 
 #define FOURSQUARE_API_KEY
 
+
 @implementation CREAppDelegate
 @synthesize currentLocation;
 
