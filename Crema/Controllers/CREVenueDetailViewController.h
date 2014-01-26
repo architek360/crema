@@ -11,6 +11,9 @@
 
 @interface CREVenueDetailViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *upvotesLabel;
+
+- (IBAction)tapVoteCount:(id)sender;
 
 @property (nonatomic) CREVenue *venue;
 @property (nonatomic) NSIndexPath *index;

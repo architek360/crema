@@ -37,6 +37,8 @@
     if (self) {
         self.venueId = dictionary[@"id"];
         self.name = dictionary[@"name"];
+        self.upvotes = dictionary[@"upvotes"];
+        
         
         
         id location = dictionary[@"location"];
@@ -70,7 +72,7 @@
 - (NSDictionary *)toParseDictionary {
     NSDictionary *result;
     if (self) {
-        result = [self dictionaryWithValuesForKeys:@[@"venueId",@"name",@"latitude",@"longitude",@"addressString"]];
+        result = [self dictionaryWithValuesForKeys:@[@"venueId",@"name", @"upvotes",@"latitude",@"longitude",@"addressString"]];
     }
     return result;
 }

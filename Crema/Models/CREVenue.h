@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSNumber *longitude;
 @property (nonatomic, copy) NSString *addressString;
 @property (nonatomic, strong) NSNumber *saved;
+@property (nonatomic, strong) NSNumber *upvotes;
 @property (nonatomic, strong) PFGeoPoint *location;
 //@property (nonatomic, copy) NSString *photoUrl;
 
