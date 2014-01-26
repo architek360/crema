@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "CREVenue.h"
 #import <Parse/Parse.h>
+#import "PFGeoBox.h"
 @interface CREParseAPIClient : NSObject
 
 + (BOOL) venuePersisted: (CREVenue * )venue;
 + (CREVenue *) getVenueByFSQId: (NSString * )venueId;
-+ (void) fetchVenuesNear: (PFGeoPoint *) geoPoint
++ (void) fetchVenuesInView: (PFGeoBox *) geoBox
                     page: (NSInteger) page
               completion: ( void (^)(NSArray *results, NSError *error) )completion;
 

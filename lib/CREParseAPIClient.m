@@ -22,20 +22,19 @@
     return record;
 }
 
-+ (void) fetchVenuesNear: (PFGeoPoint *) geoPoint
-                    page: (NSInteger) page
-                   completion:( void (^)(NSArray *results, NSError *error) )completion
++ (void) fetchVenuesInView:(PFGeoBox *)geoBox
+                      page:(NSInteger)page
+                completion:(void (^)(NSArray *, NSError *))completion
 {
     PFQuery *query = [CREVenue query];
-    [query whereKey:@"location" nearGeoPoint:geoPoint withinKilometers:5.0];
+    
+    [query whereKey:@"location" withinGeoBoxFromSouthwest:geoBox.southwest toNortheast:geoBox.northeast];
 
-    //    [query orderByAscending:@"upvotes"];
+    //    [query orderByDecending:@"upvotes"];
     query.limit = kCREVenuesPerPage;
     if (page) {
         query.skip = kCREVenuesPerPage * page;
     }
-
-//    [query whereKey:<#(NSString *)#> withinGeoBoxFromSouthwest:<#(PFGeoPoint *)#> toNortheast:<#(PFGeoPoint *)#>]
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         completion(objects,error);
     }];

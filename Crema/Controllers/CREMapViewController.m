@@ -12,6 +12,7 @@
 #import "CREVenueDetailedAnnotation.h"
 #import "ObjectiveSugar.h"
 #import "CREVenueDetailViewController.h"
+#import "PFGeoBox.h"
 
 @interface CREMapViewController () <CLLocationManagerDelegate>
 
@@ -46,11 +47,22 @@
     [self.mapView setRegion:region animated:YES];
 }
 
-- (void)fetchVenuesForLocation:(CLLocation *)location {
+- (void)mapView:(MKMapView *)aMapView regionDidChangeAnimated:(BOOL)animated
+{
+    NSLog(@"regionDidChangeAnimated: %f, %f", aMapView.centerCoordinate.latitude, aMapView.centerCoordinate.longitude);
+//    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:aMapView.centerCoordinate.latitude longitude:aMapView.centerCoordinate.longitude];
+    
+    [self fetchVenuesForMapView];
+    
+}
+
+- (void)fetchVenuesForMapView {
     NSLog(@"Fetching Venues");
     [SVProgressHUD show];
-    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
-    [CREParseAPIClient fetchVenuesNear:point
+    PFGeoBox *geoBox = [PFGeoBox boxFromLocation:self.mapView.centerCoordinate andMapView:self.mapView];
+    
+//    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+    [CREParseAPIClient fetchVenuesInView:geoBox
                             page: 1
                             completion:^(NSArray *results, NSError *error) {
                                 if (error) {
@@ -163,7 +175,8 @@
     CREAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSLog(@"locationDidChange: %@", appDelegate.currentLocation);
     
-    [self fetchVenuesForLocation:appDelegate.currentLocation];
+    [self fetchVenuesForMapView];
+//    [self fetchVenuesForLocation:appDelegate.currentLocation];
 
 }
 
@@ -229,7 +242,6 @@
 	CREVenue *venue;
     
 	venue = (CREVenue*) [self.venues objectAtIndex:indexPath.row];
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     NSLog(@"Venue: %@", venue.name);
 	cell.textLabel.text = venue.name;
     NSLog(@"cell label: %@", cell.textLabel.text);

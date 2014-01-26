@@ -58,6 +58,7 @@
 		326B801E188C59B1006DCD64 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B801B188C5656006DCD64 /* StoreKit.framework */; };
 		326B801F188C5A69006DCD64 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8011188C55F0006DCD64 /* Parse.framework */; };
 		32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */; };
+		32AE8A3B1894B79000244D3B /* PFGeoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3A1894B79000244D3B /* PFGeoBox.m */; };
 		B37F458BC81B41DA809A4467 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5DC032311D4FC8B0CE3E0E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +138,8 @@
 		326B8020188C5D69006DCD64 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		32AE8A3618948EF200244D3B /* CREVenueDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREVenueDetailViewController.h; sourceTree = "<group>"; };
 		32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenueDetailViewController.m; sourceTree = "<group>"; };
+		32AE8A391894B79000244D3B /* PFGeoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFGeoBox.h; path = Crema/Models/PFGeoBox.h; sourceTree = SOURCE_ROOT; };
+		32AE8A3A1894B79000244D3B /* PFGeoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PFGeoBox.m; path = Crema/Models/PFGeoBox.m; sourceTree = SOURCE_ROOT; };
 		F9F639C66B594F4A9F4C2473 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -304,6 +307,8 @@
 		323AB076188A61D200130EFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				32AE8A391894B79000244D3B /* PFGeoBox.h */,
+				32AE8A3A1894B79000244D3B /* PFGeoBox.m */,
 				321B35DC1892342A00DF04A9 /* CREVenue.h */,
 				321B35DD1892342A00DF04A9 /* CREVenue.m */,
 				321B35D318919FE400DF04A9 /* CREVenueAnnotation.h */,
@@ -491,6 +496,7 @@
 				321B35C41890844900DF04A9 /* FSQFoursquareAPIClient.m in Sources */,
 				321B35D01890F9DF00DF04A9 /* CREReviewNewViewController.m in Sources */,
 				321B35D518919FE400DF04A9 /* CREVenueAnnotation.m in Sources */,
+				32AE8A3B1894B79000244D3B /* PFGeoBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
