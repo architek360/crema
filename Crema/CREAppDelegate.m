@@ -14,7 +14,6 @@
 
 
 @implementation CREAppDelegate
-@synthesize currentLocation;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -24,16 +23,6 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     return YES;
-}
-
-- (void)setCurrentLocation:(CLLocation *)location
-{
-    currentLocation = location;
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject: location
-                                                         forKey:@"location"];
-    [[NSNotificationCenter defaultCenter] postNotificationName: kCRELocationChangeNotification
-                                                        object:nil
-                                                      userInfo:userInfo];
 }
 
 

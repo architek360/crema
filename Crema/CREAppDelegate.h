@@ -10,11 +10,10 @@
 #import <CoreLocation/CoreLocation.h>
 
 static NSString* const kCRELocationChangeNotification= @"kCRELocationChangeNotification";
-static NSUInteger const kCREVenuesPerPage = 10;
+static NSUInteger const kCREVenuesPerPage = 8;
 
 @interface CREAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, strong) CLLocation *currentLocation;
 
 @end

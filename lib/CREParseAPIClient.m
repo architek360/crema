@@ -32,7 +32,7 @@
 
     //    [query orderByDecending:@"upvotes"];
     query.limit = kCREVenuesPerPage;
-    if (page) {
+    if (page != 0 && page) {
         query.skip = kCREVenuesPerPage * page;
     }
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
