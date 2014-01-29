@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Eqx-v5-ZBH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kvQ-04-2Aq">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -23,6 +23,11 @@
                                     <outlet property="delegate" destination="hT1-Sl-mzn" id="pje-Ih-akV"/>
                                 </connections>
                             </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-placeholder.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="yxM-G0-tbQ">
+                                <rect key="frame" x="10" y="20" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <rect key="contentStretch" x="1.3877787807814457e-17" y="0.0" width="1" height="1"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="n17-BM-aBM">
                                 <rect key="frame" x="0.0" y="265" width="320" height="254"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,19 +87,40 @@
                                     <outlet property="delegate" destination="hT1-Sl-mzn" id="KHK-LS-8KT"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSM-3W-L31">
+                                <rect key="frame" x="53" y="20" width="167" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsa-Sk-Uwl">
+                                <rect key="frame" x="52" y="39" width="47" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButtonPressed:" destination="hT1-Sl-mzn" eventType="touchUpInside" id="GjM-6u-C1b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="default_marker.png" id="TCD-av-8BL"/>
                     <navigationItem key="navigationItem" id="yHe-PE-1TB"/>
                     <connections>
+                        <outlet property="logOutButton" destination="wsa-Sk-Uwl" id="LpT-SZ-DN1"/>
                         <outlet property="mapView" destination="elE-Kx-uec" id="aJn-4j-QgV"/>
                         <outlet property="tableView" destination="n17-BM-aBM" id="Dcu-4f-sCh"/>
+                        <outlet property="userNameLabel" destination="dSM-3W-L31" id="6KG-lc-KMe"/>
+                        <outlet property="userProfileImage" destination="yxM-G0-tbQ" id="nwC-eS-KLj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBC-nC-7V9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-289" y="309"/>
+            <point key="canvasLocation" x="-291" y="755"/>
         </scene>
         <!--Search Table View Controller - Contribute-->
         <scene sceneID="vSA-2t-TYn">
@@ -210,7 +236,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QmM-L9-vRz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="oeo-vI-9hf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="331" y="309"/>
+            <point key="canvasLocation" x="337" y="717"/>
         </scene>
         <!--Review New View Controller - Review-->
         <scene sceneID="YHe-5Z-68E">
@@ -274,6 +300,65 @@
             </objects>
             <point key="canvasLocation" x="743" y="-641"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="XjX-VK-xsX">
+            <objects>
+                <viewController id="kvQ-04-2Aq" customClass="CRELoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hwu-eX-pKg"/>
+                        <viewControllerLayoutGuide type="bottom" id="bdz-Ti-dt6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Adh-bW-6ke">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jg1-xL-7pw">
+                                <rect key="frame" x="101" y="269" width="115" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <inset key="contentEdgeInsets" minX="37" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Log In" backgroundImage="login-button-small.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" backgroundImage="login-button-small-pressed.png"/>
+                                <connections>
+                                    <action selector="pressedFacebookLogin:" destination="kvQ-04-2Aq" eventType="touchUpInside" id="DXE-uF-9hG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeD-aX-60a">
+                                <rect key="frame" x="82" y="330" width="152" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="just show me the map">
+                                    <color key="titleColor" red="0.2247349743" green="0.49146100660000003" blue="0.76825747280000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Eqx-v5-ZBH" kind="modal" identifier="flipToMap" modalTransitionStyle="flipHorizontal" id="4k9-oD-Fpp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="to vote and see your friend's votes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPv-GR-Pgg">
+                                <rect key="frame" x="74" y="301" width="172" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.95229668599999995" green="1" blue="0.96660073189999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sLY-Lh-aMD">
+                                <rect key="frame" x="142" y="204" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="sLY-Lh-aMD" id="lzT-2F-Nvh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7V6-iJ-nMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1403" y="-8"/>
+        </scene>
         <!--Tab Bar Controller - Hello-->
         <scene sceneID="BFx-9X-6MY">
             <objects>
@@ -315,6 +400,9 @@
     </scenes>
     <resources>
         <image name="default_marker.png" width="22" height="39"/>
+        <image name="login-button-small-pressed.png" width="151" height="43"/>
+        <image name="login-button-small.png" width="151" height="43"/>
+        <image name="profile-placeholder.jpeg" width="50" height="50"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

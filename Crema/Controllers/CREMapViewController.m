@@ -12,6 +12,8 @@
 #import "ObjectiveSugar.h"
 #import "CREVenueDetailViewController.h"
 #import "PFGeoBox.h"
+#import "UIImageView+AFNetworking.h"
+#import "CRELoginViewController.h"
 
 const int kLoadingCellTag = 1273;
 
@@ -32,6 +34,9 @@ const int kLoadingCellTag = 1273;
 @synthesize currentPage;
 @synthesize isLoading;
 @synthesize mapPinsPlaced;
+@synthesize userProfileImage;
+@synthesize userNameLabel;
+@synthesize logOutButton;
 
 - (void)viewDidLoad
 {
@@ -40,6 +45,8 @@ const int kLoadingCellTag = 1273;
     currentPage = 0;
     
     [SVProgressHUD setOffsetFromCenter: UIOffsetMake(0.0f, -self.mapView.bounds.size.height/2.0)];
+    
+    [self displayUserStatus];
     
     [self.locationManager startUpdatingLocation];
 }
@@ -380,6 +387,39 @@ const int kLoadingCellTag = 1273;
     [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
 }
 
+#pragma makr - User status
+
+- (void)displayUserStatus
+{
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        FBRequest *request = [FBRequest requestForMe];
+        
+        [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                NSDictionary *userData = (NSDictionary *)result;
+                
+                NSString *facebookID = userData[@"id"];
+                NSLog(@"%@",userData);
+                NSString *name = userData[@"name"];
+                
+                NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square&return_ssl_resources=1", facebookID]];
+                [userProfileImage setImageWithURL:pictureURL placeholderImage:[UIImage imageNamed:@"placeholder-placeholder.jpeg"]];
+                [userProfileImage.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
+                [userProfileImage.layer setBorderWidth: 2.0];
+                [userProfileImage.layer setOpacity:0.9];
+                userNameLabel.text = name;
+                
+            }
+        }];
+    } else {
+        [userProfileImage removeFromSuperview];
+        [userNameLabel removeFromSuperview];
+        [logOutButton removeFromSuperview];
+    }
+
+}
+
 #pragma mark - CREMapViewController memory management methods
 
 - (void)didReceiveMemoryWarning
@@ -398,5 +438,8 @@ const int kLoadingCellTag = 1273;
 }
 
 
-
+- (IBAction)logOutButtonPressed:(id)sender {
+    [PFUser logOut];
+    [self displayUserStatus];
+}
 @end

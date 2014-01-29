@@ -19,6 +19,11 @@
 		321B35EA1893576A00DF04A9 /* flag-cup-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35E61893576A00DF04A9 /* flag-cup-filled.png */; };
 		321B35EB1893576A00DF04A9 /* rocket-cup.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35E71893576A00DF04A9 /* rocket-cup.png */; };
 		321B35EC1893576A00DF04A9 /* white-small-cup.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35E81893576A00DF04A9 /* white-small-cup.png */; };
+		3227AA321899ADF50086A9F9 /* login-button-small-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3227AA301899ADF50086A9F9 /* login-button-small-pressed.png */; };
+		3227AA331899ADF50086A9F9 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3227AA311899ADF50086A9F9 /* login-button-small.png */; };
+		3227AA361899AF7A0086A9F9 /* CRELoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227AA351899AF7A0086A9F9 /* CRELoginViewController.m */; };
+		3227AA391899B4740086A9F9 /* CRESettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227AA381899B4740086A9F9 /* CRESettingsViewController.m */; };
+		3227AA3D1899B83B0086A9F9 /* profile-placeholder.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3227AA3C1899B83B0086A9F9 /* profile-placeholder.jpeg */; };
 		323AB02A188A5E1F00130EFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB029188A5E1F00130EFA /* Foundation.framework */; };
 		323AB02C188A5E1F00130EFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02B188A5E1F00130EFA /* CoreGraphics.framework */; };
 		323AB02E188A5E1F00130EFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02D188A5E1F00130EFA /* UIKit.framework */; };
@@ -88,6 +93,13 @@
 		321B35E61893576A00DF04A9 /* flag-cup-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flag-cup-filled.png"; sourceTree = "<group>"; };
 		321B35E71893576A00DF04A9 /* rocket-cup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rocket-cup.png"; sourceTree = "<group>"; };
 		321B35E81893576A00DF04A9 /* white-small-cup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-small-cup.png"; sourceTree = "<group>"; };
+		3227AA301899ADF50086A9F9 /* login-button-small-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small-pressed.png"; sourceTree = "<group>"; };
+		3227AA311899ADF50086A9F9 /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
+		3227AA341899AF7A0086A9F9 /* CRELoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRELoginViewController.h; sourceTree = "<group>"; };
+		3227AA351899AF7A0086A9F9 /* CRELoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRELoginViewController.m; sourceTree = "<group>"; };
+		3227AA371899B4740086A9F9 /* CRESettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRESettingsViewController.h; sourceTree = "<group>"; };
+		3227AA381899B4740086A9F9 /* CRESettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRESettingsViewController.m; sourceTree = "<group>"; };
+		3227AA3C1899B83B0086A9F9 /* profile-placeholder.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "profile-placeholder.jpeg"; sourceTree = "<group>"; };
 		323AB026188A5E1F00130EFA /* Crema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		323AB029188A5E1F00130EFA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		323AB02B188A5E1F00130EFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,6 +197,9 @@
 		321B35C91890DAC100DF04A9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3227AA3C1899B83B0086A9F9 /* profile-placeholder.jpeg */,
+				3227AA301899ADF50086A9F9 /* login-button-small-pressed.png */,
+				3227AA311899ADF50086A9F9 /* login-button-small.png */,
 				321B35E51893576A00DF04A9 /* flag-cup-empty.png */,
 				321B35E61893576A00DF04A9 /* flag-cup-filled.png */,
 				321B35E71893576A00DF04A9 /* rocket-cup.png */,
@@ -310,6 +325,10 @@
 		323AB078188A61EE00130EFA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3227AA371899B4740086A9F9 /* CRESettingsViewController.h */,
+				3227AA381899B4740086A9F9 /* CRESettingsViewController.m */,
+				3227AA341899AF7A0086A9F9 /* CRELoginViewController.h */,
+				3227AA351899AF7A0086A9F9 /* CRELoginViewController.m */,
 				321B35CE1890F9DF00DF04A9 /* CREReviewNewViewController.h */,
 				321B35CF1890F9DF00DF04A9 /* CREReviewNewViewController.m */,
 				32694E20188CACD30015213F /* CRESearchTableViewController.h */,
@@ -413,14 +432,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				321B35E91893576A00DF04A9 /* flag-cup-empty.png in Resources */,
+				3227AA3D1899B83B0086A9F9 /* profile-placeholder.jpeg in Resources */,
 				321B35EA1893576A00DF04A9 /* flag-cup-filled.png in Resources */,
 				321B35EB1893576A00DF04A9 /* rocket-cup.png in Resources */,
 				321B35EC1893576A00DF04A9 /* white-small-cup.png in Resources */,
+				3227AA321899ADF50086A9F9 /* login-button-small-pressed.png in Resources */,
 				323AB0BE188A62F200130EFA /* Main.storyboard in Resources */,
 				321B35CB1890DAF500DF04A9 /* placeholder-2.png in Resources */,
 				323AB034188A5E1F00130EFA /* InfoPlist.strings in Resources */,
 				323AB03C188A5E1F00130EFA /* Images.xcassets in Resources */,
 				321B35CD1890DCA200DF04A9 /* placeholder-small1.png in Resources */,
+				3227AA331899ADF50086A9F9 /* login-button-small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,11 +498,13 @@
 				323AB036188A5E1F00130EFA /* main.m in Sources */,
 				32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */,
 				321B35D81891BD1E00DF04A9 /* CREParseAPIClient.m in Sources */,
+				3227AA391899B4740086A9F9 /* CRESettingsViewController.m in Sources */,
 				323AB03A188A5E1F00130EFA /* CREAppDelegate.m in Sources */,
 				323AB0BC188A62C800130EFA /* CREMapViewController.m in Sources */,
 				32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */,
 				321B35C41890844900DF04A9 /* FSQFoursquareAPIClient.m in Sources */,
 				321B35D01890F9DF00DF04A9 /* CREReviewNewViewController.m in Sources */,
+				3227AA361899AF7A0086A9F9 /* CRELoginViewController.m in Sources */,
 				321B35D518919FE400DF04A9 /* CREVenueAnnotation.m in Sources */,
 				32AE8A3B1894B79000244D3B /* PFGeoBox.m in Sources */,
 			);
@@ -613,7 +637,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Crema/Crema-Prefix.pch";
 				INFOPLIST_FILE = "Crema/Crema-Info.plist";
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -634,7 +657,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Crema/Crema-Prefix.pch";
 				INFOPLIST_FILE = "Crema/Crema-Info.plist";
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

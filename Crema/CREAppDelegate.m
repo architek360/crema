@@ -22,9 +22,46 @@
                   clientKey:@"cJcLuyfspI5uc0tEq6mBsgi2zcbVA9svXOavhF2o"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    [PFFacebookUtils initializeFacebook];
+    
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+}
+
+
++ (void) logInFacebook:(void (^)(PFUser *aUser, NSError *failure) ) completion
+{
+    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships"];
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+        
+        if (!user) {
+            if (!error) {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            } else {
+                NSLog(@"Uh oh. An error occurred: %@", error);
+            }
+        } else if (user.isNew) {
+            NSLog(@"User with facebook signed up and logged in!");
+            completion(user, error);
+        } else {
+            NSLog(@"User with facebook logged in!");
+            completion(user,error);
+        }
+    }];
+
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -41,11 +78,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
