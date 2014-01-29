@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-@interface CREVenue : PFObject<PFSubclassing>
+#import <MapKit/MapKit.h>
+@interface CREVenue : PFObject<PFSubclassing,MKAnnotation>
 
 + (NSString *)parseClassName; //for Parse
 
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) NSNumber *saved;
 @property (nonatomic, strong) PFGeoPoint *location;
 //@property (nonatomic, copy) NSString *photoUrl;
+@property (nonatomic, assign) BOOL animatesDrop;
 
 
 + (id)venueWithDictionary:(NSDictionary *)dictionary;

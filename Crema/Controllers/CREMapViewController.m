@@ -14,10 +14,15 @@
 #import "CREVenueDetailViewController.h"
 #import "PFGeoBox.h"
 
+const int kLoadingCellTag = 1273;
+
 @interface CREMapViewController () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSMutableArray *annotationPins;
+@property (nonatomic) NSInteger currentPage;
+@property (nonatomic) BOOL isLoading;
+@property (nonatomic) BOOL mapPinsPlaced;
 - (void)locationDidChange:(NSNotification *)note;
 
 @end
@@ -26,10 +31,15 @@
 @synthesize mapView;
 @synthesize tableView;
 @synthesize venues;
+@synthesize currentPage;
+@synthesize isLoading;
+@synthesize mapPinsPlaced;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.venues = [[NSMutableArray alloc] init];
+    currentPage = 0;
     
     [SVProgressHUD setOffsetFromCenter: UIOffsetMake(0.0f, -self.mapView.bounds.size.height/2.0)];
     
@@ -50,7 +60,7 @@
 - (void)mapView:(MKMapView *)aMapView regionDidChangeAnimated:(BOOL)animated
 {
     NSLog(@"regionDidChangeAnimated: %f, %f", aMapView.centerCoordinate.latitude, aMapView.centerCoordinate.longitude);
-//    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:aMapView.centerCoordinate.latitude longitude:aMapView.centerCoordinate.longitude];
+    currentPage = 0;
     
     [self fetchVenuesForMapView];
     
@@ -59,38 +69,109 @@
 - (void)fetchVenuesForMapView {
     NSLog(@"Fetching Venues");
     [SVProgressHUD show];
+//    [self showSpinnerOnLoadingCell];
     PFGeoBox *geoBox = [PFGeoBox boxFromLocation:self.mapView.centerCoordinate andMapView:self.mapView];
     
 //    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+    NSLog(@"Current Page: %ld", (long)currentPage);
     [CREParseAPIClient fetchVenuesInView:geoBox
-                            page: 1
+                            page: currentPage
                             completion:^(NSArray *results, NSError *error) {
+                                isLoading = NO;
                                 if (error) {
                                     [SVProgressHUD showErrorWithStatus:@"Sorry, there was an error."];
                                 } else {
                                     [SVProgressHUD dismiss];
-                                    self.venues = [results mutableCopy];
-                                    [self updateAnnotations];
+//                                    [self.venues addObjectsFromArray:results];
+//                                    self.venues = [results mutableCopy];
+//                                    [self updateAnnotations];
+//                                    [self.tableView reloadData];
+                                    // 1. Find new posts (those that we did not already have)
+                                    NSMutableArray *newVenues = [[NSMutableArray alloc] initWithCapacity:kCREVenuesPerPage];
+                                    
+                                    // Loop through all returned PFObjects
+                                    for (CREVenue *venue in results)
+                                    {
+                                        // Now we check if we already had this wall post
+                                        BOOL found = NO;
+                                        
+                                        for (CREVenue *currentVenue in self.venues)
+                                        {
+                                            if ([currentVenue.objectId isEqualToString:venue.objectId])                                            {
+                                                found = YES;
+                                            }
+                                        }
+                                        
+                                        if (!found)
+                                        {
+                                            [newVenues addObject:venue];
+                                            venue.animatesDrop = mapPinsPlaced;
+                                        }
+                                    }
+                                    // 2. Find posts to remove (those we have but that we did not get from this query)
+                                
+                                    NSMutableArray *venuesToRemove =
+                                    [[NSMutableArray alloc] initWithCapacity:kCREVenuesPerPage];
+                                    
+                                    if (currentPage == 0)
+                                    {
+                                        for (CREVenue *venue in self.venues)
+                                        {
+                                            BOOL found = NO;
+                                            
+                                            // Loop through all the wall posts we received
+                                            for (CREVenue *newVenue in results)
+                                            {
+                                                if ([newVenue.objectId isEqualToString:venue.objectId])
+                                                {
+                                                    found = YES;
+                                                }
+                                            }
+                                            
+                                            // If we did not find the wall post we currently have in the set of posts
+                                            // the query returned, then we add it to the 'postsToRemove' array
+                                            if (!found)
+                                            {
+                                                [venuesToRemove addObject:venue];
+                                            }
+                                        }
+                                    }
+                                    // 3. Configure the new posts
+//                                    for (PAWPost *newPost in newPosts)
+//                                    {
+//                                        // Animate all pins after the initial load
+//                                        newPost.animatesDrop = mapPinsPlaced;
+//                                    }
+                                    // 4. Remove the old posts and add the new posts
+                                    [self.mapView removeAnnotations:venuesToRemove];
+                                    [self.venues removeObjectsInArray:venuesToRemove];
+                                    
+                                    // We add all new posts to both the cache and the map
+                                    [self.mapView addAnnotations:newVenues];
+                                    [self.venues addObjectsFromArray:newVenues];
+                                    
                                     [self.tableView reloadData];
-                                }
+                                    
+                                    self.mapPinsPlaced = YES;
+                                } //end if (error) - else
                             }];
 }
 
-- (void)updateAnnotations {
-    if (self.annotationPins) {
-        [self.mapView removeAnnotations: self.annotationPins];
-        [self.annotationPins removeAllObjects];
-    } else {
-        self.annotationPins = [[NSMutableArray alloc] initWithCapacity:[self.venues count]];
-    }
-    
-    NSLog(@"Updating Annotations");
-    for (CREVenue *venue in self.venues) {
-        CREVenueDetailedAnnotation *annotation = [[CREVenueDetailedAnnotation alloc] initWithVenue:venue];
-        [self.annotationPins push:annotation];
-        [self.mapView addAnnotation:annotation];
-    }
-}
+//- (void)updateAnnotations {
+//    if (self.annotationPins) {
+//        [self.mapView removeAnnotations: self.annotationPins];
+//        [self.annotationPins removeAllObjects];
+//    } else {
+//        self.annotationPins = [[NSMutableArray alloc] initWithCapacity:[self.venues count]];
+//    }
+//    
+//    NSLog(@"Updating Annotations");
+//    for (CREVenue *venue in self.venues) {
+//        CREVenueDetailedAnnotation *annotation = [[CREVenueDetailedAnnotation alloc] initWithVenue:venue];
+//        [self.annotationPins push:annotation];
+//        [self.mapView addAnnotation:annotation];
+//    }
+//}
 
 
 - (MKAnnotationView *)mapView:(MKMapView *)aMapView
@@ -102,14 +183,14 @@
     
     static NSString *pinId = @"CustomPinAnnotation";
     
-    if ([annotation isKindOfClass:[CREVenueDetailedAnnotation class]])
+    if ([annotation isKindOfClass:[CREVenue class]])
     {
-        MKPinAnnotationView *pinView =
-        (MKPinAnnotationView*)[aMapView dequeueReusableAnnotationViewWithIdentifier:pinId];
+        MKAnnotationView *pinView =
+        (MKAnnotationView*)[aMapView dequeueReusableAnnotationViewWithIdentifier:pinId];
         
         if (!pinView)
         {
-            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation
                                                       reuseIdentifier:pinId];
         }
         else
@@ -117,9 +198,11 @@
             pinView.annotation = annotation;
         }
         
-//        pinView.animatesDrop = YES;
-        pinView.canShowCallout = YES;
         pinView.image = [UIImage imageNamed:@"rocket-cup.png"];
+        
+//        pinView.animatesDrop = [((CREVenue *)annotation) animatesDrop];
+        pinView.canShowCallout = YES;
+        
         pinView.calloutOffset = CGPointMake(-1.8, 0.0);
         UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [rightButton setTitle:annotation.title forState:UIControlStateNormal];
@@ -131,10 +214,35 @@
     return nil;
 }
 
+- (void) mapView:(MKMapView *)aMapView didAddAnnotationViews:(NSArray *)views {
+    CGRect visibleRect = [aMapView annotationVisibleRect];
+
+    for (MKAnnotationView *view in views) {
+        if ([view.annotation isKindOfClass:[MKUserLocation class]]) {
+            return;
+        }
+        if ([(CREVenue *) view.annotation animatesDrop])
+        {
+            CGRect endFrame = view.frame;
+        
+            CGRect startFrame = endFrame;
+            startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
+            view.frame = startFrame;
+        
+            [UIView beginAnimations:@"drop" context:NULL];
+            [UIView setAnimationDuration:0.2];
+        
+            view.frame = endFrame;
+        
+            [UIView commitAnimations];
+        }
+    }
+}
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     CREVenueDetailedAnnotation *annotation = view.annotation;
-    NSInteger index = [self.annotationPins indexOfObject:annotation];
+    NSInteger index = [self.venues indexOfObject:annotation];
     NSLog(@"Count: %ld, Index: %ld", (unsigned long)[self.annotationPins count], (long)index);
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
@@ -162,12 +270,6 @@
 
 - (void) startLocationUpdates {
     [self.locationManager startUpdatingLocation];
-//    CLLocation *currentLocation = self.locationManager.location;
-//    if (currentLocation) {
-//        CREAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//        appDelegate.currentLocation = currentLocation;
-//    }
-    
 }
 
 
@@ -176,7 +278,6 @@
     NSLog(@"locationDidChange: %@", appDelegate.currentLocation);
     
     [self fetchVenuesForMapView];
-//    [self fetchVenuesForLocation:appDelegate.currentLocation];
 
 }
 
@@ -228,12 +329,50 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.venues count];
+    return [self.venues count] + 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void) showSpinnerOnLoadingCell
 {
-    NSLog(@"cellForRowAtIndexPath");
+    isLoading = YES;
+    NSIndexPath *index = [NSIndexPath indexPathForRow:[self.venues count] inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (UITableViewCell *)loadingCellWithSpinner
+{
+    
+    static NSString *CellIdentifier = @"loadingCell";
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activityIndicator.center = cell.center;
+    [cell addSubview:activityIndicator];
+    
+    [activityIndicator startAnimating];
+    
+    cell.tag = kLoadingCellTag;
+    cell.textLabel.text = @"";
+    
+    return cell;
+}
+
+- (UITableViewCell *)loadingCell
+{
+    
+    static NSString *CellIdentifier = @"loadingCell";
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    cell.tag = kLoadingCellTag;
+     cell.textLabel.text = @"click to load more shops";
+    
+    return cell;
+}
+
+- (UITableViewCell *)venueCellForIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = @"MapListCell";
     
     
@@ -242,19 +381,44 @@
 	CREVenue *venue;
     
 	venue = (CREVenue*) [self.venues objectAtIndex:indexPath.row];
-    NSLog(@"Venue: %@", venue.name);
+
 	cell.textLabel.text = venue.name;
-    NSLog(@"cell label: %@", cell.textLabel.text);
     [cell.detailTextLabel setText:venue.addressString];
     
     return cell;
+}
 
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < self.venues.count) {
+        return [self venueCellForIndexPath:indexPath];
+    } else {
+        if (isLoading) {
+            return [self loadingCellWithSpinner];
+        } else {
+            return [self loadingCell];
+        }
+        
+    }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == [self.venues count]) {
+        currentPage++;
+        [self showSpinnerOnLoadingCell];
+        [self fetchVenuesForMapView];
+        return nil;
+    }
+    return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Selected Row %ld", (long)indexPath.row);
-    [self.mapView selectAnnotation:[self.annotationPins objectAtIndex:indexPath.row] animated:YES];
-//    return nil;
+    [self.mapView selectAnnotation:[self.venues
+                                    objectAtIndex:indexPath.row] animated:YES];
+//    [self.mapView selectAnnotation:[self.annotationPins objectAtIndex:indexPath.row] animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -275,6 +439,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kCRELocationChangeNotification
                                                   object:nil];
+    [self.locationManager stopUpdatingLocation];
+    currentPage = 0;
+	self.mapPinsPlaced = NO;
 }
 
 

@@ -14,6 +14,7 @@
 //#define VENUE_PHOTO_TABLE_SIZE @"44x44"
 
 @implementation CREVenue
+
 @dynamic venueId;
 @dynamic name;
 @dynamic latitude;
@@ -21,6 +22,7 @@
 @dynamic addressString;
 @dynamic saved;
 @dynamic location;
+@synthesize animatesDrop;
 
 
 + (NSString *)parseClassName {
@@ -39,22 +41,22 @@
         self.name = dictionary[@"name"];
         
         
-        id location = dictionary[@"location"];
-        self.latitude = location[@"lat"];
-        self.longitude = location[@"lng"];
+        id locationDictionary = dictionary[@"location"];
+        self.latitude = locationDictionary[@"lat"];
+        self.longitude = locationDictionary[@"lng"];
         
         NSMutableArray * address = [[NSMutableArray alloc] init];
-        if (location[@"address"]) {
-            [address addObject: location[@"address"]];
+        if (locationDictionary[@"address"]) {
+            [address addObject: locationDictionary[@"address"]];
         }
-        if (location[@"city"]) {
-            [address addObject: location[@"city"]];
+        if (locationDictionary[@"city"]) {
+            [address addObject: locationDictionary[@"city"]];
         }
-        if (location[@"state"]) {
-            [address addObject: location[@"state"]];
+        if (locationDictionary[@"state"]) {
+            [address addObject: locationDictionary[@"state"]];
         }
-        if (location[@"postalCode"]) {
-            [address addObject: location[@"postalCode"]];
+        if (locationDictionary[@"postalCode"]) {
+            [address addObject: locationDictionary[@"postalCode"]];
         }
         self.addressString = [address componentsJoinedByString:@", "];
         self.location = [PFGeoPoint geoPointWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
@@ -98,6 +100,20 @@
         }];
     }
     
+}
+
+#pragma mark - MKAnnotation methods
+
+- (CLLocationCoordinate2D)coordinate {
+    return CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longitude.doubleValue);
+}
+
+- (NSString *)title {
+    return self.name;
+}
+
+- (NSString *) subtitle {
+    return self.addressString;
 }
 
 @end
