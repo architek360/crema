@@ -15,7 +15,6 @@
 		321B35D518919FE400DF04A9 /* CREVenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35D418919FE400DF04A9 /* CREVenueAnnotation.m */; };
 		321B35D81891BD1E00DF04A9 /* CREParseAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35D71891BD1E00DF04A9 /* CREParseAPIClient.m */; };
 		321B35DE1892342A00DF04A9 /* CREVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35DD1892342A00DF04A9 /* CREVenue.m */; };
-		321B35E418933C7F00DF04A9 /* CREVenueDetailedAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35E318933C7F00DF04A9 /* CREVenueDetailedAnnotation.m */; };
 		321B35E91893576A00DF04A9 /* flag-cup-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35E51893576A00DF04A9 /* flag-cup-empty.png */; };
 		321B35EA1893576A00DF04A9 /* flag-cup-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35E61893576A00DF04A9 /* flag-cup-filled.png */; };
 		321B35EB1893576A00DF04A9 /* rocket-cup.png in Resources */ = {isa = PBXBuildFile; fileRef = 321B35E71893576A00DF04A9 /* rocket-cup.png */; };
@@ -87,8 +86,6 @@
 		321B35D71891BD1E00DF04A9 /* CREParseAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREParseAPIClient.m; sourceTree = "<group>"; };
 		321B35DC1892342A00DF04A9 /* CREVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREVenue.h; sourceTree = "<group>"; };
 		321B35DD1892342A00DF04A9 /* CREVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenue.m; sourceTree = "<group>"; };
-		321B35E218933C7F00DF04A9 /* CREVenueDetailedAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREVenueDetailedAnnotation.h; sourceTree = "<group>"; };
-		321B35E318933C7F00DF04A9 /* CREVenueDetailedAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenueDetailedAnnotation.m; sourceTree = "<group>"; };
 		321B35E51893576A00DF04A9 /* flag-cup-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flag-cup-empty.png"; sourceTree = "<group>"; };
 		321B35E61893576A00DF04A9 /* flag-cup-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flag-cup-filled.png"; sourceTree = "<group>"; };
 		321B35E71893576A00DF04A9 /* rocket-cup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rocket-cup.png"; sourceTree = "<group>"; };
@@ -313,8 +310,6 @@
 				321B35DD1892342A00DF04A9 /* CREVenue.m */,
 				321B35D318919FE400DF04A9 /* CREVenueAnnotation.h */,
 				321B35D418919FE400DF04A9 /* CREVenueAnnotation.m */,
-				321B35E218933C7F00DF04A9 /* CREVenueDetailedAnnotation.h */,
-				321B35E318933C7F00DF04A9 /* CREVenueDetailedAnnotation.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -487,7 +482,6 @@
 			files = (
 				321B35DE1892342A00DF04A9 /* CREVenue.m in Sources */,
 				323AB036188A5E1F00130EFA /* main.m in Sources */,
-				321B35E418933C7F00DF04A9 /* CREVenueDetailedAnnotation.m in Sources */,
 				32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */,
 				321B35D81891BD1E00DF04A9 /* CREParseAPIClient.m in Sources */,
 				323AB03A188A5E1F00130EFA /* CREAppDelegate.m in Sources */,

@@ -9,7 +9,6 @@
 #import "CREMapViewController.h"
 #import "CREParseAPIClient.h"
 #import "SVProgressHUD.h"
-#import "CREVenueDetailedAnnotation.h"
 #import "ObjectiveSugar.h"
 #import "CREVenueDetailViewController.h"
 #import "PFGeoBox.h"
@@ -23,7 +22,6 @@ const int kLoadingCellTag = 1273;
 @property (nonatomic) NSInteger currentPage;
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic) BOOL mapPinsPlaced;
-- (void)locationDidChange:(NSNotification *)note;
 
 @end
 
@@ -43,37 +41,32 @@ const int kLoadingCellTag = 1273;
     
     [SVProgressHUD setOffsetFromCenter: UIOffsetMake(0.0f, -self.mapView.bounds.size.height/2.0)];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(locationDidChange:)
-                                                 name:kCRELocationChangeNotification
-                                               object:nil];
-    
-    [self startLocationUpdates];
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)zoomToLocation:(CLLocation *)location radius:(CGFloat)radius {
-    
+    NSLog(@"Zooming");
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, radius * 2, radius * 2);
     [self.mapView setRegion:region animated:YES];
 }
 
 - (void)mapView:(MKMapView *)aMapView regionDidChangeAnimated:(BOOL)animated
 {
-    NSLog(@"regionDidChangeAnimated: %f, %f", aMapView.centerCoordinate.latitude, aMapView.centerCoordinate.longitude);
-    currentPage = 0;
+    NSLog(@"regionLocation: %@", [[self locationManager] location]);
+    NSLog(@"regionDidChangeAnimated: %f, %f, %d", aMapView.centerCoordinate.latitude, aMapView.centerCoordinate.longitude, animated);
     
-    [self fetchVenuesForMapView];
-    
+    if([[self locationManager] location] != nil)
+    {
+        currentPage = 0;
+        [self fetchVenuesForMapView];
+    }
 }
 
 - (void)fetchVenuesForMapView {
     NSLog(@"Fetching Venues");
     [SVProgressHUD show];
-//    [self showSpinnerOnLoadingCell];
     PFGeoBox *geoBox = [PFGeoBox boxFromLocation:self.mapView.centerCoordinate andMapView:self.mapView];
-    
-//    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
-    NSLog(@"Current Page: %ld", (long)currentPage);
+
     [CREParseAPIClient fetchVenuesInView:geoBox
                             page: currentPage
                             completion:^(NSArray *results, NSError *error) {
@@ -82,10 +75,6 @@ const int kLoadingCellTag = 1273;
                                     [SVProgressHUD showErrorWithStatus:@"Sorry, there was an error."];
                                 } else {
                                     [SVProgressHUD dismiss];
-//                                    [self.venues addObjectsFromArray:results];
-//                                    self.venues = [results mutableCopy];
-//                                    [self updateAnnotations];
-//                                    [self.tableView reloadData];
                                     // 1. Find new posts (those that we did not already have)
                                     NSMutableArray *newVenues = [[NSMutableArray alloc] initWithCapacity:kCREVenuesPerPage];
                                     
@@ -136,13 +125,7 @@ const int kLoadingCellTag = 1273;
                                             }
                                         }
                                     }
-                                    // 3. Configure the new posts
-//                                    for (PAWPost *newPost in newPosts)
-//                                    {
-//                                        // Animate all pins after the initial load
-//                                        newPost.animatesDrop = mapPinsPlaced;
-//                                    }
-                                    // 4. Remove the old posts and add the new posts
+                                    // 3. Remove the old posts and add the new posts
                                     [self.mapView removeAnnotations:venuesToRemove];
                                     [self.venues removeObjectsInArray:venuesToRemove];
                                     
@@ -156,22 +139,6 @@ const int kLoadingCellTag = 1273;
                                 } //end if (error) - else
                             }];
 }
-
-//- (void)updateAnnotations {
-//    if (self.annotationPins) {
-//        [self.mapView removeAnnotations: self.annotationPins];
-//        [self.annotationPins removeAllObjects];
-//    } else {
-//        self.annotationPins = [[NSMutableArray alloc] initWithCapacity:[self.venues count]];
-//    }
-//    
-//    NSLog(@"Updating Annotations");
-//    for (CREVenue *venue in self.venues) {
-//        CREVenueDetailedAnnotation *annotation = [[CREVenueDetailedAnnotation alloc] initWithVenue:venue];
-//        [self.annotationPins push:annotation];
-//        [self.mapView addAnnotation:annotation];
-//    }
-//}
 
 
 - (MKAnnotationView *)mapView:(MKMapView *)aMapView
@@ -200,7 +167,6 @@ const int kLoadingCellTag = 1273;
         
         pinView.image = [UIImage imageNamed:@"rocket-cup.png"];
         
-//        pinView.animatesDrop = [((CREVenue *)annotation) animatesDrop];
         pinView.canShowCallout = YES;
         
         pinView.calloutOffset = CGPointMake(-1.8, 0.0);
@@ -241,7 +207,7 @@ const int kLoadingCellTag = 1273;
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    CREVenueDetailedAnnotation *annotation = view.annotation;
+    CREVenue *annotation = (CREVenue *) view.annotation;
     NSInteger index = [self.venues indexOfObject:annotation];
     NSLog(@"Count: %ld, Index: %ld", (unsigned long)[self.annotationPins count], (long)index);
     
@@ -267,27 +233,13 @@ const int kLoadingCellTag = 1273;
     }
     return _locationManager;
 }
+//    Do we want to research at current location if moved? maybe better if there is a 'find me' button
 
-- (void) startLocationUpdates {
-    [self.locationManager startUpdatingLocation];
-}
-
-
-- (void)locationDidChange:(NSNotification *)note {
-    CREAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSLog(@"locationDidChange: %@", appDelegate.currentLocation);
-    
-    [self fetchVenuesForMapView];
-
-}
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     NSLog(@"Update Locations");
     CLLocation *location = [locations lastObject];
     [self zoomToLocation:location radius:1000];
-    CREAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    
-    [appDelegate setCurrentLocation:location];
 }
 
 #pragma mark - Segue view
@@ -295,6 +247,8 @@ const int kLoadingCellTag = 1273;
 {
     return [sender isEqual:self];
 }
+
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"venueDetailModal"])
@@ -418,7 +372,6 @@ const int kLoadingCellTag = 1273;
     NSLog(@"Selected Row %ld", (long)indexPath.row);
     [self.mapView selectAnnotation:[self.venues
                                     objectAtIndex:indexPath.row] animated:YES];
-//    [self.mapView selectAnnotation:[self.annotationPins objectAtIndex:indexPath.row] animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
