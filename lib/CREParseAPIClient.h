@@ -19,5 +19,4 @@
               completion: ( void (^)(NSArray *results, NSError *error) )completion;
 
 + (void) asyncVenuePersisted:(CREVenue *) venue callback:(void (^)(BOOL success, NSError *failure) ) completion;
-
 @end

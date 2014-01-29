@@ -31,14 +31,15 @@
 - (IBAction)tapVoteCount:(id)sender {
     if (self.upVoted) {
         self.venue.upvotes = @(self.venue.upvotes.intValue - 1);
-//        [buttonItem setTitleTextAttributes:@{
-//                                             UITextAttributeFont: [UIFont fontWithName:@"Helvetica-Bold" size:26.0],
-//                                             UITextAttributeTextColor: [UIColor greenColor]
-//                                             } forState:UIControlStateNormal];
+        self.upVoted = NO;
+        [self.upvotesLabel setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:16], NSFontAttributeName,nil] forState:UIControlStateNormal];
     } else {
         self.venue.upvotes = @(self.venue.upvotes.intValue + 1);
+        self.upVoted = YES;
+        [self.upvotesLabel setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:16], NSFontAttributeName,nil] forState:UIControlStateNormal];
     }
     self.upvotesLabel.title = [self labelForUpvotes:self.venue.upvotes];
+    [self.venue saveInBackground];
 }
 
 - (NSString *) labelForUpvotes: (NSNumber *) votes {
@@ -51,6 +52,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)tapVoteCount:(id)sender {
-}
 @end

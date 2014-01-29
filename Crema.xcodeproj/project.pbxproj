@@ -31,8 +31,6 @@
 		323AB045188A5E2000130EFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02D188A5E1F00130EFA /* UIKit.framework */; };
 		323AB04D188A5E2000130EFA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 323AB04B188A5E2000130EFA /* InfoPlist.strings */; };
 		323AB04F188A5E2000130EFA /* CremaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 323AB04E188A5E2000130EFA /* CremaTests.m */; };
-		323AB059188A5ED000130EFA /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB058188A5ED000130EFA /* GoogleMaps.framework */; };
-		323AB05B188A5F1700130EFA /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 323AB05A188A5F1700130EFA /* GoogleMaps.bundle */; };
 		323AB05D188A5FA700130EFA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB05C188A5FA700130EFA /* AVFoundation.framework */; };
 		323AB05F188A5FAD00130EFA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB05E188A5FAD00130EFA /* CoreData.framework */; };
 		323AB061188A5FB600130EFA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB060188A5FB600130EFA /* CoreLocation.framework */; };
@@ -106,8 +104,6 @@
 		323AB04A188A5E2000130EFA /* CremaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CremaTests-Info.plist"; sourceTree = "<group>"; };
 		323AB04C188A5E2000130EFA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		323AB04E188A5E2000130EFA /* CremaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CremaTests.m; sourceTree = "<group>"; };
-		323AB058188A5ED000130EFA /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "GoogleMaps-iOS-1.6.2/GoogleMaps.framework"; sourceTree = "<group>"; };
-		323AB05A188A5F1700130EFA /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "GoogleMaps-iOS-1.6.2/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		323AB05C188A5FA700130EFA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		323AB05E188A5FAD00130EFA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		323AB060188A5FB600130EFA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -167,7 +163,6 @@
 				323AB05D188A5FA700130EFA /* AVFoundation.framework in Frameworks */,
 				326B801E188C59B1006DCD64 /* StoreKit.framework in Frameworks */,
 				323AB02E188A5E1F00130EFA /* UIKit.framework in Frameworks */,
-				323AB059188A5ED000130EFA /* GoogleMaps.framework in Frameworks */,
 				326B801F188C5A69006DCD64 /* Parse.framework in Frameworks */,
 				323AB02A188A5E1F00130EFA /* Foundation.framework in Frameworks */,
 				B37F458BC81B41DA809A4467 /* libPods.a in Frameworks */,
@@ -246,8 +241,6 @@
 				323AB060188A5FB600130EFA /* CoreLocation.framework */,
 				323AB05E188A5FAD00130EFA /* CoreData.framework */,
 				323AB05C188A5FA700130EFA /* AVFoundation.framework */,
-				323AB05A188A5F1700130EFA /* GoogleMaps.bundle */,
-				323AB058188A5ED000130EFA /* GoogleMaps.framework */,
 				323AB029188A5E1F00130EFA /* Foundation.framework */,
 				323AB02B188A5E1F00130EFA /* CoreGraphics.framework */,
 				323AB02D188A5E1F00130EFA /* UIKit.framework */,
@@ -420,7 +413,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				321B35E91893576A00DF04A9 /* flag-cup-empty.png in Resources */,
-				323AB05B188A5F1700130EFA /* GoogleMaps.bundle in Resources */,
 				321B35EA1893576A00DF04A9 /* flag-cup-filled.png in Resources */,
 				321B35EB1893576A00DF04A9 /* rocket-cup.png in Resources */,
 				321B35EC1893576A00DF04A9 /* white-small-cup.png in Resources */,

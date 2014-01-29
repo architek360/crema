@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CREVenue.h"
+#import "CREParseAPIClient.h"
 
 @interface CREVenueDetailViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
