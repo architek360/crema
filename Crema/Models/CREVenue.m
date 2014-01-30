@@ -22,6 +22,8 @@
 @dynamic addressString;
 @dynamic saved;
 @dynamic location;
+//@dynamic upvotes;
+@dynamic upvote_count;
 @synthesize animatesDrop;
 
 
@@ -29,7 +31,23 @@
     return @"Venue";
 }
 
+- (NSString *) upvoteCountString
+{
+    if (self.upvote_count == nil)
+    {
+        return @"0";
+    } else {
+        return [NSString stringWithFormat:@"%@", self.upvote_count];
+    }
+}
 
+- (void) decrementKey:(NSString *)key
+{
+    if (self.upvote_count != 0)
+    {
+        self.upvote_count = [NSNumber numberWithInt:(self.upvote_count.intValue - 1)];
+    }
+}
 + (id)venueWithDictionary:(NSDictionary *)dictionary {
     return [[self alloc] initWithDictionary: dictionary];
 }
@@ -39,7 +57,12 @@
     if (self) {
         self.venueId = dictionary[@"id"];
         self.name = dictionary[@"name"];
-        self.upvotes = dictionary[@"upvotes"];
+        if (dictionary[@"upvote_count"]) {
+            self.upvote_count = dictionary[@"upvote_count"];
+        } else {
+            self.upvote_count = [NSNumber numberWithInt:0];
+        }
+        
         
         
         

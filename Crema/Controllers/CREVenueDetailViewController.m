@@ -22,28 +22,41 @@
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", @"https://foursquare.com/v/", self.venue.venueId];
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    
-    self.upvotesLabel.title = [self labelForUpvotes:self.venue.upvotes];
-    
     [self.webView loadRequest:requestObj];
+    self.upvotesLabel.title = [self labelForUpvotes:self.venue.upvote_count];
+    
+    
+    if([PFUser currentUser])
+    {
+        NSLog(@"get Like");
+        self.upVoted = [CREParseAPIClient currentUserLikesVenue:self.venue];
+        NSLog(@"User likes: %hhd", self.upVoted);
+        if (self.upVoted) {
+            [self.upvotesLabel setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:16], NSFontAttributeName,nil] forState:UIControlStateNormal];
+        } else {
+            [self.upvotesLabel setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:16], NSFontAttributeName,nil] forState:UIControlStateNormal];
+        }
+    }
 }
 
 - (IBAction)tapVoteCount:(id)sender {
+    if (![PFUser currentUser]) return;
+    //segue to login?
+    
     if (self.upVoted) {
-        self.venue.upvotes = @(self.venue.upvotes.intValue - 1);
         self.upVoted = NO;
+        [CREParseAPIClient currentUserUpdateVote:NO forVenue:self.venue];
         [self.upvotesLabel setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:16], NSFontAttributeName,nil] forState:UIControlStateNormal];
     } else {
-        self.venue.upvotes = @(self.venue.upvotes.intValue + 1);
         self.upVoted = YES;
+        [CREParseAPIClient currentUserUpdateVote:YES forVenue:self.venue];
         [self.upvotesLabel setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:16], NSFontAttributeName,nil] forState:UIControlStateNormal];
     }
-    self.upvotesLabel.title = [self labelForUpvotes:self.venue.upvotes];
-    [self.venue saveInBackground];
+    self.upvotesLabel.title = [self labelForUpvotes:self.venue.upvote_count];
 }
 
 - (NSString *) labelForUpvotes: (NSNumber *) votes {
-    return [NSString stringWithFormat:@"%i votes", self.venue.upvotes.integerValue];
+    return [NSString stringWithFormat:@"%i votes", self.venue.upvote_count.integerValue];
 }
 
 - (void)didReceiveMemoryWarning

@@ -9,6 +9,7 @@
 #import "CREParseAPIClient.h"
 #import "CREAppDelegate.h"
 #import <Parse/Parse.h>
+#import "ObjectiveSugar.h"
 @implementation CREParseAPIClient
 
 + (BOOL) venuePersisted: (CREVenue * )venue {
@@ -29,9 +30,11 @@
     PFQuery *query = [CREVenue query];
     
     [query whereKey:@"location" withinGeoBoxFromSouthwest:geoBox.southwest toNortheast:geoBox.northeast];
-
-    //    [query orderByDecending:@"upvotes"];
+//    [query includeKey:@"upvotes"];
+    [query orderByDescending:@"upvote_count"];
+    
     query.limit = kCREVenuesPerPage;
+    
     if (page != 0 && page) {
         query.skip = kCREVenuesPerPage * page;
     }
@@ -52,5 +55,79 @@
         }
     }];
 }
+
+//+ (void) getFriendsWhoLikeVenue: (CREVenue *) venue callback:(void (^)(NSArray *friends, NSError *failure) ) completion
+//{
+//
+//    FBRequest* friendsRequest = [FBRequest requestForMyFriends];
+//    
+//    [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
+//                                                  NSDictionary* result,
+//                                                  NSError *error) {
+//        
+//        NSArray* friendIds = [[result objectForKey:@"data"] map:^(NSDictionary<FBGraphUser>* friend) {
+//            return friend.id;
+//        }];
+//        PFQuery *friendQuery = [PFUser query];
+//        [friendQuery whereKey:@"facebookId" containedIn:friendIds];
+////        [friendQuery findObjects];
+//        
+//        PFRelation *venueRelation = [venue relationForKey:@"upvotes"];
+//        
+//        PFQuery *venueQuery = [venueRelation query];
+//        NSArray *venuePeople = [venueQuery findObjects];
+//        
+//        [venueQuery whereKey:@"facebookId" containedIn:friendIds];
+//        
+//        
+////        NSArray *friendUsers = [friendQuery findObjects];
+//        NSArray *venueFriends = [venueQuery findObjects];
+////        NSLog(@"Friends: %@", friendUsers);
+////        NSLog(@"VenueFriends: %@", venueFriends);
+////        NSLog(@"VenuePeople: %@", venuePeople);
+//        
+//    }];
+//    
+//}
+
+//+ (NSInteger) upvotesForVenue: (CREVenue *) venue
+//{
+//    PFRelation *venueRelation = [venue relationForKey:@"upvotes"];
+//    PFQuery *venueQuery = [venueRelation query];
+//    return [venueQuery countObjects];
+//}
+
+
++ (BOOL) currentUserLikesVenue: (CREVenue *) venue
+{
+    PFUser *user = [PFUser currentUser];
+    PFRelation *relation = [venue relationforKey:@"upvotes"];
+    PFQuery *query = [relation query];
+    [query whereKey:@"facebookId" equalTo:user[@"facebookId"]];
+    NSInteger count = [query countObjects];
+    return (count != 0);
+    //    PFRelation *relation = [user relationforKey:@"upvotes"];
+    //
+    //    PFQuery *query = [relation query];
+    //    [query whereKey:@"objectId" equalTo:venue.objectId];
+}
+
++ (void) currentUserUpdateVote: (BOOL) status forVenue: (CREVenue *) venue
+{
+    PFObject *user = (PFObject *) [PFUser currentUser];
+    PFRelation *relation = [venue relationforKey:@"upvotes"];
+    if (status) {
+        [relation addObject: user];
+        [venue incrementKey:@"upvote_count"];
+        [venue saveInBackground];
+    } else {
+        [relation removeObject:user];
+        [venue decrementKey:@"upvote_count"];
+        [venue saveInBackground];
+    }
+   
+    
+}
+
 
 @end

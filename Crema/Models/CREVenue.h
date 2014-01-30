@@ -20,7 +20,8 @@
 @property (nonatomic, strong) NSNumber *longitude;
 @property (nonatomic, copy) NSString *addressString;
 @property (nonatomic, strong) NSNumber *saved;
-@property (nonatomic, strong) NSNumber *upvotes;
+//@property (nonatomic) NSNumber *upvotes;
+@property (nonatomic) NSNumber *upvote_count;
 @property (nonatomic, strong) PFGeoPoint *location;
 //@property (nonatomic, copy) NSString *photoUrl;
 @property (nonatomic, assign) BOOL animatesDrop;
@@ -31,5 +32,7 @@
 - (NSDictionary *)toParseDictionary;
 - (BOOL) saveToPARSE;
 - (void) saveToPARSEWithBlock: (void (^)(BOOL success, NSError *failure) ) completion;
+- (void) decrementKey: (NSString *) key;
+- (NSString *) upvoteCountString;
 
 @end

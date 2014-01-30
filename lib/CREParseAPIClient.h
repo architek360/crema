@@ -19,4 +19,8 @@
               completion: ( void (^)(NSArray *results, NSError *error) )completion;
 
 + (void) asyncVenuePersisted:(CREVenue *) venue callback:(void (^)(BOOL success, NSError *failure) ) completion;
+//+ (void) getFriendsWhoLikeVenue: (CREVenue *) venue callback:(void (^)(NSArray *friends, NSError *failure) ) completion;
++ (BOOL) currentUserLikesVenue: (CREVenue *) venue;
++ (void) currentUserUpdateVote: (BOOL) status forVenue: (CREVenue *) venue;
+//+ (NSInteger) upvotesForVenue: (CREVenue *) venue;
 @end

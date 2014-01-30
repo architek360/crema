@@ -14,6 +14,7 @@
 #import "PFGeoBox.h"
 #import "UIImageView+AFNetworking.h"
 #import "CRELoginViewController.h"
+#import "TDBadgedCell.h"
 
 const int kLoadingCellTag = 1273;
 
@@ -93,6 +94,7 @@ const int kLoadingCellTag = 1273;
                                         
                                         for (CREVenue *currentVenue in self.venues)
                                         {
+                                            
                                             if ([currentVenue.objectId isEqualToString:venue.objectId])                                            {
                                                 found = YES;
                                             }
@@ -304,7 +306,6 @@ const int kLoadingCellTag = 1273;
 {
     
     static NSString *CellIdentifier = @"loadingCell";
-    
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
      UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -336,14 +337,16 @@ const int kLoadingCellTag = 1273;
 {
     static NSString *CellIdentifier = @"MapListCell";
     
-    
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TDBadgedCell *cell = (TDBadgedCell *) [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
 	CREVenue *venue;
     
 	venue = (CREVenue*) [self.venues objectAtIndex:indexPath.row];
 
 	cell.textLabel.text = venue.name;
+    cell.badgeString = [venue upvoteCountString];
+    cell.badge.radius = 4;
     [cell.detailTextLabel setText:venue.addressString];
     
     return cell;
@@ -376,7 +379,6 @@ const int kLoadingCellTag = 1273;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Selected Row %ld", (long)indexPath.row);
     [self.mapView selectAnnotation:[self.venues
                                     objectAtIndex:indexPath.row] animated:YES];
 }
@@ -400,7 +402,6 @@ const int kLoadingCellTag = 1273;
                 NSDictionary *userData = (NSDictionary *)result;
                 
                 NSString *facebookID = userData[@"id"];
-                NSLog(@"%@",userData);
                 NSString *name = userData[@"name"];
                 
                 NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square&return_ssl_resources=1", facebookID]];

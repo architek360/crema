@@ -53,6 +53,19 @@
                 NSLog(@"Uh oh. An error occurred: %@", error);
             }
         } else if (user.isNew) {
+            [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                if (!error) {
+                    [[PFUser currentUser] setObject:[result objectForKey:@"id"]
+                                             forKey:@"facebookId"];
+                    [[PFUser currentUser] setObject:[result objectForKey:@"name"]
+                                             forKey:@"name"];
+                    [[PFUser currentUser] setObject:[result objectForKey:@"first_name"]
+                                             forKey:@"first_name"];
+                    [[PFUser currentUser] setObject:[result objectForKey:@"last_name"]
+                                             forKey:@"last_name"];
+                    [[PFUser currentUser] saveInBackground];
+                }
+            }];
             NSLog(@"User with facebook signed up and logged in!");
             completion(user, error);
         } else {
