@@ -50,7 +50,6 @@
 		323AB073188A602600130EFA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB072188A602600130EFA /* SystemConfiguration.framework */; };
 		323AB0BC188A62C800130EFA /* CREMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323AB0BB188A62C800130EFA /* CREMapViewController.m */; };
 		323AB0BE188A62F200130EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323AB0BD188A62F200130EFA /* Main.storyboard */; };
-		32694E0F188C5EA30015213F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32694E0E188C5EA30015213F /* FacebookSDK.framework */; };
 		32694E10188C5EAD0015213F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8020188C5D69006DCD64 /* Accounts.framework */; };
 		32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32694E21188CACD30015213F /* CRESearchTableViewController.m */; };
 		326B8014188C5606006DCD64 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8013188C5606006DCD64 /* AudioToolbox.framework */; };
@@ -59,6 +58,7 @@
 		326B801A188C564F006DCD64 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8019188C564F006DCD64 /* Security.framework */; };
 		326B801E188C59B1006DCD64 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B801B188C5656006DCD64 /* StoreKit.framework */; };
 		326B801F188C5A69006DCD64 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8011188C55F0006DCD64 /* Parse.framework */; };
+		32ADF08F18A4E09C0022F730 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32ADF08D18A4E07F0022F730 /* FacebookSDK.framework */; };
 		32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */; };
 		32AE8A3B1894B79000244D3B /* PFGeoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3A1894B79000244D3B /* PFGeoBox.m */; };
 		B37F458BC81B41DA809A4467 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5DC032311D4FC8B0CE3E0E /* libPods.a */; };
@@ -131,7 +131,6 @@
 		323AB0BA188A62C800130EFA /* CREMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREMapViewController.h; sourceTree = "<group>"; };
 		323AB0BB188A62C800130EFA /* CREMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREMapViewController.m; sourceTree = "<group>"; };
 		323AB0BD188A62F200130EFA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		32694E0E188C5EA30015213F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "facebook-ios-sdk-master/build/FacebookSDK.framework"; sourceTree = "<group>"; };
 		32694E20188CACD30015213F /* CRESearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRESearchTableViewController.h; sourceTree = "<group>"; };
 		32694E21188CACD30015213F /* CRESearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRESearchTableViewController.m; sourceTree = "<group>"; };
 		326B8011188C55F0006DCD64 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -141,6 +140,7 @@
 		326B8019188C564F006DCD64 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		326B801B188C5656006DCD64 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		326B8020188C5D69006DCD64 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		32ADF08D18A4E07F0022F730 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		32AE8A3618948EF200244D3B /* CREVenueDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREVenueDetailViewController.h; sourceTree = "<group>"; };
 		32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenueDetailViewController.m; sourceTree = "<group>"; };
 		32AE8A391894B79000244D3B /* PFGeoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFGeoBox.h; path = Crema/Models/PFGeoBox.h; sourceTree = SOURCE_ROOT; };
@@ -153,9 +153,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32ADF08F18A4E09C0022F730 /* FacebookSDK.framework in Frameworks */,
 				321B35D218919B0900DF04A9 /* MapKit.framework in Frameworks */,
 				32694E10188C5EAD0015213F /* Accounts.framework in Frameworks */,
-				32694E0F188C5EA30015213F /* FacebookSDK.framework in Frameworks */,
 				323AB06D188A5FFF00130EFA /* libz.dylib in Frameworks */,
 				326B8014188C5606006DCD64 /* AudioToolbox.framework in Frameworks */,
 				326B8016188C5618006DCD64 /* CFNetwork.framework in Frameworks */,
@@ -236,8 +236,8 @@
 		323AB028188A5E1F00130EFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32ADF08D18A4E07F0022F730 /* FacebookSDK.framework */,
 				321B35D118919B0900DF04A9 /* MapKit.framework */,
-				32694E0E188C5EA30015213F /* FacebookSDK.framework */,
 				326B8020188C5D69006DCD64 /* Accounts.framework */,
 				326B801B188C5656006DCD64 /* StoreKit.framework */,
 				326B8019188C564F006DCD64 /* Security.framework */,
@@ -633,6 +633,7 @@
 					"/Users/jeffrwells/Sites/Crema/GoogleMaps-iOS-1.6.2",
 					/Users/jeffrwells/Sites/Crema,
 					"/Users/jeffrwells/Sites/Crema/facebook-ios-sdk-master/build",
+					/Users/jeffrwells/Sites/crema,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Crema/Crema-Prefix.pch";
@@ -653,6 +654,7 @@
 					"/Users/jeffrwells/Sites/Crema/GoogleMaps-iOS-1.6.2",
 					/Users/jeffrwells/Sites/Crema,
 					"/Users/jeffrwells/Sites/Crema/facebook-ios-sdk-master/build",
+					/Users/jeffrwells/Sites/crema,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Crema/Crema-Prefix.pch";
