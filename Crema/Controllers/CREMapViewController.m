@@ -174,7 +174,7 @@ const int kLoadingCellTag = 1273;
             pinView.annotation = annotation;
         }
         
-        pinView.image = [UIImage imageNamed:@"rocket-cup.png"];
+        pinView.image = [UIImage imageNamed:@"star.png"];
         
         pinView.canShowCallout = YES;
         
