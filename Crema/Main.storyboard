@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="-641" y="-273"/>
         </scene>
-        <!--View Controller-->
+        <!--Search Table View Controller-->
         <scene sceneID="Bi8-cV-Jvp">
             <objects>
-                <viewController id="7bg-OJ-PjZ" sceneMemberID="viewController">
+                <viewController id="7bg-OJ-PjZ" customClass="CRESearchTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vg6-eX-qtp"/>
                         <viewControllerLayoutGuide type="bottom" id="Gmc-a4-diw"/>
@@ -113,15 +113,82 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tvh-zy-462">
+                                <rect key="frame" x="0.0" y="107" width="320" height="461"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddNewSearchListCell" textLabel="hPf-G9-kFc" detailTextLabel="gQv-xN-hgv" style="IBUITableViewCellStyleSubtitle" id="81f-Ty-TDk" userLabel="AddNewSearchListCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="81f-Ty-TDk" id="9uL-Xe-7fb">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hPf-G9-kFc">
+                                                    <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gQv-xN-hgv">
+                                                    <rect key="frame" x="15" y="25" width="32" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="YiE-y5-3ZA" kind="push" identifier="pushDetailView" id="fJh-Dd-l3C"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="7bg-OJ-PjZ" id="M7D-uV-6tG"/>
+                                    <outlet property="delegate" destination="7bg-OJ-PjZ" id="0c0-4O-h9G"/>
+                                </connections>
+                            </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="foursquare-search.png" translatesAutoresizingMaskIntoConstraints="NO" id="ams-h8-mhW">
                                 <rect key="frame" x="0.0" y="488" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search for your favorite shop" translatesAutoresizingMaskIntoConstraints="NO" id="gsy-bT-e4i">
+                                <rect key="frame" x="0.0" y="63" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="7bg-OJ-PjZ" id="zs3-6d-Gvh"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="lb3-BP-kgg" id="wsk-eb-aoC"/>
+                        <outlet property="tableView" destination="Tvh-zy-462" id="K9M-HM-Wxn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCQ-PY-TAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="qrS-3d-eio">
+                    <connections>
+                        <outlet property="delegate" destination="7bg-OJ-PjZ" id="Z9y-As-eQn"/>
+                        <outlet property="searchContentsController" destination="7bg-OJ-PjZ" id="CVO-Qj-N64"/>
+                        <outlet property="searchResultsDataSource" destination="7bg-OJ-PjZ" id="K5B-Cq-Ab7"/>
+                        <outlet property="searchResultsDelegate" destination="7bg-OJ-PjZ" id="MYj-Ie-Zzv"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="lb3-BP-kgg">
+                    <connections>
+                        <outlet property="delegate" destination="7bg-OJ-PjZ" id="iSZ-1t-94m"/>
+                        <outlet property="searchBar" destination="gsy-bT-e4i" id="5tM-fa-4DR"/>
+                        <outlet property="searchContentsController" destination="7bg-OJ-PjZ" id="giT-bj-bYt"/>
+                        <outlet property="searchResultsDataSource" destination="7bg-OJ-PjZ" id="SY7-3u-UnJ"/>
+                        <outlet property="searchResultsDelegate" destination="7bg-OJ-PjZ" id="E7f-YW-quM"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-58" y="86"/>
         </scene>
@@ -129,52 +196,6 @@
         <scene sceneID="vSA-2t-TYn">
             <objects>
                 <tableViewController id="nGz-Bk-cCn" customClass="CRESearchTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Tvh-zy-462">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for your favorite shop" id="xBa-G3-6Jy">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="nGz-Bk-cCn" id="WtU-QD-8Su"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddNewSearchListCell" textLabel="hPf-G9-kFc" detailTextLabel="gQv-xN-hgv" style="IBUITableViewCellStyleSubtitle" id="81f-Ty-TDk" userLabel="AddNewSearchListCell">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="81f-Ty-TDk" id="9uL-Xe-7fb">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hPf-G9-kFc">
-                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gQv-xN-hgv">
-                                            <rect key="frame" x="15" y="25" width="32" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="YiE-y5-3ZA" kind="push" identifier="pushDetailView" id="fJh-Dd-l3C"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="nGz-Bk-cCn" id="qbN-ig-1MH"/>
-                            <outlet property="delegate" destination="nGz-Bk-cCn" id="PS1-Qg-lLM"/>
-                        </connections>
-                    </tableView>
                     <navigationItem key="navigationItem" title="Contribute" id="dy2-RZ-0k6"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="auh-Lh-vF8" id="tJK-Sd-2qs"/>
@@ -184,14 +205,13 @@
                 <searchDisplayController id="auh-Lh-vF8">
                     <connections>
                         <outlet property="delegate" destination="nGz-Bk-cCn" id="fZP-cP-RoX"/>
-                        <outlet property="searchBar" destination="xBa-G3-6Jy" id="2Wp-rW-0t9"/>
                         <outlet property="searchContentsController" destination="nGz-Bk-cCn" id="aAi-YW-f0O"/>
                         <outlet property="searchResultsDataSource" destination="nGz-Bk-cCn" id="Zzi-lE-CTI"/>
                         <outlet property="searchResultsDelegate" destination="nGz-Bk-cCn" id="K1t-ij-aGc"/>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="368" y="-89"/>
+            <point key="canvasLocation" x="176" y="-539"/>
         </scene>
         <!--Venue Detail View Controller-->
         <scene sceneID="sgf-c5-why">
@@ -303,10 +323,10 @@
             </objects>
             <point key="canvasLocation" x="787" y="-259"/>
         </scene>
-        <!--View Controller-->
+        <!--List View Controller-->
         <scene sceneID="z80-4d-MnE">
             <objects>
-                <viewController id="D6a-sG-Z8h" sceneMemberID="viewController">
+                <viewController id="D6a-sG-Z8h" customClass="CREListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RAH-YA-jCF"/>
                         <viewControllerLayoutGuide type="bottom" id="KfI-fu-u5e"/>
@@ -369,6 +389,10 @@
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="D6a-sG-Z8h" id="GSy-Wc-op8"/>
+                                    <outlet property="delegate" destination="D6a-sG-Z8h" id="mWQ-RX-23W"/>
+                                </connections>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="topbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="E2E-qt-mMc">
                                 <rect key="frame" x="0.0" y="0.0" width="327" height="63"/>
@@ -404,6 +428,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="n17-BM-aBM" id="8gX-O8-tbh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dD5-4G-qoR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

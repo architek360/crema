@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CREListViewController : UITableViewController
+@interface CREListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

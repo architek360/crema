@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MapKit/MapKit.h"
-@interface CRESearchTableViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
-
+@interface CRESearchTableViewController : UIViewController <UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic) CLLocation *location;
+
+@property(nonatomic, readonly, retain) UISearchDisplayController *searchDisplayController;
 @end

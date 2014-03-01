@@ -26,22 +26,22 @@
 @end
 
 @implementation CRESearchTableViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-
+@synthesize searchDisplayController;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.searchDisplayController.delegate = self;
+//    searchController.searchResultsDataSource = self;
+//    searchController.searchResultsDelegate = self;
+//    [self.searchBar setDelegate:self];
+//    self.tableView.tableHeaderView = self.searchBar;
+//    [self.view addSubview:self.tableView];
+    
+    
     [self updateLocation];
+    
 }
 
 - (void) updateLocation {
