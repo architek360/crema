@@ -5,69 +5,423 @@
 //  Created by Jeff Wells on 1/18/14.
 //  Copyright (c) 2014 Jeff Wells. All rights reserved.
 //
-
+#import "CREAppDelegate.h"
 #import "CREMapViewController.h"
 #import "CREParseAPIClient.h"
 #import "SVProgressHUD.h"
-#import "CREVenueAnnotation.h"
+#import "ObjectiveSugar.h"
+#import "CREVenueDetailViewController.h"
+#import "PFGeoBox.h"
+#import "UIImageView+AFNetworking.h"
+#import "CRELoginViewController.h"
+#import "TDBadgedCell.h"
+
+const int kLoadingCellTag = 1273;
 
 @interface CREMapViewController () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) NSArray *venues;
+@property (nonatomic, strong) NSMutableArray *annotationPins;
+@property (nonatomic) NSInteger currentPage;
+@property (nonatomic) BOOL isLoading;
+@property (nonatomic) BOOL mapPinsPlaced;
 
 @end
 
 @implementation CREMapViewController
+@synthesize mapView;
+@synthesize tableView;
+@synthesize venues;
+@synthesize currentPage;
+@synthesize isLoading;
+@synthesize mapPinsPlaced;
+@synthesize userProfileImage;
+@synthesize userNameLabel;
+@synthesize logOutButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.venues = [[NSMutableArray alloc] init];
+    currentPage = 0;
     
-    [self updateLocation];
+    [SVProgressHUD setOffsetFromCenter: UIOffsetMake(0.0f, -self.mapView.bounds.size.height/2.0)];
+    
+    [self displayUserStatus];
+    
+    [self.locationManager startUpdatingLocation];
 }
 
+- (void)zoomToLocation:(CLLocation *)location radius:(CGFloat)radius {
+    NSLog(@"Zooming");
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, radius * 2, radius * 2);
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (void)mapView:(MKMapView *)aMapView regionDidChangeAnimated:(BOOL)animated
+{
+    NSLog(@"regionLocation: %@", [[self locationManager] location]);
+    NSLog(@"regionDidChangeAnimated: %f, %f, %d", aMapView.centerCoordinate.latitude, aMapView.centerCoordinate.longitude, animated);
+    
+    if([[self locationManager] location] != nil)
+    {
+        currentPage = 0;
+        [self fetchVenuesForMapView];
+    }
+}
+
+- (void)fetchVenuesForMapView {
+    NSLog(@"Fetching Venues");
+    [SVProgressHUD show];
+    PFGeoBox *geoBox = [PFGeoBox boxFromLocation:self.mapView.centerCoordinate andMapView:self.mapView];
+
+    [CREParseAPIClient fetchVenuesInView:geoBox
+                            page: currentPage
+                            completion:^(NSArray *results, NSError *error) {
+                                isLoading = NO;
+                                if (error) {
+                                    [SVProgressHUD showErrorWithStatus:@"Sorry, there was an error."];
+                                } else {
+                                    [SVProgressHUD dismiss];
+                                    // 1. Find new posts (those that we did not already have)
+                                    NSMutableArray *newVenues = [[NSMutableArray alloc] initWithCapacity:kCREVenuesPerPage];
+                                    
+                                    // Loop through all returned PFObjects
+                                    for (CREVenue *venue in results)
+                                    {
+                                        // Now we check if we already had this wall post
+                                        BOOL found = NO;
+                                        
+                                        for (CREVenue *currentVenue in self.venues)
+                                        {
+                                            
+                                            if ([currentVenue.objectId isEqualToString:venue.objectId])                                            {
+                                                found = YES;
+                                            }
+                                        }
+                                        
+                                        if (!found)
+                                        {
+                                            [newVenues addObject:venue];
+                                            venue.animatesDrop = mapPinsPlaced;
+                                        }
+                                    }
+                                    // 2. Find posts to remove (those we have but that we did not get from this query)
+                                
+                                    NSMutableArray *venuesToRemove =
+                                    [[NSMutableArray alloc] initWithCapacity:kCREVenuesPerPage];
+                                    
+                                    if (currentPage == 0)
+                                    {
+                                        for (CREVenue *venue in self.venues)
+                                        {
+                                            BOOL found = NO;
+                                            
+                                            // Loop through all the wall posts we received
+                                            for (CREVenue *newVenue in results)
+                                            {
+                                                if ([newVenue.objectId isEqualToString:venue.objectId])
+                                                {
+                                                    found = YES;
+                                                }
+                                            }
+                                            
+                                            // If we did not find the wall post we currently have in the set of posts
+                                            // the query returned, then we add it to the 'postsToRemove' array
+                                            if (!found)
+                                            {
+                                                [venuesToRemove addObject:venue];
+                                            }
+                                        }
+                                    }
+                                    // 3. Remove the old posts and add the new posts
+                                    [self.mapView removeAnnotations:venuesToRemove];
+                                    [self.venues removeObjectsInArray:venuesToRemove];
+                                    
+                                    // We add all new posts to both the cache and the map
+                                    [self.mapView addAnnotations:newVenues];
+                                    [self.venues addObjectsFromArray:newVenues];
+                                    
+                                    [self.tableView reloadData];
+                                    
+                                    self.mapPinsPlaced = YES;
+                                } //end if (error) - else
+                            }];
+}
+
+
+- (MKAnnotationView *)mapView:(MKMapView *)aMapView
+            viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    
+    static NSString *pinId = @"CustomPinAnnotation";
+    
+    if ([annotation isKindOfClass:[CREVenue class]])
+    {
+        MKAnnotationView *pinView =
+        (MKAnnotationView*)[aMapView dequeueReusableAnnotationViewWithIdentifier:pinId];
+        
+        if (!pinView)
+        {
+            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation
+                                                      reuseIdentifier:pinId];
+        }
+        else
+        {
+            pinView.annotation = annotation;
+        }
+        
+        pinView.image = [UIImage imageNamed:@"star.png"];
+        
+        pinView.canShowCallout = YES;
+        
+        pinView.calloutOffset = CGPointMake(-1.8, 0.0);
+        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [rightButton setTitle:annotation.title forState:UIControlStateNormal];
+        pinView.rightCalloutAccessoryView = rightButton;
+        
+        
+        return pinView;
+    }
+    return nil;
+}
+
+- (void) mapView:(MKMapView *)aMapView didAddAnnotationViews:(NSArray *)views {
+    CGRect visibleRect = [aMapView annotationVisibleRect];
+
+    for (MKAnnotationView *view in views) {
+        if ([view.annotation isKindOfClass:[MKUserLocation class]]) {
+            return;
+        }
+        if ([(CREVenue *) view.annotation animatesDrop])
+        {
+            CGRect endFrame = view.frame;
+        
+            CGRect startFrame = endFrame;
+            startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
+            view.frame = startFrame;
+        
+            [UIView beginAnimations:@"drop" context:NULL];
+            [UIView setAnimationDuration:0.2];
+        
+            view.frame = endFrame;
+        
+            [UIView commitAnimations];
+        }
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    CREVenue *annotation = (CREVenue *) view.annotation;
+    NSInteger index = [self.venues indexOfObject:annotation];
+    NSLog(@"Count: %ld, Index: %ld", (unsigned long)[self.annotationPins count], (long)index);
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view
+                      calloutAccessoryControlTapped:(UIControl *)control
+{
+    [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
+}
+
+
+#pragma mark - CLLocationManagerDelegate methods
 - (CLLocationManager *)locationManager {
     if (!_locationManager) {
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
         _locationManager.delegate = self;
+        _locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
     }
     return _locationManager;
 }
+//    Do we want to research at current location if moved? maybe better if there is a 'find me' button
 
-- (void)updateLocation {
-    [self.locationManager startUpdatingLocation];
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    NSLog(@"Update Locations");
+    CLLocation *location = [locations lastObject];
+    [self zoomToLocation:location radius:1000];
 }
 
-- (void)zoomToLocation:(CLLocation *)location radius:(CGFloat)radius {
-    
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, radius * 2, radius * 2);
-    [self.mapView setRegion:region animated:YES];
+#pragma mark - Segue view
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    return [sender isEqual:self];
 }
 
-- (void)fetchVenuesForLocation:(CLLocation *)location {
-    [SVProgressHUD show];
-    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
-    [CREParseAPIClient fetchVenuesNear:point
-                            completion:^(NSArray *venues, NSError *error) {
-                                if (error) {
-                                    [SVProgressHUD showErrorWithStatus:@"Sorry, there was an error."];
-                                } else {
-                                    [SVProgressHUD dismiss];
-                                    self.venues = venues;
-                                    [self updateAnnotations];
-                                }
-                            }];
-}
 
-- (void)updateAnnotations {
-    for (CREVenue *venue in self.venues) {
-        CREVenueAnnotation *annotation = [[CREVenueAnnotation alloc] initWithVenue:venue];
-        [self.mapView addAnnotation:annotation];
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"venueDetailModal"])
+    {
+        NSIndexPath *indexPath;
+        NSLog(@"Sender: %@", sender);
+        indexPath = self.tableView.indexPathForSelectedRow;
+        
+        CREVenueDetailViewController *destinationController = [segue destinationViewController];
+        CREVenue *venue = self.venues[indexPath.row];
+        destinationController.venue = venue;
+        destinationController.index = indexPath;
     }
 }
 
+- (IBAction)unwindToMainView:(UIStoryboardSegue *)segue
+{
+    //Will need unwind for reloading upvotes
+    CREVenueDetailViewController *source = [segue sourceViewController];
+    CREVenue *venue = source.venue;
+    [self.venues replaceObjectAtIndex:source.index.row withObject:venue];
+    [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.venues count] + 1;
+}
+
+- (void) showSpinnerOnLoadingCell
+{
+    isLoading = YES;
+    NSIndexPath *index = [NSIndexPath indexPathForRow:[self.venues count] inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (UITableViewCell *)loadingCellWithSpinner
+{
+    
+    static NSString *CellIdentifier = @"loadingCell";
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activityIndicator.center = cell.center;
+    [cell addSubview:activityIndicator];
+    
+    [activityIndicator startAnimating];
+    
+    cell.tag = kLoadingCellTag;
+    cell.textLabel.text = @"";
+    
+    return cell;
+}
+
+- (UITableViewCell *)loadingCell
+{
+    
+    static NSString *CellIdentifier = @"loadingCell";
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    cell.tag = kLoadingCellTag;
+     cell.textLabel.text = @"click to load more shops";
+    
+    return cell;
+}
+
+- (UITableViewCell *)venueCellForIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"MapListCell";
+    
+    TDBadgedCell *cell = (TDBadgedCell *) [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+	CREVenue *venue;
+    
+	venue = (CREVenue*) [self.venues objectAtIndex:indexPath.row];
+
+	cell.textLabel.text = venue.name;
+    cell.badgeString = [venue upvoteCountString];
+    cell.badge.radius = 4;
+    [cell.detailTextLabel setText:venue.addressString];
+    
+    return cell;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < self.venues.count) {
+        return [self venueCellForIndexPath:indexPath];
+    } else {
+        if (isLoading) {
+            return [self loadingCellWithSpinner];
+        } else {
+            return [self loadingCell];
+        }
+        
+    }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == [self.venues count]) {
+        currentPage++;
+        [self showSpinnerOnLoadingCell];
+        [self fetchVenuesForMapView];
+        return nil;
+    }
+    return indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.mapView selectAnnotation:[self.venues
+                                    objectAtIndex:indexPath.row] animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
+}
+
+#pragma makr - User status
+
+- (void)displayUserStatus
+{
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        FBRequest *request = [FBRequest requestForMe];
+        
+        [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                NSDictionary *userData = (NSDictionary *)result;
+                
+                NSString *facebookID = userData[@"id"];
+                NSString *name = userData[@"name"];
+                
+                NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square&return_ssl_resources=1", facebookID]];
+                [userProfileImage setImageWithURL:pictureURL placeholderImage:[UIImage imageNamed:@"placeholder-placeholder.jpeg"]];
+                [userProfileImage.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
+                [userProfileImage.layer setBorderWidth: 2.0];
+                [userProfileImage.layer setOpacity:0.9];
+                userNameLabel.text = name;
+                
+            }
+        }];
+    } else {
+        [userProfileImage removeFromSuperview];
+        [userNameLabel removeFromSuperview];
+        [logOutButton removeFromSuperview];
+    }
+
+}
+
+#pragma mark - CREMapViewController memory management methods
 
 - (void)didReceiveMemoryWarning
 {
@@ -75,17 +429,18 @@
     self.locationManager = nil;
 }
 
-#pragma mark - CLLocationManagerDelegate methods
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    static BOOL locationUpdated = NO;
-    if (!locationUpdated) {
-        locationUpdated = YES;
-        CLLocation *location = [locations lastObject];
-        [self fetchVenuesForLocation:location];
-        [self zoomToLocation:location radius:2000];
-        [self.locationManager stopUpdatingLocation];
-    }
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kCRELocationChangeNotification
+                                                  object:nil];
+    [self.locationManager stopUpdatingLocation];
+    currentPage = 0;
+	self.mapPinsPlaced = NO;
 }
 
+
+- (IBAction)logOutButtonPressed:(id)sender {
+    [PFUser logOut];
+    [self displayUserStatus];
+}
 @end

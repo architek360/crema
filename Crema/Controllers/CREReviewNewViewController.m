@@ -32,7 +32,7 @@
     NSArray* address = [self.venue.addressString split:@", "];
     addressLabel.text = address[0];
     cityLabel.text = [address[@"1..2"] componentsJoinedByString:@", "];
-    if (address[3]) {
+    if ([address count] > 2) {
         cityLabel.text = [@[cityLabel.text, address[3]] componentsJoinedByString:@" "];
     }
     

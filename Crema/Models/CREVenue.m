@@ -14,19 +14,40 @@
 //#define VENUE_PHOTO_TABLE_SIZE @"44x44"
 
 @implementation CREVenue
+
 @dynamic venueId;
 @dynamic name;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic addressString;
 @dynamic saved;
+@dynamic location;
+//@dynamic upvotes;
+@dynamic upvote_count;
+@synthesize animatesDrop;
 
 
 + (NSString *)parseClassName {
     return @"Venue";
 }
 
+- (NSString *) upvoteCountString
+{
+    if (self.upvote_count == nil)
+    {
+        return @"0";
+    } else {
+        return [NSString stringWithFormat:@"%@", self.upvote_count];
+    }
+}
 
+- (void) decrementKey:(NSString *)key
+{
+    if (self.upvote_count != 0)
+    {
+        self.upvote_count = [NSNumber numberWithInt:(self.upvote_count.intValue - 1)];
+    }
+}
 + (id)venueWithDictionary:(NSDictionary *)dictionary {
     return [[self alloc] initWithDictionary: dictionary];
 }
@@ -36,24 +57,31 @@
     if (self) {
         self.venueId = dictionary[@"id"];
         self.name = dictionary[@"name"];
+        if (dictionary[@"upvote_count"]) {
+            self.upvote_count = dictionary[@"upvote_count"];
+        } else {
+            self.upvote_count = [NSNumber numberWithInt:0];
+        }
         
         
-        id location = dictionary[@"location"];
-        self.latitude = location[@"lat"];
-        self.longitude = location[@"lng"];
+        
+        
+        id locationDictionary = dictionary[@"location"];
+        self.latitude = locationDictionary[@"lat"];
+        self.longitude = locationDictionary[@"lng"];
         
         NSMutableArray * address = [[NSMutableArray alloc] init];
-        if (location[@"address"]) {
-            [address addObject: location[@"address"]];
+        if (locationDictionary[@"address"]) {
+            [address addObject: locationDictionary[@"address"]];
         }
-        if (location[@"city"]) {
-            [address addObject: location[@"city"]];
+        if (locationDictionary[@"city"]) {
+            [address addObject: locationDictionary[@"city"]];
         }
-        if (location[@"state"]) {
-            [address addObject: location[@"state"]];
+        if (locationDictionary[@"state"]) {
+            [address addObject: locationDictionary[@"state"]];
         }
-        if (location[@"postalCode"]) {
-            [address addObject: location[@"postalCode"]];
+        if (locationDictionary[@"postalCode"]) {
+            [address addObject: locationDictionary[@"postalCode"]];
         }
         self.addressString = [address componentsJoinedByString:@", "];
         self.location = [PFGeoPoint geoPointWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
@@ -69,7 +97,7 @@
 - (NSDictionary *)toParseDictionary {
     NSDictionary *result;
     if (self) {
-        result = [self dictionaryWithValuesForKeys:@[@"venueId",@"name",@"latitude",@"longitude",@"addressString"]];
+        result = [self dictionaryWithValuesForKeys:@[@"venueId",@"name", @"upvotes",@"latitude",@"longitude",@"addressString"]];
     }
     return result;
 }
@@ -97,6 +125,20 @@
         }];
     }
     
+}
+
+#pragma mark - MKAnnotation methods
+
+- (CLLocationCoordinate2D)coordinate {
+    return CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longitude.doubleValue);
+}
+
+- (NSString *)title {
+    return self.name;
+}
+
+- (NSString *) subtitle {
+    return self.addressString;
 }
 
 @end

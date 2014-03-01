@@ -30,7 +30,7 @@
 }
 
 - (NSString *)title {
-    return self.venue[@"name"];
+    return self.venue.name;
 }
 
 @end
