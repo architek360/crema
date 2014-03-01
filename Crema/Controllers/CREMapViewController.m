@@ -45,7 +45,6 @@ const int kLoadingCellTag = 1273;
     self.venues = [[NSMutableArray alloc] init];
     currentPage = 0;
     
-    [SVProgressHUD setOffsetFromCenter: UIOffsetMake(0.0f, -self.mapView.bounds.size.height/2.0)];
     
     [self displayUserStatus];
     
@@ -252,10 +251,10 @@ const int kLoadingCellTag = 1273;
 }
 
 #pragma mark - Segue view
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    return [sender isEqual:self];
-}
+//- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+//{
+//    return [sender isEqual:self];
+//}
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
