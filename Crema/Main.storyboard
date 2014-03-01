@@ -34,7 +34,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="D6a-sG-Z8h" kind="modal" modalTransitionStyle="flipHorizontal" id="jvI-fv-MJp"/>
+                                    <segue destination="D6a-sG-Z8h" kind="modal" modalTransitionStyle="crossDissolve" id="jvI-fv-MJp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EC0-ts-KDZ">
@@ -44,7 +44,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="yh6-ru-y4s" kind="modal" modalTransitionStyle="coverVertical" id="EBY-QU-2b5"/>
+                                    <segue destination="7bg-OJ-PjZ" kind="modal" modalTransitionStyle="flipHorizontal" id="b29-2m-IHP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="crema" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gun-Gc-But">
@@ -68,7 +68,62 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBC-nC-7V9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-913" y="59"/>
+            <point key="canvasLocation" x="-641" y="-273"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Bi8-cV-Jvp">
+            <objects>
+                <viewController id="7bg-OJ-PjZ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vg6-eX-qtp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gmc-a4-diw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aSA-WB-sY3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="topbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="ewT-g4-6KD">
+                                <rect key="frame" x="0.0" y="0.0" width="327" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQe-8T-rUf">
+                                <rect key="frame" x="20" y="25" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="map" image="map.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="hT1-Sl-mzn" kind="modal" modalTransitionStyle="flipHorizontal" id="PIa-S4-K7F"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbR-ki-ZYk">
+                                <rect key="frame" x="270" y="25" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="list" image="list.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="D6a-sG-Z8h" kind="modal" modalTransitionStyle="flipHorizontal" id="T18-KU-GpS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="crema" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Cn-rw-Rvb">
+                                <rect key="frame" x="114" y="25" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="title" image="crema.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="foursquare-search.png" translatesAutoresizingMaskIntoConstraints="NO" id="ams-h8-mhW">
+                                <rect key="frame" x="0.0" y="488" width="320" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cCQ-PY-TAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-58" y="86"/>
         </scene>
         <!--Search Table View Controller - Contribute-->
         <scene sceneID="vSA-2t-TYn">
@@ -79,7 +134,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for your favorite shop" id="xBa-G3-6Jy">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -88,7 +143,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddNewSearchListCell" textLabel="hPf-G9-kFc" detailTextLabel="gQv-xN-hgv" style="IBUITableViewCellStyleSubtitle" id="81f-Ty-TDk" userLabel="AddNewSearchListCell">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="81f-Ty-TDk" id="9uL-Xe-7fb">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -136,7 +191,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="374" y="-395"/>
+            <point key="canvasLocation" x="368" y="-89"/>
         </scene>
         <!--Venue Detail View Controller-->
         <scene sceneID="sgf-c5-why">
@@ -246,7 +301,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HhO-qY-QQ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Xmb-rF-pg2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="867" y="-395"/>
+            <point key="canvasLocation" x="787" y="-259"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="z80-4d-MnE">
@@ -326,7 +381,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="hT1-Sl-mzn" kind="modal" modalTransitionStyle="flipHorizontal" id="1Pz-Q5-Bpp"/>
+                                    <segue destination="hT1-Sl-mzn" kind="modal" modalTransitionStyle="crossDissolve" id="1Pz-Q5-Bpp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="It7-kK-GJc">
@@ -336,7 +391,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="yh6-ru-y4s" kind="modal" modalTransitionStyle="coverVertical" id="4tZ-EH-WPA"/>
+                                    <segue destination="7bg-OJ-PjZ" kind="modal" modalTransitionStyle="flipHorizontal" id="7qz-Rv-gsJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="crema" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tc-t4-082">
@@ -352,7 +407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dD5-4G-qoR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-214" y="575"/>
+            <point key="canvasLocation" x="-1074" y="1007"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="shD-H7-mw4">
@@ -397,29 +452,11 @@
             </objects>
             <point key="canvasLocation" x="-1542" y="678"/>
         </scene>
-        <!--Navigation Controller - Item-->
-        <scene sceneID="mtA-Ft-c6h">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yh6-ru-y4s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="8Pb-an-Y1j"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hvI-cQ-YZm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="nGz-Bk-cCn" kind="relationship" relationship="rootViewController" id="S4g-42-ScS"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uSc-Ku-kpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-256" y="-381"/>
-        </scene>
     </scenes>
     <resources>
         <image name="add.png" width="64" height="64"/>
         <image name="crema.png" width="120" height="40"/>
+        <image name="foursquare-search.png" width="640" height="160"/>
         <image name="list.png" width="64" height="64"/>
         <image name="map.png" width="64" height="64"/>
         <image name="profile-placeholder.jpeg" width="50" height="50"/>
@@ -431,6 +468,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="4tZ-EH-WPA"/>
+        <segue reference="T18-KU-GpS"/>
+        <segue reference="7qz-Rv-gsJ"/>
+        <segue reference="PIa-S4-K7F"/>
     </inferredMetricsTieBreakers>
 </document>
