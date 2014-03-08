@@ -1,14 +1,15 @@
 //
-//  CREMapListDataManager.m
+//  CREVenueCollection.m
 //  Crema
 //
 //  Created by Jeff Wells on 3/7/14.
 //  Copyright (c) 2014 Jeff Wells. All rights reserved.
 //
 
-#import "CREMapListDataManager.h"
 
-@implementation CREMapListDataManager
+#import "CREVenueCollection.h"
+
+@implementation CREVenueCollection
 
 
 #pragma mark Class variable
@@ -24,5 +25,6 @@ static NSMutableArray *venues;
     }
     return venues;
 }
+
 
 @end

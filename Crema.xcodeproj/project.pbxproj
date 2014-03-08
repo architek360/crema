@@ -44,7 +44,7 @@
 		323AB073188A602600130EFA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB072188A602600130EFA /* SystemConfiguration.framework */; };
 		323AB0BC188A62C800130EFA /* CREMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323AB0BB188A62C800130EFA /* CREMapViewController.m */; };
 		323AB0BE188A62F200130EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323AB0BD188A62F200130EFA /* Main.storyboard */; };
-		3242321B18CAAEAD0062B2DF /* CREMapListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242321A18CAAEAD0062B2DF /* CREMapListDataManager.m */; };
+		3242321B18CAAEAD0062B2DF /* CREVenueCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242321A18CAAEAD0062B2DF /* CREVenueCollection.m */; };
 		32694E10188C5EAD0015213F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8020188C5D69006DCD64 /* Accounts.framework */; };
 		32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32694E21188CACD30015213F /* CRESearchTableViewController.m */; };
 		326B8014188C5606006DCD64 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8013188C5606006DCD64 /* AudioToolbox.framework */; };
@@ -132,8 +132,8 @@
 		323AB0BA188A62C800130EFA /* CREMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREMapViewController.h; sourceTree = "<group>"; };
 		323AB0BB188A62C800130EFA /* CREMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREMapViewController.m; sourceTree = "<group>"; };
 		323AB0BD188A62F200130EFA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		3242321918CAAEAD0062B2DF /* CREMapListDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREMapListDataManager.h; sourceTree = "<group>"; };
-		3242321A18CAAEAD0062B2DF /* CREMapListDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREMapListDataManager.m; sourceTree = "<group>"; };
+		3242321918CAAEAD0062B2DF /* CREVenueCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREVenueCollection.h; sourceTree = "<group>"; };
+		3242321A18CAAEAD0062B2DF /* CREVenueCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenueCollection.m; sourceTree = "<group>"; };
 		32694E20188CACD30015213F /* CRESearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRESearchTableViewController.h; sourceTree = "<group>"; };
 		32694E21188CACD30015213F /* CRESearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRESearchTableViewController.m; sourceTree = "<group>"; };
 		326B8011188C55F0006DCD64 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -339,8 +339,8 @@
 				32AE8A3A1894B79000244D3B /* PFGeoBox.m */,
 				321B35DC1892342A00DF04A9 /* CREVenue.h */,
 				321B35DD1892342A00DF04A9 /* CREVenue.m */,
-				3242321918CAAEAD0062B2DF /* CREMapListDataManager.h */,
-				3242321A18CAAEAD0062B2DF /* CREMapListDataManager.m */,
+				3242321918CAAEAD0062B2DF /* CREVenueCollection.h */,
+				3242321A18CAAEAD0062B2DF /* CREVenueCollection.m */,
 				321B35D318919FE400DF04A9 /* CREVenueAnnotation.h */,
 				321B35D418919FE400DF04A9 /* CREVenueAnnotation.m */,
 			);
@@ -538,7 +538,7 @@
 				3227AA361899AF7A0086A9F9 /* CRELoginViewController.m in Sources */,
 				321B35D518919FE400DF04A9 /* CREVenueAnnotation.m in Sources */,
 				32AE8A3B1894B79000244D3B /* PFGeoBox.m in Sources */,
-				3242321B18CAAEAD0062B2DF /* CREMapListDataManager.m in Sources */,
+				3242321B18CAAEAD0062B2DF /* CREVenueCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

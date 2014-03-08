@@ -25,7 +25,6 @@ const int kLoadingCellTag = 1273;
 {
     [super viewDidLoad];
 
-    self.venues = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,7 +43,7 @@ const int kLoadingCellTag = 1273;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.venues count]; // + 1 for loading cell
+    return [[CREVenueCollection venues] count]; // + 1 for loading cell
 }
 
 
@@ -114,7 +113,7 @@ const int kLoadingCellTag = 1273;
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     CREVenue *venue;
     
-    venue = (CREVenue*) [self.venues objectAtIndex:indexPath.row];
+    venue = (CREVenue*) [[CREVenueCollection venues] objectAtIndex:indexPath.row];
     
     cell.textLabel.text = venue.name;
     [cell.detailTextLabel setText:venue.addressString];

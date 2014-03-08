@@ -14,8 +14,7 @@
 #import "PFGeoBox.h"
 #import "UIImageView+AFNetworking.h"
 #import "CRELoginViewController.h"
-#import "TDBadgedCell.h"
-#import "CREMapListDataManager.h"
+#import "CREVenueCollection.h"
 
 @interface CREMapViewController () <CLLocationManagerDelegate>
 
@@ -59,11 +58,11 @@
     if([[self locationManager] location] != nil)
     {
         currentPage = 0;
-        [self fetchVenuesForMapView];
+        [self fetchVenuesInMapView];
     }
 }
 
-- (void)fetchVenuesForMapView {
+- (void)fetchVenuesInMapView {
     NSLog(@"Fetching Venues");
     [SVProgressHUD show];
     PFGeoBox *geoBox = [PFGeoBox boxFromLocation:self.mapView.centerCoordinate andMapView:self.mapView];
@@ -84,7 +83,7 @@
                                         // Now we check if we already had this wall post
                                         BOOL found = NO;
                                         
-                                        for (CREVenue *currentVenue in [CREMapListDataManager venues])
+                                        for (CREVenue *currentVenue in [CREVenueCollection venues])
                                         {
                                             
                                             if ([currentVenue.objectId isEqualToString:venue.objectId])                                            {
@@ -105,7 +104,7 @@
                                     
                                     if (currentPage == 0)
                                     {
-                                        for (CREVenue *venue in [CREMapListDataManager venues])
+                                        for (CREVenue *venue in [CREVenueCollection venues])
                                         {
                                             BOOL found = NO;
                                             
@@ -128,11 +127,11 @@
                                     }
                                     // 3. Remove the old posts and add the new posts
                                     [self.mapView removeAnnotations:venuesToRemove];
-                                    [[CREMapListDataManager venues] removeObjectsInArray:venuesToRemove];
+                                    [[CREVenueCollection venues] removeObjectsInArray:venuesToRemove];
                                     
                                     // We add all new posts to both the cache and the map
                                     [self.mapView addAnnotations:newVenues];
-                                    [[CREMapListDataManager venues] addObjectsFromArray:newVenues];
+                                    [[CREVenueCollection venues] addObjectsFromArray:newVenues];
                                     
                                     self.mapPinsPlaced = YES;
                                 } //end if (error) - else
@@ -207,7 +206,7 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     CREVenue *annotation = (CREVenue *) view.annotation;
-    NSInteger index = [[CREMapListDataManager venues] indexOfObject:annotation];
+    NSInteger index = [[CREVenueCollection venues] indexOfObject:annotation];
     NSLog(@"Count: %ld, Index: %ld", (unsigned long)[self.annotationPins count], (long)index);
     
 //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
@@ -257,7 +256,7 @@
 //        indexPath = self.tableView.indexPathForSelectedRow;
         
         CREVenueDetailViewController *destinationController = [segue destinationViewController];
-        CREVenue *venue = [CREMapListDataManager venues][indexPath.row];
+        CREVenue *venue = [CREVenueCollection venues][indexPath.row];
         destinationController.venue = venue;
         destinationController.index = indexPath;
     }
@@ -268,8 +267,8 @@
     //Will need unwind for reloading upvotes
     CREVenueDetailViewController *source = [segue sourceViewController];
     CREVenue *venue = source.venue;
-    [[CREMapListDataManager venues] replaceObjectAtIndex:source.index.row withObject:venue];
-//    [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationNone];
+    [[CREVenueCollection venues] replaceObjectAtIndex:source.index.row withObject:venue];
+    //    [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 
