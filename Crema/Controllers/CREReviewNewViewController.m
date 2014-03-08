@@ -12,7 +12,6 @@
 #import "SVProgressHUD.h"
 
 @interface CREReviewNewViewController ()
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 @end
 

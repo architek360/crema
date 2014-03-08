@@ -68,6 +68,8 @@
 		32ADF08F18A4E09C0022F730 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32ADF08D18A4E07F0022F730 /* FacebookSDK.framework */; };
 		32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */; };
 		32AE8A3B1894B79000244D3B /* PFGeoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3A1894B79000244D3B /* PFGeoBox.m */; };
+		32D6EA5C18CBC5C100C50088 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D6EA5A18CBC5C100C50088 /* back.png */; };
+		32D6EA5D18CBC5C100C50088 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D6EA5B18CBC5C100C50088 /* checkmark.png */; };
 		B37F458BC81B41DA809A4467 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5DC032311D4FC8B0CE3E0E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +163,8 @@
 		32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenueDetailViewController.m; sourceTree = "<group>"; };
 		32AE8A391894B79000244D3B /* PFGeoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFGeoBox.h; path = Crema/Models/PFGeoBox.h; sourceTree = SOURCE_ROOT; };
 		32AE8A3A1894B79000244D3B /* PFGeoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PFGeoBox.m; path = Crema/Models/PFGeoBox.m; sourceTree = SOURCE_ROOT; };
+		32D6EA5A18CBC5C100C50088 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		32D6EA5B18CBC5C100C50088 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		F9F639C66B594F4A9F4C2473 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +217,8 @@
 		321B35C91890DAC100DF04A9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				32D6EA5A18CBC5C100C50088 /* back.png */,
+				32D6EA5B18CBC5C100C50088 /* checkmark.png */,
 				3292ABA418C1AC980079A4FC /* foursquare-search.png */,
 				3292AB9A18C1A3D40079A4FC /* map.png */,
 				3292AB9B18C1A3D40079A4FC /* crema.png */,
@@ -458,6 +464,7 @@
 			files = (
 				3292AB9D18C1A3D50079A4FC /* crema.png in Resources */,
 				3292AB8518C192BB0079A4FC /* loadingscreen.png in Resources */,
+				32D6EA5C18CBC5C100C50088 /* back.png in Resources */,
 				3292ABA518C1AC980079A4FC /* foursquare-search.png in Resources */,
 				3292AB8B18C196240079A4FC /* star.png in Resources */,
 				3227AA3D1899B83B0086A9F9 /* profile-placeholder.jpeg in Resources */,
@@ -473,6 +480,7 @@
 				323AB03C188A5E1F00130EFA /* Images.xcassets in Resources */,
 				321B35CD1890DCA200DF04A9 /* placeholder-small1.png in Resources */,
 				3292AB9318C19F050079A4FC /* topbar.png in Resources */,
+				32D6EA5D18CBC5C100C50088 /* checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

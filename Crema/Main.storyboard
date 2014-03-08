@@ -142,7 +142,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="YiE-y5-3ZA" kind="push" identifier="pushDetailView" id="fJh-Dd-l3C"/>
+                                            <segue destination="YiE-y5-3ZA" kind="modal" identifier="pushDetailView" id="fJh-Dd-l3C"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -274,33 +274,56 @@
                                 <rect key="frame" x="0.0" y="298" width="320" height="270"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="topbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="cYN-q9-JWS">
+                                <rect key="frame" x="-3" y="0.0" width="327" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="crema" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94y-aJ-ZKy">
+                                <rect key="frame" x="114" y="25" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="title" image="crema.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmJ-ii-5Ry">
+                                <rect key="frame" x="270" y="25" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="checkmark" image="checkmark.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Xmb-rF-pg2" kind="unwind" unwindAction="unwindToTable:" id="V1I-vT-0XC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piw-lE-50C">
+                                <rect key="frame" x="20" y="25" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="back" image="back.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Xmb-rF-pg2" kind="unwind" unwindAction="unwindToTable:" id="Puc-Qe-NJg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Review" id="68u-29-kaF">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="p10-Op-w8E">
-                            <connections>
-                                <segue destination="Xmb-rF-pg2" kind="unwind" unwindAction="unwindToTable:" id="xF3-HA-imo"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="YXw-Jc-6Eg">
-                            <connections>
-                                <segue destination="Xmb-rF-pg2" kind="unwind" unwindAction="unwindToTable:" id="GfK-eH-bGc"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="p10-Op-w8E"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="YXw-Jc-6Eg"/>
                     </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="Wx9-wL-kkk" id="EW5-xH-mt5"/>
                         <outlet property="cityLabel" destination="xN0-PF-fiA" id="NCf-6a-6t7"/>
                         <outlet property="mapView" destination="pKO-lw-n6b" id="2RU-UW-czz"/>
                         <outlet property="nameLabel" destination="SQN-nQ-40y" id="upU-pP-nym"/>
-                        <outlet property="saveButton" destination="YXw-Jc-6Eg" id="gtL-by-iIt"/>
+                        <outlet property="saveButton" destination="CmJ-ii-5Ry" id="3Mv-Ti-Ord"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HhO-qY-QQ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Xmb-rF-pg2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="787" y="-259"/>
+            <point key="canvasLocation" x="747" y="86"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="z80-4d-MnE">
@@ -461,6 +484,8 @@
     </scenes>
     <resources>
         <image name="add.png" width="64" height="64"/>
+        <image name="back.png" width="36" height="36"/>
+        <image name="checkmark.png" width="36" height="36"/>
         <image name="crema.png" width="120" height="40"/>
         <image name="foursquare-search.png" width="640" height="160"/>
         <image name="list.png" width="64" height="64"/>
@@ -474,8 +499,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1Pz-Q5-Bpp"/>
-        <segue reference="T18-KU-GpS"/>
+        <segue reference="PIa-S4-K7F"/>
         <segue reference="7qz-Rv-gsJ"/>
+        <segue reference="T18-KU-GpS"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -19,8 +19,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
 
 @property (nonatomic) CREVenue *venue;
 @property (nonatomic) NSIndexPath *index;
-
 @end

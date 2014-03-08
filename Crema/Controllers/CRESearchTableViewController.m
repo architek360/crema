@@ -33,11 +33,6 @@
     [super viewDidLoad];
     
     self.searchDisplayController.delegate = self;
-//    searchController.searchResultsDataSource = self;
-//    searchController.searchResultsDelegate = self;
-//    [self.searchBar setDelegate:self];
-//    self.tableView.tableHeaderView = self.searchBar;
-//    [self.view addSubview:self.tableView];
     
     
     [self updateLocation];
