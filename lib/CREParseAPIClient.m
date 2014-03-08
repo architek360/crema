@@ -106,10 +106,6 @@
     [query whereKey:@"facebookId" equalTo:user[@"facebookId"]];
     NSInteger count = [query countObjects];
     return (count != 0);
-    //    PFRelation *relation = [user relationforKey:@"upvotes"];
-    //
-    //    PFQuery *query = [relation query];
-    //    [query whereKey:@"objectId" equalTo:venue.objectId];
 }
 
 + (void) currentUserUpdateVote: (BOOL) status forVenue: (CREVenue *) venue

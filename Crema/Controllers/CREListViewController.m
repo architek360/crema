@@ -7,23 +7,25 @@
 //
 
 #import "CREListViewController.h"
+#import "CREVenue.h"
+
+const int kLoadingCellTag = 1273;
+
 
 @interface CREListViewController ()
+
+@property (nonatomic) BOOL isLoading;
 
 @end
 
 @implementation CREListViewController
-
+@synthesize isLoading;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.venues = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,70 +44,116 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.venues count]; // + 1 for loading cell
 }
+
+
+//- (void) showSpinnerOnLoadingCell
+//{
+//    isLoading = YES;
+//    NSIndexPath *index = [NSIndexPath indexPathForRow:[self.venues count] inSection:0];
+//    [self.tableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
+//}
+
+//- (UITableViewCell *)loadingCellWithSpinner
+//{
+//    
+//    static NSString *CellIdentifier = @"loadingCell";
+//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//    activityIndicator.center = cell.center;
+//    [cell addSubview:activityIndicator];
+//    
+//    [activityIndicator startAnimating];
+//    
+//    cell.tag = kLoadingCellTag;
+//    cell.textLabel.text = @"";
+//    
+//    return cell;
+//}
+
+//- (UITableViewCell *)loadingCell
+//{
+//    
+//    static NSString *CellIdentifier = @"loadingCell";
+//    
+//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    cell.tag = kLoadingCellTag;
+//    cell.textLabel.text = @"click to load more shops";
+//    
+//    return cell;
+//}
+
+//- (UITableViewCell *)venueCellForIndexPath:(NSIndexPath *)indexPath
+//{
+//    static NSString *CellIdentifier = @"MapListCell";
+//    
+//    TDBadgedCell *cell = (TDBadgedCell *) [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    //    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//	CREVenue *venue;
+//    
+//	venue = (CREVenue*) [self.venues objectAtIndex:indexPath.row];
+//    
+//	cell.textLabel.text = venue.name;
+//    cell.badgeString = [venue upvoteCountString];
+//    cell.badge.radius = 4;
+//    [cell.detailTextLabel setText:venue.addressString];
+//    
+//    return cell;
+//}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+    static NSString *CellIdentifier = @"venueCell";
+
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CREVenue *venue;
     
-    // Configure the cell...
+    venue = (CREVenue*) [self.venues objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = venue.name;
+    [cell.detailTextLabel setText:venue.addressString];
     
     return cell;
+
+    
+    
+//  for loading cell
+    
+//    if (indexPath.row < self.venues.count) {
+//        return [self venueCellForIndexPath:indexPath];
+//    } else {
+//        if (isLoading) {
+//            return [self loadingCellWithSpinner];
+//        } else {
+//            return [self loadingCell];
+//        }
+//        
+//    }
+
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (indexPath.row == [self.venues count]) {
+//        currentPage++;
+//        [self showSpinnerOnLoadingCell];
+//        [self fetchVenuesForMapView];
+//        return nil;
+//    }
+//    return indexPath;
+//}
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
+//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+//{
+//    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+//    [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
+//}
 
 @end

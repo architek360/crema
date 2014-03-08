@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hT1-Sl-mzn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hT1-Sl-mzn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -192,27 +192,6 @@
             </objects>
             <point key="canvasLocation" x="-58" y="86"/>
         </scene>
-        <!--Search Table View Controller - Contribute-->
-        <scene sceneID="vSA-2t-TYn">
-            <objects>
-                <tableViewController id="nGz-Bk-cCn" customClass="CRESearchTableViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Contribute" id="dy2-RZ-0k6"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="auh-Lh-vF8" id="tJK-Sd-2qs"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dXz-ez-1GY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="auh-Lh-vF8">
-                    <connections>
-                        <outlet property="delegate" destination="nGz-Bk-cCn" id="fZP-cP-RoX"/>
-                        <outlet property="searchContentsController" destination="nGz-Bk-cCn" id="aAi-YW-f0O"/>
-                        <outlet property="searchResultsDataSource" destination="nGz-Bk-cCn" id="Zzi-lE-CTI"/>
-                        <outlet property="searchResultsDelegate" destination="nGz-Bk-cCn" id="K1t-ij-aGc"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="176" y="-539"/>
-        </scene>
         <!--Venue Detail View Controller-->
         <scene sceneID="sgf-c5-why">
             <objects>
@@ -340,7 +319,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="MapListCell" textLabel="u6F-A0-pwE" detailTextLabel="V99-qD-HDD" style="IBUITableViewCellStyleSubtitle" id="Av4-QA-4gz" userLabel="MapListCell" customClass="TDBadgedCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="MapListCell" textLabel="u6F-A0-pwE" detailTextLabel="V99-qD-HDD" style="IBUITableViewCellStyleSubtitle" id="Av4-QA-4gz" userLabel="venueCell" customClass="TDBadgedCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Av4-QA-4gz" id="7LZ-SK-BBu">
@@ -495,8 +474,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="1Pz-Q5-Bpp"/>
         <segue reference="T18-KU-GpS"/>
         <segue reference="7qz-Rv-gsJ"/>
-        <segue reference="PIa-S4-K7F"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,25 +15,20 @@
 #import "UIImageView+AFNetworking.h"
 #import "CRELoginViewController.h"
 #import "TDBadgedCell.h"
-
-const int kLoadingCellTag = 1273;
+#import "CREMapListDataManager.h"
 
 @interface CREMapViewController () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSMutableArray *annotationPins;
 @property (nonatomic) NSInteger currentPage;
-@property (nonatomic) BOOL isLoading;
 @property (nonatomic) BOOL mapPinsPlaced;
 
 @end
 
 @implementation CREMapViewController
 @synthesize mapView;
-@synthesize tableView;
-@synthesize venues;
 @synthesize currentPage;
-@synthesize isLoading;
 @synthesize mapPinsPlaced;
 @synthesize userProfileImage;
 @synthesize userNameLabel;
@@ -42,7 +37,6 @@ const int kLoadingCellTag = 1273;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.venues = [[NSMutableArray alloc] init];
     currentPage = 0;
     
     
@@ -77,7 +71,6 @@ const int kLoadingCellTag = 1273;
     [CREParseAPIClient fetchVenuesInView:geoBox
                             page: currentPage
                             completion:^(NSArray *results, NSError *error) {
-                                isLoading = NO;
                                 if (error) {
                                     [SVProgressHUD showErrorWithStatus:@"Sorry, there was an error."];
                                 } else {
@@ -91,7 +84,7 @@ const int kLoadingCellTag = 1273;
                                         // Now we check if we already had this wall post
                                         BOOL found = NO;
                                         
-                                        for (CREVenue *currentVenue in self.venues)
+                                        for (CREVenue *currentVenue in [CREMapListDataManager venues])
                                         {
                                             
                                             if ([currentVenue.objectId isEqualToString:venue.objectId])                                            {
@@ -112,7 +105,7 @@ const int kLoadingCellTag = 1273;
                                     
                                     if (currentPage == 0)
                                     {
-                                        for (CREVenue *venue in self.venues)
+                                        for (CREVenue *venue in [CREMapListDataManager venues])
                                         {
                                             BOOL found = NO;
                                             
@@ -135,13 +128,11 @@ const int kLoadingCellTag = 1273;
                                     }
                                     // 3. Remove the old posts and add the new posts
                                     [self.mapView removeAnnotations:venuesToRemove];
-                                    [self.venues removeObjectsInArray:venuesToRemove];
+                                    [[CREMapListDataManager venues] removeObjectsInArray:venuesToRemove];
                                     
                                     // We add all new posts to both the cache and the map
                                     [self.mapView addAnnotations:newVenues];
-                                    [self.venues addObjectsFromArray:newVenues];
-                                    
-                                    [self.tableView reloadData];
+                                    [[CREMapListDataManager venues] addObjectsFromArray:newVenues];
                                     
                                     self.mapPinsPlaced = YES;
                                 } //end if (error) - else
@@ -216,12 +207,12 @@ const int kLoadingCellTag = 1273;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     CREVenue *annotation = (CREVenue *) view.annotation;
-    NSInteger index = [self.venues indexOfObject:annotation];
+    NSInteger index = [[CREMapListDataManager venues] indexOfObject:annotation];
     NSLog(@"Count: %ld, Index: %ld", (unsigned long)[self.annotationPins count], (long)index);
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+//    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view
@@ -263,10 +254,10 @@ const int kLoadingCellTag = 1273;
     {
         NSIndexPath *indexPath;
         NSLog(@"Sender: %@", sender);
-        indexPath = self.tableView.indexPathForSelectedRow;
+//        indexPath = self.tableView.indexPathForSelectedRow;
         
         CREVenueDetailViewController *destinationController = [segue destinationViewController];
-        CREVenue *venue = self.venues[indexPath.row];
+        CREVenue *venue = [CREMapListDataManager venues][indexPath.row];
         destinationController.venue = venue;
         destinationController.index = indexPath;
     }
@@ -277,116 +268,10 @@ const int kLoadingCellTag = 1273;
     //Will need unwind for reloading upvotes
     CREVenueDetailViewController *source = [segue sourceViewController];
     CREVenue *venue = source.venue;
-    [self.venues replaceObjectAtIndex:source.index.row withObject:venue];
-    [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationNone];
+    [[CREMapListDataManager venues] replaceObjectAtIndex:source.index.row withObject:venue];
+//    [self.tableView reloadRowsAtIndexPaths:@[source.index] withRowAnimation:UITableViewRowAnimationNone];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.venues count] + 1;
-}
-
-- (void) showSpinnerOnLoadingCell
-{
-    isLoading = YES;
-    NSIndexPath *index = [NSIndexPath indexPathForRow:[self.venues count] inSection:0];
-    [self.tableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
-}
-
-- (UITableViewCell *)loadingCellWithSpinner
-{
-    
-    static NSString *CellIdentifier = @"loadingCell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    activityIndicator.center = cell.center;
-    [cell addSubview:activityIndicator];
-    
-    [activityIndicator startAnimating];
-    
-    cell.tag = kLoadingCellTag;
-    cell.textLabel.text = @"";
-    
-    return cell;
-}
-
-- (UITableViewCell *)loadingCell
-{
-    
-    static NSString *CellIdentifier = @"loadingCell";
-    
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    cell.tag = kLoadingCellTag;
-     cell.textLabel.text = @"click to load more shops";
-    
-    return cell;
-}
-
-- (UITableViewCell *)venueCellForIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"MapListCell";
-    
-    TDBadgedCell *cell = (TDBadgedCell *) [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-	CREVenue *venue;
-    
-	venue = (CREVenue*) [self.venues objectAtIndex:indexPath.row];
-
-	cell.textLabel.text = venue.name;
-    cell.badgeString = [venue upvoteCountString];
-    cell.badge.radius = 4;
-    [cell.detailTextLabel setText:venue.addressString];
-    
-    return cell;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row < self.venues.count) {
-        return [self venueCellForIndexPath:indexPath];
-    } else {
-        if (isLoading) {
-            return [self loadingCellWithSpinner];
-        } else {
-            return [self loadingCell];
-        }
-        
-    }
-}
-
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == [self.venues count]) {
-        currentPage++;
-        [self showSpinnerOnLoadingCell];
-        [self fetchVenuesForMapView];
-        return nil;
-    }
-    return indexPath;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.mapView selectAnnotation:[self.venues
-                                    objectAtIndex:indexPath.row] animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
-}
 
 #pragma makr - User status
 
