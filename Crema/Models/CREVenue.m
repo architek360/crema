@@ -7,6 +7,7 @@
 //
 
 #import "CREVenue.h"
+#import "CREParseAPIClient.h"
 
 //#define VENUE_PHOTO_TABLE_SIZE @"44x44"
 

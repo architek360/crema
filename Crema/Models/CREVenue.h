@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import <MapKit/MapKit.h>
-#import "CREParseAPIClient.h"
 #import <Parse/PFObject+Subclass.h>
 
 @interface CREVenue : PFObject<PFSubclassing,MKAnnotation>
