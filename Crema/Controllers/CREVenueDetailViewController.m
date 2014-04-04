@@ -30,7 +30,6 @@
     {
         NSLog(@"get Like");
         self.upVoted = [CREParseAPIClient currentUserLikesVenue:self.venue];
-        NSLog(@"User likes: %hhd", self.upVoted);
         if (self.upVoted) {
             [self.upvotesLabel setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:16], NSFontAttributeName,nil] forState:UIControlStateNormal];
         } else {
@@ -56,7 +55,7 @@
 }
 
 - (NSString *) labelForUpvotes: (NSNumber *) votes {
-    return [NSString stringWithFormat:@"%i votes", self.venue.upvote_count.integerValue];
+    return [NSString stringWithFormat:@"%li votes", (long)self.venue.upvote_count.integerValue];
 }
 
 - (void)didReceiveMemoryWarning

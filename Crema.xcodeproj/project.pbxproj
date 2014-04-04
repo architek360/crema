@@ -17,7 +17,6 @@
 		321B35DE1892342A00DF04A9 /* CREVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35DD1892342A00DF04A9 /* CREVenue.m */; };
 		3227AA361899AF7A0086A9F9 /* CRELoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227AA351899AF7A0086A9F9 /* CRELoginViewController.m */; };
 		3227AA3D1899B83B0086A9F9 /* profile-placeholder.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3227AA3C1899B83B0086A9F9 /* profile-placeholder.jpeg */; };
-		3227AA40189A13BF0086A9F9 /* TDBadgedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227AA3F189A13BF0086A9F9 /* TDBadgedCell.m */; };
 		323AB02A188A5E1F00130EFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB029188A5E1F00130EFA /* Foundation.framework */; };
 		323AB02C188A5E1F00130EFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02B188A5E1F00130EFA /* CoreGraphics.framework */; };
 		323AB02E188A5E1F00130EFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02D188A5E1F00130EFA /* UIKit.framework */; };
@@ -101,8 +100,6 @@
 		3227AA341899AF7A0086A9F9 /* CRELoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRELoginViewController.h; sourceTree = "<group>"; };
 		3227AA351899AF7A0086A9F9 /* CRELoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRELoginViewController.m; sourceTree = "<group>"; };
 		3227AA3C1899B83B0086A9F9 /* profile-placeholder.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "profile-placeholder.jpeg"; sourceTree = "<group>"; };
-		3227AA3E189A13BF0086A9F9 /* TDBadgedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBadgedCell.h; sourceTree = "<group>"; };
-		3227AA3F189A13BF0086A9F9 /* TDBadgedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBadgedCell.m; sourceTree = "<group>"; };
 		323AB026188A5E1F00130EFA /* Crema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		323AB029188A5E1F00130EFA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		323AB02B188A5E1F00130EFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -339,8 +336,6 @@
 		323AB076188A61D200130EFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3227AA3E189A13BF0086A9F9 /* TDBadgedCell.h */,
-				3227AA3F189A13BF0086A9F9 /* TDBadgedCell.m */,
 				32AE8A391894B79000244D3B /* PFGeoBox.h */,
 				32AE8A3A1894B79000244D3B /* PFGeoBox.m */,
 				321B35DC1892342A00DF04A9 /* CREVenue.h */,
@@ -534,7 +529,6 @@
 			files = (
 				321B35DE1892342A00DF04A9 /* CREVenue.m in Sources */,
 				323AB036188A5E1F00130EFA /* main.m in Sources */,
-				3227AA40189A13BF0086A9F9 /* TDBadgedCell.m in Sources */,
 				32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */,
 				321B35D81891BD1E00DF04A9 /* CREParseAPIClient.m in Sources */,
 				323AB03A188A5E1F00130EFA /* CREAppDelegate.m in Sources */,

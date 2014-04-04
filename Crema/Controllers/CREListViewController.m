@@ -8,8 +8,7 @@
 
 #import "CREListViewController.h"
 #import "CREVenue.h"
-
-const int kLoadingCellTag = 1273;
+#import "CREVenueDetailViewController.h"
 
 
 @interface CREListViewController ()
@@ -47,62 +46,18 @@ const int kLoadingCellTag = 1273;
 }
 
 
-//- (void) showSpinnerOnLoadingCell
-//{
-//    isLoading = YES;
-//    NSIndexPath *index = [NSIndexPath indexPathForRow:[self.venues count] inSection:0];
-//    [self.tableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
-//}
-
-//- (UITableViewCell *)loadingCellWithSpinner
-//{
-//    
-//    static NSString *CellIdentifier = @"loadingCell";
-//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    
-//    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//    activityIndicator.center = cell.center;
-//    [cell addSubview:activityIndicator];
-//    
-//    [activityIndicator startAnimating];
-//    
-//    cell.tag = kLoadingCellTag;
-//    cell.textLabel.text = @"";
-//    
-//    return cell;
-//}
-
-//- (UITableViewCell *)loadingCell
-//{
-//    
-//    static NSString *CellIdentifier = @"loadingCell";
-//    
-//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    
-//    cell.tag = kLoadingCellTag;
-//    cell.textLabel.text = @"click to load more shops";
-//    
-//    return cell;
-//}
-
-//- (UITableViewCell *)venueCellForIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *CellIdentifier = @"MapListCell";
-//    
-//    TDBadgedCell *cell = (TDBadgedCell *) [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    //    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    
-//	CREVenue *venue;
-//    
-//	venue = (CREVenue*) [self.venues objectAtIndex:indexPath.row];
-//    
-//	cell.textLabel.text = venue.name;
-//    cell.badgeString = [venue upvoteCountString];
-//    cell.badge.radius = 4;
-//    [cell.detailTextLabel setText:venue.addressString];
-//    
-//    return cell;
-//}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"venueDetailModal"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        
+        CREVenueDetailViewController *destinationController = [segue destinationViewController];
+        CREVenue *venue = [CREVenueCollection venues][indexPath.row];
+        destinationController.venue = venue;
+        destinationController.index = indexPath;
+    }
+}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,39 +75,12 @@ const int kLoadingCellTag = 1273;
     
     return cell;
 
-    
-    
-//  for loading cell
-    
-//    if (indexPath.row < self.venues.count) {
-//        return [self venueCellForIndexPath:indexPath];
-//    } else {
-//        if (isLoading) {
-//            return [self loadingCellWithSpinner];
-//        } else {
-//            return [self loadingCell];
-//        }
-//        
-//    }
-
 }
 
-//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (indexPath.row == [self.venues count]) {
-//        currentPage++;
-//        [self showSpinnerOnLoadingCell];
-//        [self fetchVenuesForMapView];
-//        return nil;
-//    }
-//    return indexPath;
-//}
-
-
-//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-//{
-//    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-//    [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
-//}
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    
+    [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
+}
 
 @end

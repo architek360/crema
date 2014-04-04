@@ -10,7 +10,10 @@
 #import <MapKit/MapKit.h>
 #import "CREVenue.h"
 
-@interface CREVenueAnnotation : NSObject <MKAnnotation>
-    - (id)initWithVenue:(CREVenue *)venue;
+@interface CREVenueAnnotation : MKAnnotationView <MKAnnotation>
+
+- (id)initWithVenue:(CREVenue *)venue;
+@property (nonatomic, strong) CREVenue *venue;
+@property (nonatomic, strong) NSIndexPath *index;
 
 @end

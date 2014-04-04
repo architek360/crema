@@ -5,16 +5,9 @@
 //  Created by Jeff Wells on 1/18/14.
 //  Copyright (c) 2014 Jeff Wells. All rights reserved.
 //
-#import "CREAppDelegate.h"
+
 #import "CREMapViewController.h"
-#import "CREParseAPIClient.h"
-#import "SVProgressHUD.h"
-#import "ObjectiveSugar.h"
-#import "CREVenueDetailViewController.h"
-#import "PFGeoBox.h"
-#import "UIImageView+AFNetworking.h"
-#import "CRELoginViewController.h"
-#import "CREVenueCollection.h"
+
 
 @interface CREMapViewController () <CLLocationManagerDelegate>
 
@@ -217,7 +210,7 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view
                       calloutAccessoryControlTapped:(UIControl *)control
 {
-    [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
+    [self performSegueWithIdentifier:@"venueDetailModal" sender:view];
 }
 
 
@@ -251,14 +244,12 @@
 {
     if ([segue.identifier isEqualToString:@"venueDetailModal"])
     {
-        NSIndexPath *indexPath;
-        NSLog(@"Sender: %@", sender);
-//        indexPath = self.tableView.indexPathForSelectedRow;
+        MKAnnotationView *view = sender;
+        CREVenue *venue = (CREVenue *) view.annotation;
         
         CREVenueDetailViewController *destinationController = [segue destinationViewController];
-        CREVenue *venue = [CREVenueCollection venues][indexPath.row];
+
         destinationController.venue = venue;
-        destinationController.index = indexPath;
     }
 }
 

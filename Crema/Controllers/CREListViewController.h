@@ -12,6 +12,11 @@
 #import "ObjectiveSugar.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
+#import "CREVenue.h"
+#import "CREVenueDetailViewController.h"
+
+const int kLoadingCellTag = 1273;
+
 
 @interface CREListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
