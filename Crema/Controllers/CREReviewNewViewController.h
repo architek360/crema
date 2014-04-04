@@ -11,6 +11,9 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
+#import "CREVenueAnnotation.h"
+#import "ObjectiveSugar.h"
+#import "SVProgressHUD.h"
 
 
 @interface CREReviewNewViewController : UIViewController

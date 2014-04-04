@@ -7,9 +7,6 @@
 //
 
 #import "CREReviewNewViewController.h"
-#import "CREVenueAnnotation.h"
-#import "ObjectiveSugar.h"
-#import "SVProgressHUD.h"
 
 @interface CREReviewNewViewController ()
 

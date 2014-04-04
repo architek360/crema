@@ -7,9 +7,6 @@
 //
 
 #import "CREVenue.h"
-#import <Parse/Parse.h>
-#import "CREParseAPIClient.h"
-#import <Parse/PFObject+Subclass.h>
 
 //#define VENUE_PHOTO_TABLE_SIZE @"44x44"
 

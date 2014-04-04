@@ -7,15 +7,6 @@
 //
 
 #import "CRESearchTableViewController.h"
-#import "AFNetworking.h"
-#import "CREVenue.h"
-#import "SVProgressHUD.h"
-#import "FSQFoursquareAPIClient.h"
-#import "UIImageView+AFNetworking.h"
-#import "CREReviewNewViewController.h"
-#import "CREParseAPIClient.h"
-#import "ObjectiveSugar.h"
-
 
 @interface CRESearchTableViewController () <CLLocationManagerDelegate>
 

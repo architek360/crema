@@ -7,9 +7,7 @@
 //
 
 #import "CREParseAPIClient.h"
-#import "CREAppDelegate.h"
-#import <Parse/Parse.h>
-#import "ObjectiveSugar.h"
+
 @implementation CREParseAPIClient
 
 + (BOOL) venuePersisted: (CREVenue * )venue {
@@ -55,7 +53,7 @@
         }
     }];
 }
-
+// TODO
 //+ (void) getFriendsWhoLikeVenue: (CREVenue *) venue callback:(void (^)(NSArray *friends, NSError *failure) ) completion
 //{
 //
@@ -90,6 +88,7 @@
 //    
 //}
 
+// TODO
 //+ (NSInteger) upvotesForVenue: (CREVenue *) venue
 //{
 //    PFRelation *venueRelation = [venue relationForKey:@"upvotes"];

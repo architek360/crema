@@ -7,8 +7,6 @@
 //
 
 #import "CREListViewController.h"
-#import "CREVenue.h"
-#import "CREVenueDetailViewController.h"
 
 
 @interface CREListViewController ()

@@ -7,10 +7,6 @@
 //
 
 #import "FSQFoursquareAPIClient.h"
-#import "AFNetworking.h"
-#import "CREVenue.h"
-#import "ObjectiveSugar.h"
-#import "CREParseAPIClient.h"
 
 #define FOURSQUARE_BASE_URL @"https://api.foursquare.com/v2/"
 
