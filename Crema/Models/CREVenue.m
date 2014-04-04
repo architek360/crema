@@ -84,6 +84,7 @@
         self.addressString = [address componentsJoinedByString:@", "];
         self.location = [PFGeoPoint geoPointWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
         
+//        TODO: Implement photos in table view
 //        NSDictionary *url = dictionary[@"photos"][@"groups"][0][@"items"][0];
 //        if (url) {
 //            self.photoUrl = [@[url[@"prefix"], VENUE_PHOTO_TABLE_SIZE, url[@"suffix"]] componentsJoinedByString:@""];
