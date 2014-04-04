@@ -6,9 +6,12 @@
 //  Copyright (c) 2014 Jeff Wells. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "AFHTTPRequestOperationManager.h"
 #import "AFNetworking.h"
-#import <CoreLocation/CoreLocation.h>
+#import "CREVenue.h"
+#import "ObjectiveSugar.h"
+#import "CREParseAPIClient.h"
 
 #define FOURSQUARE_APP_CLIENT_ID @"MQBCOLIFS53NFWIP2I0SHEKM423HZXICZN0J3DGLFSKTFURL"
 

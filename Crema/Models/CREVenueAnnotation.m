@@ -10,7 +10,7 @@
 
 
 @interface CREVenueAnnotation ()
-@property (nonatomic, strong) CREVenue *venue;
+
 @end
 
 

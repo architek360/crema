@@ -7,9 +7,6 @@
 //
 
 #import "CREVenue.h"
-#import <Parse/Parse.h>
-#import "CREParseAPIClient.h"
-#import <Parse/PFObject+Subclass.h>
 
 //#define VENUE_PHOTO_TABLE_SIZE @"44x44"
 
@@ -22,7 +19,7 @@
 @dynamic addressString;
 @dynamic saved;
 @dynamic location;
-//@dynamic upvotes;
+@dynamic upvotes;
 @dynamic upvote_count;
 @synthesize animatesDrop;
 
@@ -105,6 +102,7 @@
     if (![CREParseAPIClient venuePersisted:self]) {
         PFObject *venueObject = [PFObject objectWithClassName:@"Venue"];
         [venueObject setValuesForKeysWithDictionary:[self toParseDictionary]];
+        
         PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
         venueObject[@"location"] = point;
         

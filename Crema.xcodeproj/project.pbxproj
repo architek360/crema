@@ -17,7 +17,6 @@
 		321B35DE1892342A00DF04A9 /* CREVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 321B35DD1892342A00DF04A9 /* CREVenue.m */; };
 		3227AA361899AF7A0086A9F9 /* CRELoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227AA351899AF7A0086A9F9 /* CRELoginViewController.m */; };
 		3227AA3D1899B83B0086A9F9 /* profile-placeholder.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3227AA3C1899B83B0086A9F9 /* profile-placeholder.jpeg */; };
-		3227AA40189A13BF0086A9F9 /* TDBadgedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227AA3F189A13BF0086A9F9 /* TDBadgedCell.m */; };
 		323AB02A188A5E1F00130EFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB029188A5E1F00130EFA /* Foundation.framework */; };
 		323AB02C188A5E1F00130EFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02B188A5E1F00130EFA /* CoreGraphics.framework */; };
 		323AB02E188A5E1F00130EFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB02D188A5E1F00130EFA /* UIKit.framework */; };
@@ -44,6 +43,7 @@
 		323AB073188A602600130EFA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323AB072188A602600130EFA /* SystemConfiguration.framework */; };
 		323AB0BC188A62C800130EFA /* CREMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323AB0BB188A62C800130EFA /* CREMapViewController.m */; };
 		323AB0BE188A62F200130EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323AB0BD188A62F200130EFA /* Main.storyboard */; };
+		3242321B18CAAEAD0062B2DF /* CREVenueCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242321A18CAAEAD0062B2DF /* CREVenueCollection.m */; };
 		32694E10188C5EAD0015213F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8020188C5D69006DCD64 /* Accounts.framework */; };
 		32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32694E21188CACD30015213F /* CRESearchTableViewController.m */; };
 		326B8014188C5606006DCD64 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326B8013188C5606006DCD64 /* AudioToolbox.framework */; };
@@ -56,9 +56,19 @@
 		3292AB8718C1938D0079A4FC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292AB8618C1938D0079A4FC /* icon.png */; };
 		3292AB8918C1949B0079A4FC /* star-cup.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292AB8818C1949B0079A4FC /* star-cup.png */; };
 		3292AB8B18C196240079A4FC /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292AB8A18C196240079A4FC /* star.png */; };
+		3292AB9118C19DCB0079A4FC /* 1px.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292AB9018C19DCB0079A4FC /* 1px.png */; };
+		3292AB9318C19F050079A4FC /* topbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292AB9218C19F050079A4FC /* topbar.png */; };
+		3292AB9818C1A2950079A4FC /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292AB9618C1A2950079A4FC /* add.png */; };
+		3292AB9918C1A2950079A4FC /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292AB9718C1A2950079A4FC /* list.png */; };
+		3292AB9C18C1A3D50079A4FC /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292AB9A18C1A3D40079A4FC /* map.png */; };
+		3292AB9D18C1A3D50079A4FC /* crema.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292AB9B18C1A3D40079A4FC /* crema.png */; };
+		3292ABA318C1A5FD0079A4FC /* CREListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292ABA218C1A5FD0079A4FC /* CREListViewController.m */; };
+		3292ABA518C1AC980079A4FC /* foursquare-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292ABA418C1AC980079A4FC /* foursquare-search.png */; };
 		32ADF08F18A4E09C0022F730 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32ADF08D18A4E07F0022F730 /* FacebookSDK.framework */; };
 		32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */; };
 		32AE8A3B1894B79000244D3B /* PFGeoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3A1894B79000244D3B /* PFGeoBox.m */; };
+		32D6EA5C18CBC5C100C50088 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D6EA5A18CBC5C100C50088 /* back.png */; };
+		32D6EA5D18CBC5C100C50088 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D6EA5B18CBC5C100C50088 /* checkmark.png */; };
 		B37F458BC81B41DA809A4467 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5DC032311D4FC8B0CE3E0E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -90,8 +100,6 @@
 		3227AA341899AF7A0086A9F9 /* CRELoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRELoginViewController.h; sourceTree = "<group>"; };
 		3227AA351899AF7A0086A9F9 /* CRELoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRELoginViewController.m; sourceTree = "<group>"; };
 		3227AA3C1899B83B0086A9F9 /* profile-placeholder.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "profile-placeholder.jpeg"; sourceTree = "<group>"; };
-		3227AA3E189A13BF0086A9F9 /* TDBadgedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBadgedCell.h; sourceTree = "<group>"; };
-		3227AA3F189A13BF0086A9F9 /* TDBadgedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBadgedCell.m; sourceTree = "<group>"; };
 		323AB026188A5E1F00130EFA /* Crema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		323AB029188A5E1F00130EFA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		323AB02B188A5E1F00130EFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -123,6 +131,8 @@
 		323AB0BA188A62C800130EFA /* CREMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREMapViewController.h; sourceTree = "<group>"; };
 		323AB0BB188A62C800130EFA /* CREMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREMapViewController.m; sourceTree = "<group>"; };
 		323AB0BD188A62F200130EFA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		3242321918CAAEAD0062B2DF /* CREVenueCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREVenueCollection.h; sourceTree = "<group>"; };
+		3242321A18CAAEAD0062B2DF /* CREVenueCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenueCollection.m; sourceTree = "<group>"; };
 		32694E20188CACD30015213F /* CRESearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRESearchTableViewController.h; sourceTree = "<group>"; };
 		32694E21188CACD30015213F /* CRESearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRESearchTableViewController.m; sourceTree = "<group>"; };
 		326B8011188C55F0006DCD64 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -136,11 +146,22 @@
 		3292AB8618C1938D0079A4FC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3292AB8818C1949B0079A4FC /* star-cup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-cup.png"; sourceTree = "<group>"; };
 		3292AB8A18C196240079A4FC /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		3292AB9018C19DCB0079A4FC /* 1px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1px.png; sourceTree = "<group>"; };
+		3292AB9218C19F050079A4FC /* topbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topbar.png; sourceTree = "<group>"; };
+		3292AB9618C1A2950079A4FC /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		3292AB9718C1A2950079A4FC /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		3292AB9A18C1A3D40079A4FC /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		3292AB9B18C1A3D40079A4FC /* crema.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crema.png; sourceTree = "<group>"; };
+		3292ABA118C1A5FD0079A4FC /* CREListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREListViewController.h; sourceTree = "<group>"; };
+		3292ABA218C1A5FD0079A4FC /* CREListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREListViewController.m; sourceTree = "<group>"; };
+		3292ABA418C1AC980079A4FC /* foursquare-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foursquare-search.png"; sourceTree = "<group>"; };
 		32ADF08D18A4E07F0022F730 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		32AE8A3618948EF200244D3B /* CREVenueDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREVenueDetailViewController.h; sourceTree = "<group>"; };
 		32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenueDetailViewController.m; sourceTree = "<group>"; };
 		32AE8A391894B79000244D3B /* PFGeoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFGeoBox.h; path = Crema/Models/PFGeoBox.h; sourceTree = SOURCE_ROOT; };
 		32AE8A3A1894B79000244D3B /* PFGeoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PFGeoBox.m; path = Crema/Models/PFGeoBox.m; sourceTree = SOURCE_ROOT; };
+		32D6EA5A18CBC5C100C50088 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		32D6EA5B18CBC5C100C50088 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		F9F639C66B594F4A9F4C2473 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +214,15 @@
 		321B35C91890DAC100DF04A9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				32D6EA5A18CBC5C100C50088 /* back.png */,
+				32D6EA5B18CBC5C100C50088 /* checkmark.png */,
+				3292ABA418C1AC980079A4FC /* foursquare-search.png */,
+				3292AB9A18C1A3D40079A4FC /* map.png */,
+				3292AB9B18C1A3D40079A4FC /* crema.png */,
+				3292AB9618C1A2950079A4FC /* add.png */,
+				3292AB9718C1A2950079A4FC /* list.png */,
+				3292AB9218C19F050079A4FC /* topbar.png */,
+				3292AB9018C19DCB0079A4FC /* 1px.png */,
 				3292AB8A18C196240079A4FC /* star.png */,
 				3292AB8818C1949B0079A4FC /* star-cup.png */,
 				3292AB8618C1938D0079A4FC /* icon.png */,
@@ -209,7 +239,6 @@
 			isa = PBXGroup;
 			children = (
 				321B35C91890DAC100DF04A9 /* Assets */,
-				3257D3A61890359C00C4608F /* Lib */,
 				323AB02F188A5E1F00130EFA /* Crema */,
 				323AB048188A5E2000130EFA /* CremaTests */,
 				323AB028188A5E1F00130EFA /* Frameworks */,
@@ -263,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				323AB0BD188A62F200130EFA /* Main.storyboard */,
+				3257D3A61890359C00C4608F /* Lib */,
 				323AB078188A61EE00130EFA /* Controllers */,
 				323AB076188A61D200130EFA /* Models */,
 				323AB038188A5E1F00130EFA /* CREAppDelegate.h */,
@@ -306,12 +336,12 @@
 		323AB076188A61D200130EFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3227AA3E189A13BF0086A9F9 /* TDBadgedCell.h */,
-				3227AA3F189A13BF0086A9F9 /* TDBadgedCell.m */,
 				32AE8A391894B79000244D3B /* PFGeoBox.h */,
 				32AE8A3A1894B79000244D3B /* PFGeoBox.m */,
 				321B35DC1892342A00DF04A9 /* CREVenue.h */,
 				321B35DD1892342A00DF04A9 /* CREVenue.m */,
+				3242321918CAAEAD0062B2DF /* CREVenueCollection.h */,
+				3242321A18CAAEAD0062B2DF /* CREVenueCollection.m */,
 				321B35D318919FE400DF04A9 /* CREVenueAnnotation.h */,
 				321B35D418919FE400DF04A9 /* CREVenueAnnotation.m */,
 			);
@@ -323,6 +353,8 @@
 			children = (
 				3227AA341899AF7A0086A9F9 /* CRELoginViewController.h */,
 				3227AA351899AF7A0086A9F9 /* CRELoginViewController.m */,
+				3292ABA118C1A5FD0079A4FC /* CREListViewController.h */,
+				3292ABA218C1A5FD0079A4FC /* CREListViewController.m */,
 				321B35CE1890F9DF00DF04A9 /* CREReviewNewViewController.h */,
 				321B35CF1890F9DF00DF04A9 /* CREReviewNewViewController.m */,
 				32694E20188CACD30015213F /* CRESearchTableViewController.h */,
@@ -344,7 +376,7 @@
 				321B35D71891BD1E00DF04A9 /* CREParseAPIClient.m */,
 			);
 			name = Lib;
-			path = lib;
+			path = ../lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,16 +457,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3292AB9D18C1A3D50079A4FC /* crema.png in Resources */,
 				3292AB8518C192BB0079A4FC /* loadingscreen.png in Resources */,
+				32D6EA5C18CBC5C100C50088 /* back.png in Resources */,
+				3292ABA518C1AC980079A4FC /* foursquare-search.png in Resources */,
 				3292AB8B18C196240079A4FC /* star.png in Resources */,
 				3227AA3D1899B83B0086A9F9 /* profile-placeholder.jpeg in Resources */,
+				3292AB9818C1A2950079A4FC /* add.png in Resources */,
 				323AB0BE188A62F200130EFA /* Main.storyboard in Resources */,
+				3292AB9118C19DCB0079A4FC /* 1px.png in Resources */,
 				321B35CB1890DAF500DF04A9 /* placeholder-2.png in Resources */,
+				3292AB9918C1A2950079A4FC /* list.png in Resources */,
 				3292AB8718C1938D0079A4FC /* icon.png in Resources */,
 				323AB034188A5E1F00130EFA /* InfoPlist.strings in Resources */,
+				3292AB9C18C1A3D50079A4FC /* map.png in Resources */,
 				3292AB8918C1949B0079A4FC /* star-cup.png in Resources */,
 				323AB03C188A5E1F00130EFA /* Images.xcassets in Resources */,
 				321B35CD1890DCA200DF04A9 /* placeholder-small1.png in Resources */,
+				3292AB9318C19F050079A4FC /* topbar.png in Resources */,
+				32D6EA5D18CBC5C100C50088 /* checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,17 +529,18 @@
 			files = (
 				321B35DE1892342A00DF04A9 /* CREVenue.m in Sources */,
 				323AB036188A5E1F00130EFA /* main.m in Sources */,
-				3227AA40189A13BF0086A9F9 /* TDBadgedCell.m in Sources */,
 				32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */,
 				321B35D81891BD1E00DF04A9 /* CREParseAPIClient.m in Sources */,
 				323AB03A188A5E1F00130EFA /* CREAppDelegate.m in Sources */,
 				323AB0BC188A62C800130EFA /* CREMapViewController.m in Sources */,
 				32694E22188CACD30015213F /* CRESearchTableViewController.m in Sources */,
+				3292ABA318C1A5FD0079A4FC /* CREListViewController.m in Sources */,
 				321B35C41890844900DF04A9 /* FSQFoursquareAPIClient.m in Sources */,
 				321B35D01890F9DF00DF04A9 /* CREReviewNewViewController.m in Sources */,
 				3227AA361899AF7A0086A9F9 /* CRELoginViewController.m in Sources */,
 				321B35D518919FE400DF04A9 /* CREVenueAnnotation.m in Sources */,
 				32AE8A3B1894B79000244D3B /* PFGeoBox.m in Sources */,
+				3242321B18CAAEAD0062B2DF /* CREVenueCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

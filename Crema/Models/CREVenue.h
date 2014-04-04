@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import <MapKit/MapKit.h>
+#import "CREParseAPIClient.h"
+#import <Parse/PFObject+Subclass.h>
+
 @interface CREVenue : PFObject<PFSubclassing,MKAnnotation>
 
 + (NSString *)parseClassName; //for Parse
@@ -20,7 +23,7 @@
 @property (nonatomic, strong) NSNumber *longitude;
 @property (nonatomic, copy) NSString *addressString;
 @property (nonatomic, strong) NSNumber *saved;
-//@property (nonatomic) NSNumber *upvotes;
+@property (nonatomic) NSNumber *upvotes;
 @property (nonatomic) NSNumber *upvote_count;
 @property (nonatomic, strong) PFGeoPoint *location;
 //@property (nonatomic, copy) NSString *photoUrl;

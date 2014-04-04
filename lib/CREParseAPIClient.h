@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CREVenue.h"
 #import <Parse/Parse.h>
+#import "CREVenue.h"
 #import "PFGeoBox.h"
+#import "CREAppDelegate.h"
+#import "ObjectiveSugar.h"
 @interface CREParseAPIClient : NSObject
 
 + (BOOL) venuePersisted: (CREVenue * )venue;

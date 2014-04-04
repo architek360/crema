@@ -7,8 +7,6 @@
 //
 
 #import "CRELoginViewController.h"
-#import <Parse/Parse.h>
-#import "CREAppDelegate.h"
 
 @interface CRELoginViewController ()
 
