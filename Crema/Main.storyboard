@@ -53,6 +53,9 @@
                                 <state key="normal" title="title" image="crema.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="IbR-vz-COn" kind="modal" modalTransitionStyle="flipHorizontal" id="7vq-6p-qNN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -113,6 +116,9 @@
                                 <state key="normal" title="title" image="crema.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="IbR-vz-COn" kind="modal" modalTransitionStyle="flipHorizontal" id="hMu-DU-XFS"/>
+                                </connections>
                             </button>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tvh-zy-462">
                                 <rect key="frame" x="0.0" y="107" width="320" height="461"/>
@@ -191,7 +197,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="12" y="-221"/>
+            <point key="canvasLocation" x="-84" y="117"/>
         </scene>
         <!--Venue Detail View Controller-->
         <scene sceneID="sgf-c5-why">
@@ -239,7 +245,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QmM-L9-vRz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="oeo-vI-9hf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-84" y="977"/>
+            <point key="canvasLocation" x="110" y="867"/>
         </scene>
         <!--Review New View Controller - Review-->
         <scene sceneID="YHe-5Z-68E">
@@ -324,7 +330,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HhO-qY-QQ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Xmb-rF-pg2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="609" y="-207"/>
+            <point key="canvasLocation" x="563" y="7"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="z80-4d-MnE">
@@ -427,6 +433,9 @@
                                 <state key="normal" title="title" image="crema.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="IbR-vz-COn" kind="modal" modalTransitionStyle="flipHorizontal" id="9Gg-tQ-7iQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -439,10 +448,10 @@
             </objects>
             <point key="canvasLocation" x="-840" y="1039"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="shD-H7-mw4">
             <objects>
-                <viewController id="IbR-vz-COn" sceneMemberID="viewController">
+                <viewController id="IbR-vz-COn" customClass="CRELoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ev1-3b-8Z8"/>
                         <viewControllerLayoutGuide type="bottom" id="oOX-rM-s7J"/>
@@ -452,35 +461,97 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile-placeholder.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="yxM-G0-tbQ">
-                                <rect key="frame" x="103" y="137" width="35" height="35"/>
+                                <rect key="frame" x="20" y="94" width="66" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <rect key="contentStretch" x="1.3877787807814457e-17" y="0.0" width="1" height="1"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSM-3W-L31">
-                                <rect key="frame" x="-72" y="137" width="167" height="18"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSM-3W-L31">
+                                <rect key="frame" x="94" y="94" width="206" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsa-Sk-Uwl">
-                                <rect key="frame" x="48" y="156" width="47" height="16"/>
+                                <rect key="frame" x="52" y="133" width="214" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <state key="normal" title="Log Out">
+                                <state key="normal" title="connect to vote for your favorite venues">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="logOutButtonPressed:" destination="hT1-Sl-mzn" eventType="touchUpInside" id="GjM-6u-C1b"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="topbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="bUT-8q-nVe">
+                                <rect key="frame" x="-3" y="0.0" width="327" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dD0-6S-loS">
+                                <rect key="frame" x="17" y="25" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="map" image="map.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="hT1-Sl-mzn" kind="modal" modalTransitionStyle="flipHorizontal" id="gcX-mp-cn8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMB-rO-CuM">
+                                <rect key="frame" x="267" y="25" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="list" image="list.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="D6a-sG-Z8h" kind="modal" modalTransitionStyle="flipHorizontal" id="jiw-bT-Nmh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="crema" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tg-8j-2mv">
+                                <rect key="frame" x="111" y="25" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="title" image="crema.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDL-SB-S46">
+                                <rect key="frame" x="19" y="94" width="277" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Connect with Facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedFacebookLogin:" destination="IbR-vz-COn" eventType="touchUpInside" id="oRL-2O-0dj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycy-FQ-r7t">
+                                <rect key="frame" x="94" y="121" width="42" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <state key="normal" title="Log out">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedLogout:" destination="IbR-vz-COn" eventType="touchUpInside" id="mWu-AO-SmY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="facebookConnectButton" destination="LDL-SB-S46" id="eQo-ar-TtB"/>
+                        <outlet property="facebookConnectDesc" destination="wsa-Sk-Uwl" id="HaE-cb-QNJ"/>
+                        <outlet property="logOutButton" destination="Ycy-FQ-r7t" id="p72-s8-ycG"/>
+                        <outlet property="userName" destination="dSM-3W-L31" id="Edy-Ww-6zF"/>
+                        <outlet property="userPhoto" destination="yxM-G0-tbQ" id="9hb-RQ-2Cd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfc-4d-8es" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="598" y="1020"/>
+            <point key="canvasLocation" x="-1462" y="528"/>
         </scene>
     </scenes>
     <resources>
@@ -500,9 +571,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="b29-2m-IHP"/>
-        <segue reference="PIa-S4-K7F"/>
-        <segue reference="jvI-fv-MJp"/>
         <segue reference="GGI-Tr-EV5"/>
+        <segue reference="jiw-bT-Nmh"/>
+        <segue reference="hMu-DU-XFS"/>
+        <segue reference="7qz-Rv-gsJ"/>
+        <segue reference="gcX-mp-cn8"/>
     </inferredMetricsTieBreakers>
 </document>

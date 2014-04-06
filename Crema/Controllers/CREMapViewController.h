@@ -24,11 +24,7 @@
 
 @interface CREMapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) IBOutlet UIImageView *userProfileImage;
-@property (strong, nonatomic) IBOutlet UILabel *userNameLabel;
-@property (strong, nonatomic) IBOutlet UIButton *logInButton;
-@property (strong, nonatomic) IBOutlet UIButton *logOutButton;
-- (IBAction)logOutButtonPressed:(id)sender;
+
 
 
 @end

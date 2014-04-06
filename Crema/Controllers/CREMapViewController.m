@@ -22,17 +22,11 @@
 @synthesize mapView;
 @synthesize currentPage;
 @synthesize mapPinsPlaced;
-@synthesize userProfileImage;
-@synthesize userNameLabel;
-@synthesize logOutButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     currentPage = 0;
-    
-    
-    [self displayUserStatus];
     
     [self.locationManager startUpdatingLocation];
 }
@@ -263,37 +257,6 @@
 }
 
 
-#pragma makr - User status
-
-- (void)displayUserStatus
-{
-    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
-    {
-        FBRequest *request = [FBRequest requestForMe];
-        
-        [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-            if (!error) {
-                NSDictionary *userData = (NSDictionary *)result;
-                
-                NSString *facebookID = userData[@"id"];
-                NSString *name = userData[@"name"];
-                
-                NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square&return_ssl_resources=1", facebookID]];
-                [userProfileImage setImageWithURL:pictureURL placeholderImage:[UIImage imageNamed:@"placeholder-placeholder.jpeg"]];
-                [userProfileImage.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
-                [userProfileImage.layer setBorderWidth: 2.0];
-                [userProfileImage.layer setOpacity:0.9];
-                userNameLabel.text = name;
-                
-            }
-        }];
-    } else {
-        [userProfileImage removeFromSuperview];
-        [userNameLabel removeFromSuperview];
-        [logOutButton removeFromSuperview];
-    }
-
-}
 
 #pragma mark - CREMapViewController memory management methods
 
@@ -312,9 +275,4 @@
 	self.mapPinsPlaced = NO;
 }
 
-
-- (IBAction)logOutButtonPressed:(id)sender {
-    [PFUser logOut];
-    [self displayUserStatus];
-}
 @end

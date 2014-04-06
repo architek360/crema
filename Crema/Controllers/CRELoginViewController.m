@@ -7,22 +7,68 @@
 //
 
 #import "CRELoginViewController.h"
+#import "AFNetworking.h"
 
 @interface CRELoginViewController ()
 
 @end
 
 @implementation CRELoginViewController
-@synthesize activityIndicator;
+@synthesize facebookConnectButton;
+@synthesize facebookConnectDesc;
+@synthesize userPhoto;
+@synthesize userName;
+@synthesize logOutButton;
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
-    {
-        [self performSegueWithIdentifier:@"flipToMap" sender:self];
-    }
+	
 }
+
+- (void) viewWillAppear:(BOOL)animated {
+    [self displayUserStatus];
+}
+
+#pragma makr - User status
+
+- (void)displayUserStatus
+{
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        [facebookConnectButton removeFromSuperview];
+        [facebookConnectDesc removeFromSuperview];
+        
+        
+        FBRequest *request = [FBRequest requestForMe];
+        
+        [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                NSDictionary *userData = (NSDictionary *)result;
+                
+                NSString *facebookID = userData[@"id"];
+                NSString *name = userData[@"name"];
+                
+                NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?height=100&width=100&return_ssl_resources=1", facebookID]];
+                
+                [userPhoto setImageWithURL:pictureURL placeholderImage:[UIImage imageNamed:@"placeholder-placeholder.jpeg"]];
+                [userPhoto.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
+                [userPhoto.layer setBorderWidth: 2.0];
+                [userPhoto.layer setOpacity:0.9];
+                userName.text = name;
+                
+            }
+        }];
+    } else {
+        [userPhoto removeFromSuperview];
+        [userName removeFromSuperview];
+        [logOutButton removeFromSuperview];
+    }
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -31,14 +77,23 @@
 }
 
 - (IBAction)pressedFacebookLogin:(id)sender {
-    [activityIndicator startAnimating];
+    [SVProgressHUD show];
     
     
     [CREAppDelegate logInFacebook:^(PFUser *aUser, NSError *failure) {
-        [activityIndicator stopAnimating];
-        [self performSegueWithIdentifier:@"flipToMap" sender:self];
+        [SVProgressHUD dismiss];
+        [self loadView];
+        [self viewWillAppear:NO];
     }];
     
 }
+
+
+- (IBAction)pressedLogout:(id)sender {
+    [PFUser logOut];
+    [self loadView];
+    [self viewWillAppear:NO];
+}
+
 
 @end
