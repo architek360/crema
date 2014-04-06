@@ -107,19 +107,21 @@
     return (count != 0);
 }
 
-+ (void) currentUserUpdateVote: (BOOL) status forVenue: (CREVenue *) venue
++ (void) currentUserUpdateVote: (BOOL) status forVenue: (CREVenue *) venue callback: (void (^)(BOOL succeeded, NSError *error) ) completion
 {
     PFObject *user = (PFObject *) [PFUser currentUser];
     PFRelation *relation = [venue relationforKey:@"upvotes"];
     if (status) {
         [relation addObject: user];
         [venue incrementKey:@"upvote_count"];
-        [venue saveInBackground];
     } else {
         [relation removeObject:user];
         [venue decrementKey:@"upvote_count"];
-        [venue saveInBackground];
     }
+    
+    [venue saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        completion(succeeded,error);
+    }];
    
     
 }

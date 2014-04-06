@@ -240,6 +240,7 @@
                     <connections>
                         <outlet property="upvotesLabel" destination="CMA-n3-Lxv" id="oHp-44-wVk"/>
                         <outlet property="webView" destination="yHG-iA-s9T" id="JRz-4t-liU"/>
+                        <segue destination="IbR-vz-COn" kind="modal" identifier="flipToLogin" modalTransitionStyle="flipHorizontal" id="5d2-yA-fGH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QmM-L9-vRz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -571,10 +572,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="gcX-mp-cn8"/>
+        <segue reference="5d2-yA-fGH"/>
         <segue reference="GGI-Tr-EV5"/>
         <segue reference="jiw-bT-Nmh"/>
-        <segue reference="hMu-DU-XFS"/>
         <segue reference="7qz-Rv-gsJ"/>
-        <segue reference="gcX-mp-cn8"/>
     </inferredMetricsTieBreakers>
 </document>

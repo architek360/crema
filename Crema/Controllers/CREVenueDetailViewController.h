@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CREVenue.h"
 #import "CREParseAPIClient.h"
+#import "SVProgressHUD.h"
 
 @interface CREVenueDetailViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIWebView *webView;

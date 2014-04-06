@@ -228,11 +228,6 @@
 }
 
 #pragma mark - Segue view
-//- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-//{
-//    return [sender isEqual:self];
-//}
-
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
