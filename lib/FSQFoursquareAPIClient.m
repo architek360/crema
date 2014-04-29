@@ -51,7 +51,6 @@
     [self GET:@"venues/search"
    parameters:params
       success:^(NSURLSessionDataTask *task, id responseObject) {
-          NSLog(@"Response: %@", task.response);
           NSArray *venues = [self venuesForResponse: responseObject[@"response"][@"venues"]];
           completion(venues,nil);
       } failure:^(NSURLSessionDataTask *task, NSError *error) {

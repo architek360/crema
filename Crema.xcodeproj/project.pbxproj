@@ -65,6 +65,7 @@
 		3292ABA318C1A5FD0079A4FC /* CREListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292ABA218C1A5FD0079A4FC /* CREListViewController.m */; };
 		3292ABA518C1AC980079A4FC /* foursquare-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 3292ABA418C1AC980079A4FC /* foursquare-search.png */; };
 		32ADF08F18A4E09C0022F730 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32ADF08D18A4E07F0022F730 /* FacebookSDK.framework */; };
+		32AE5351191054E80031C06B /* CREUserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE5350191054E80031C06B /* CREUserLocation.m */; };
 		32AE8A3818948EF200244D3B /* CREVenueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */; };
 		32AE8A3B1894B79000244D3B /* PFGeoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE8A3A1894B79000244D3B /* PFGeoBox.m */; };
 		32D6EA5C18CBC5C100C50088 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D6EA5A18CBC5C100C50088 /* back.png */; };
@@ -156,6 +157,8 @@
 		3292ABA218C1A5FD0079A4FC /* CREListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREListViewController.m; sourceTree = "<group>"; };
 		3292ABA418C1AC980079A4FC /* foursquare-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foursquare-search.png"; sourceTree = "<group>"; };
 		32ADF08D18A4E07F0022F730 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		32AE534F191054E80031C06B /* CREUserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREUserLocation.h; sourceTree = "<group>"; };
+		32AE5350191054E80031C06B /* CREUserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREUserLocation.m; sourceTree = "<group>"; };
 		32AE8A3618948EF200244D3B /* CREVenueDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREVenueDetailViewController.h; sourceTree = "<group>"; };
 		32AE8A3718948EF200244D3B /* CREVenueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CREVenueDetailViewController.m; sourceTree = "<group>"; };
 		32AE8A391894B79000244D3B /* PFGeoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFGeoBox.h; path = Crema/Models/PFGeoBox.h; sourceTree = SOURCE_ROOT; };
@@ -374,6 +377,8 @@
 				321B35C31890844900DF04A9 /* FSQFoursquareAPIClient.m */,
 				321B35D61891BD1E00DF04A9 /* CREParseAPIClient.h */,
 				321B35D71891BD1E00DF04A9 /* CREParseAPIClient.m */,
+				32AE534F191054E80031C06B /* CREUserLocation.h */,
+				32AE5350191054E80031C06B /* CREUserLocation.m */,
 			);
 			name = Lib;
 			path = ../lib;
@@ -538,6 +543,7 @@
 				321B35C41890844900DF04A9 /* FSQFoursquareAPIClient.m in Sources */,
 				321B35D01890F9DF00DF04A9 /* CREReviewNewViewController.m in Sources */,
 				3227AA361899AF7A0086A9F9 /* CRELoginViewController.m in Sources */,
+				32AE5351191054E80031C06B /* CREUserLocation.m in Sources */,
 				321B35D518919FE400DF04A9 /* CREVenueAnnotation.m in Sources */,
 				32AE8A3B1894B79000244D3B /* PFGeoBox.m in Sources */,
 				3242321B18CAAEAD0062B2DF /* CREVenueCollection.m in Sources */,

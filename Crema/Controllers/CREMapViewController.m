@@ -27,53 +27,83 @@
 {
     [super viewDidLoad];
     currentPage = 0;
+    NSLog(@"MAP PINS PLACED: %i",mapPinsPlaced);
     
-    [self.locationManager startUpdatingLocation];
+    [[CREVenueCollection venues] removeAllObjects];
+    
+    if([[self locationManager] location] == nil)
+    {
+        NSLog(@"View Load: Start Updating Location");
+        [self.locationManager startUpdatingLocation];
+    } else {
+        NSLog(@"View Load: Zoom");
+        [self zoomToLocation:[[self locationManager] location] radius:1000];
+    }
+}
+
+#pragma mark - CLLocationManagerDelegate methods
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        _locationManager.delegate = self;
+        _locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
+    }
+    return _locationManager;
+}
+//    Do we want to research at current location if moved? maybe better if there is a 'find me' button
+
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = [locations lastObject];
+    NSLog(@"Location is updated");
+    [self zoomToLocation:location radius:1000];
+    
 }
 
 - (void)zoomToLocation:(CLLocation *)location radius:(CGFloat)radius {
-    NSLog(@"Zooming");
+    NSLog(@"Zoom To Region");
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, radius * 2, radius * 2);
-    [self.mapView setRegion:region animated:YES];
+    [self.mapView setRegion:region animated:NO];
 }
 
 - (void)mapView:(MKMapView *)aMapView regionDidChangeAnimated:(BOOL)animated
 {
-    NSLog(@"regionLocation: %@", [[self locationManager] location]);
-    NSLog(@"regionDidChangeAnimated: %f, %f, %d", aMapView.centerCoordinate.latitude, aMapView.centerCoordinate.longitude, animated);
+    NSLog(@"Location Manager Location: %@", [[self locationManager] location]);
     
     if([[self locationManager] location] != nil)
     {
+        NSLog(@"Region Changed");
         currentPage = 0;
         [self fetchVenuesInMapView];
     }
 }
 
 - (void)fetchVenuesInMapView {
-    NSLog(@"Fetching Venues");
     [SVProgressHUD show];
     PFGeoBox *geoBox = [PFGeoBox boxFromLocation:self.mapView.centerCoordinate andMapView:self.mapView];
 
+    NSLog(@"Fetching Venues");
     [CREParseAPIClient fetchVenuesInView:geoBox
                             page: currentPage
                             completion:^(NSArray *results, NSError *error) {
                                 if (error) {
                                     [SVProgressHUD showErrorWithStatus:@"Sorry, there was an error."];
                                 } else {
-                                    [SVProgressHUD dismiss];
                                     // 1. Find new posts (those that we did not already have)
                                     NSMutableArray *newVenues = [[NSMutableArray alloc] initWithCapacity:kCREVenuesPerPage];
                                     
                                     // Loop through all returned PFObjects
                                     for (CREVenue *venue in results)
                                     {
-                                        // Now we check if we already had this wall post
+                                        // Now we check if we already had this venue
                                         BOOL found = NO;
                                         
                                         for (CREVenue *currentVenue in [CREVenueCollection venues])
                                         {
                                             
-                                            if ([currentVenue.objectId isEqualToString:venue.objectId])                                            {
+                                            if ([currentVenue.objectId isEqualToString:venue.objectId])
+                                            {
                                                 found = YES;
                                             }
                                         }
@@ -95,7 +125,7 @@
                                         {
                                             BOOL found = NO;
                                             
-                                            // Loop through all the wall posts we received
+                                            // Loop through all the venues we received
                                             for (CREVenue *newVenue in results)
                                             {
                                                 if ([newVenue.objectId isEqualToString:venue.objectId])
@@ -115,12 +145,16 @@
                                     // 3. Remove the old posts and add the new posts
                                     [self.mapView removeAnnotations:venuesToRemove];
                                     [[CREVenueCollection venues] removeObjectsInArray:venuesToRemove];
-                                    
+                                    NSLog(@"Removing %lu Pins",(unsigned long)[venuesToRemove count]);
                                     // We add all new posts to both the cache and the map
                                     [self.mapView addAnnotations:newVenues];
                                     [[CREVenueCollection venues] addObjectsFromArray:newVenues];
+
                                     
+                                    NSLog(@"Adding %lu Pins",(unsigned long)[newVenues count]);
                                     self.mapPinsPlaced = YES;
+
+                                    [SVProgressHUD dismiss];
                                 } //end if (error) - else
                             }];
 }
@@ -194,7 +228,7 @@
 {
     CREVenue *annotation = (CREVenue *) view.annotation;
     NSInteger index = [[CREVenueCollection venues] indexOfObject:annotation];
-    NSLog(@"Count: %ld, Index: %ld", (unsigned long)[self.annotationPins count], (long)index);
+//    NSLog(@"Count: %ld, Index: %ld", (unsigned long)[self.annotationPins count], (long)index);
     
 //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     
@@ -207,25 +241,6 @@
     [self performSegueWithIdentifier:@"venueDetailModal" sender:view];
 }
 
-
-#pragma mark - CLLocationManagerDelegate methods
-- (CLLocationManager *)locationManager {
-    if (!_locationManager) {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        _locationManager.delegate = self;
-        _locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
-    }
-    return _locationManager;
-}
-//    Do we want to research at current location if moved? maybe better if there is a 'find me' button
-
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    NSLog(@"Update Locations");
-    CLLocation *location = [locations lastObject];
-    [self zoomToLocation:location radius:1000];
-}
 
 #pragma mark - Segue view
 

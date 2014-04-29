@@ -36,8 +36,6 @@
     
     [[FSQFoursquareAPIClient sharedClient] getPhotosForVenue:venue completion:^(NSArray *urls, NSError *error) {
         venue.photoUrls = urls;
-        NSLog(@"venue photo urls:%@", venue.photoUrls);
-        NSLog(@"venue dictionary: %@", venue.toParseDictionary);
         [SVProgressHUD dismiss];
     }];
     [self updateMap];

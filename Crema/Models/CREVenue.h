@@ -38,4 +38,6 @@
 - (void) decrementKey: (NSString *) key;
 - (NSString *) upvoteCountString;
 
+- (void) adjustImageIndex: (UISwipeGestureRecognizerDirection) direction;
+
 @end

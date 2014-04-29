@@ -30,6 +30,8 @@
     [self.view addGestureRecognizer:tableCellSwipeRight];
     
     [self.tableView setSeparatorColor:[UIColor whiteColor]];
+
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,6 +74,7 @@
     static NSString *CellIdentifier = @"venueCell";
 
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     CREVenue *venue;
     
     venue = (CREVenue*) [[CREVenueCollection venues] objectAtIndex:indexPath.row];
@@ -81,11 +84,11 @@
     
     
     UIImageView *imgview = [[UIImageView alloc]initWithFrame:CGRectMake(0,0, 320, 205)];
+    
     if (!venue.imageIndex) {
         venue.imageIndex = 0;
     }
 
-    NSLog(@"ImageIndex RELOAD: %lu,", (unsigned long) venue.imageIndex);
     
     NSURL *url = [NSURL URLWithString:[venue.photoUrls objectAtIndex:venue.imageIndex]];
     [imgview setImageWithURL:url];
@@ -97,39 +100,25 @@
 }
 
 - (void)handleSwipeLeftFrom:(UIGestureRecognizer*)recognizer {
-//    NSLog(@"Swipe Left");
+
     CGPoint swipeLocation = [recognizer locationInView:self.tableView];
     NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:swipeLocation];
 
     CREVenue *venue = (CREVenue*) [[CREVenueCollection venues] objectAtIndex:swipedIndexPath.row];
     
-    NSLog(@"ImageIndex SWIPE-LEFT BEFORE: %lu,", (unsigned long) venue.imageIndex);
-    
-    if (venue.imageIndex + 1 < [venue.photoUrls count]) {
-        venue.imageIndex++;
-    } else {
-        venue.imageIndex = 0;
-    }
-    NSLog(@"ImageIndex SWIPE-LEFT AFTER: %lu,", (unsigned long) venue.imageIndex);
+    [venue adjustImageIndex:UISwipeGestureRecognizerDirectionLeft];
     
     [self.tableView reloadRowsAtIndexPaths:@[swipedIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
 }
 
 - (void)handleSwipeRightFrom:(UIGestureRecognizer*)recognizer {
-    NSLog(@"Swipe Right");
+    
     CGPoint swipeLocation = [recognizer locationInView:self.tableView];
     NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:swipeLocation];
     
     CREVenue *venue = (CREVenue*) [[CREVenueCollection venues] objectAtIndex:swipedIndexPath.row];
     
-    NSLog(@"ImageIndex SWIPE-RIGHT BEFORE: %lu,", (unsigned long) venue.imageIndex);
-    
-    if (venue.imageIndex == 0) {
-        venue.imageIndex = [venue.photoUrls count] - 1;
-    } else {
-        venue.imageIndex--;
-    }
-    NSLog(@"ImageIndex SWIPE-RIGHT AFTER: %lu,", (unsigned long) venue.imageIndex);
+    [venue adjustImageIndex:UISwipeGestureRecognizerDirectionRight];
     
     [self.tableView reloadRowsAtIndexPaths:@[swipedIndexPath] withRowAnimation:UITableViewRowAnimationRight];
     
@@ -143,8 +132,11 @@
     return 205.0;
 }
 
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//}
+//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+//{
     
     [self performSegueWithIdentifier:@"venueDetailModal" sender:self];
 }

@@ -120,7 +120,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"cellForRowAtIndexPath");
+
     static NSString *CellIdentifier = @"AddNewSearchListCell";
     
     
@@ -175,10 +175,8 @@
         NSIndexPath *indexPath;
         
         if (self.searchDisplayController.active) {
-            NSLog(@"Search Display Controller");
             indexPath = self.searchDisplayController.searchResultsTableView.indexPathForSelectedRow;
         } else {
-            NSLog(@"Default Display Controller");
             indexPath = self.tableView.indexPathForSelectedRow;
         }
         

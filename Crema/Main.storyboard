@@ -350,7 +350,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="top" selectionStyle="none" indentationWidth="10" reuseIdentifier="venueCell" textLabel="u6F-A0-pwE" detailTextLabel="xXf-1r-Udd" rowHeight="220" style="IBUITableViewCellStyleSubtitle" id="Av4-QA-4gz" userLabel="venueCell" customClass="CREImageScrollerTableViewCell">
+                                    <tableViewCell contentMode="top" selectionStyle="none" indentationWidth="10" reuseIdentifier="venueCell" textLabel="u6F-A0-pwE" detailTextLabel="xXf-1r-Udd" rowHeight="220" style="IBUITableViewCellStyleSubtitle" id="Av4-QA-4gz" userLabel="venueCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" tableViewCell="Av4-QA-4gz" id="7LZ-SK-BBu">

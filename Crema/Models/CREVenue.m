@@ -125,6 +125,23 @@
     
 }
 
+- (void) adjustImageIndex: (UISwipeGestureRecognizerDirection) direction {
+    if (direction == UISwipeGestureRecognizerDirectionLeft) {
+        if (imageIndex + 1 < [self.photoUrls count]) {
+            imageIndex++;
+        } else {
+            imageIndex = 0;
+        }
+        
+    } else {
+        if (imageIndex == 0) {
+            imageIndex = [self.photoUrls count] - 1;
+        } else {
+            imageIndex--;
+        }
+    }
+}
+
 #pragma mark - MKAnnotation methods
 
 - (CLLocationCoordinate2D)coordinate {
