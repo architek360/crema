@@ -25,7 +25,7 @@
 @property (nonatomic) NSNumber *upvotes;
 @property (nonatomic) NSNumber *upvote_count;
 @property (nonatomic, strong) PFGeoPoint *location;
-//@property (nonatomic, copy) NSString *photoUrl;
+@property (nonatomic, copy) NSArray *photoUrls;
 @property (nonatomic, assign) BOOL animatesDrop;
 
 

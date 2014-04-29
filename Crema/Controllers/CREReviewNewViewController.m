@@ -32,7 +32,14 @@
         cityLabel.text = [@[cityLabel.text, address[3]] componentsJoinedByString:@" "];
     }
     
+    [SVProgressHUD showWithStatus:@"Loading..."];
     
+    [[FSQFoursquareAPIClient sharedClient] getPhotosForVenue:venue completion:^(NSArray *urls, NSError *error) {
+        venue.photoUrls = urls;
+        NSLog(@"venue photo urls:%@", venue.photoUrls);
+        NSLog(@"venue dictionary: %@", venue.toParseDictionary);
+        [SVProgressHUD dismiss];
+    }];
     [self updateMap];
     
 }
@@ -55,7 +62,9 @@
 {
     if (sender != self.saveButton) return; //do nothing, just segue back.
     
+    
     [SVProgressHUD showWithStatus:@"Saving..."];
+    
     if ([venue saveToPARSE]) {
         venue.saved = [NSNumber numberWithBool:YES];
         [SVProgressHUD showSuccessWithStatus:@"Saved!"];
@@ -63,6 +72,7 @@
         venue.saved = [NSNumber numberWithBool:NO];
         [SVProgressHUD showErrorWithStatus:@"Sorry, an error occurred"];
     }
+    
 }
 
 

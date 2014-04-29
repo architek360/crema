@@ -8,7 +8,10 @@
 
 #import "FSQFoursquareAPIClient.h"
 
+
 #define FOURSQUARE_BASE_URL @"https://api.foursquare.com/v2/"
+#define VENUE_PHOTO_TABLE_SIZE @"320x205"
+
 
 @implementation FSQFoursquareAPIClient
 + (FSQFoursquareAPIClient *) sharedClient {
@@ -58,6 +61,7 @@
       }];
  
 }
+
 - (void) exploreVenuesNear:(CLLocationCoordinate2D) coordinates
               searchTerm: (NSString *) searchTerm
            includePhotos: (BOOL) includePhotos
@@ -88,6 +92,8 @@
     
 }
 
+
+
 - (void) autocompleteVenuesNear:(CLLocationCoordinate2D) coordinates
                 searchTerm:(NSString *) searchTerm
                 completion:( void (^)(NSArray *results, NSError *error) )completion
@@ -111,6 +117,32 @@
       }];
     
 }
+
+
+
+- (void) getPhotosForVenue:(CREVenue *) venue completion:( void (^)(NSArray *urls, NSError *error) )completion {
+    NSString * url = [@[@"venues/",venue.venueId, @"/photos"] componentsJoinedByString:@""];
+    id params = [self buildAuthParameters:@{
+                                            @"group": @"venue",
+                                            @"limit": @"10"
+                                            }
+                 ];
+    
+    [self GET:url
+   parameters:params
+      success:^(NSURLSessionDataTask *task, id responseObject) {
+          NSLog(@"GET PHOTOS Response: %@", task.response);
+          NSArray *items = responseObject[@"response"][@"photos"][@"items"];
+          NSArray *urls = [items map:^(NSDictionary* item){
+              return [@[item[@"prefix"], VENUE_PHOTO_TABLE_SIZE, item[@"suffix"]] componentsJoinedByString:@""];
+          }];
+          completion(urls,nil);
+      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+          NSLog(@"REQUEST: %@, ERROR: %@",task, error);
+          completion(nil, error);
+      }];
+}
+
 
          
 - (NSDictionary *) buildAuthParameters: (NSDictionary *)parameters {

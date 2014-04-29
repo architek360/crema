@@ -12,6 +12,7 @@
 #import "PFGeoBox.h"
 #import "CREAppDelegate.h"
 #import "ObjectiveSugar.h"
+
 @interface CREParseAPIClient : NSObject
 
 + (BOOL) venuePersisted: (CREVenue * )venue;

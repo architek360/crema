@@ -71,8 +71,24 @@
     cell.textLabel.text = venue.name;
     [cell.detailTextLabel setText:venue.addressString];
     
+//    [cell.imageView setImageWithURL:venue.photoUrl];
+//    [cell.imageView setContentMode:UIViewContentModeScaleToFill];
+    UIImageView *imgview = [[UIImageView alloc]initWithFrame:CGRectMake(0,0, 320, 205)];
+//    NSURL *url = [NSURL URLWithString:@"http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg"];
+    NSURL *url = [NSURL URLWithString:[venue.photoUrls first]];
+    [imgview setImageWithURL:url];
+//    [cell.contentView addSubview:imgview];
+    [cell setBackgroundView:imgview];
+    [tableView setSeparatorColor:[UIColor whiteColor]];
+    
+    
     return cell;
 
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 205.0;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath

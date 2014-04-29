@@ -9,9 +9,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AFHTTPRequestOperationManager.h"
 #import "AFNetworking.h"
-#import "CREVenue.h"
 #import "ObjectiveSugar.h"
 #import "CREParseAPIClient.h"
+#import "CREVenue.h"
+
 
 #define FOURSQUARE_APP_CLIENT_ID @"MQBCOLIFS53NFWIP2I0SHEKM423HZXICZN0J3DGLFSKTFURL"
 
@@ -33,4 +34,7 @@
 - (void) autocompleteVenuesNear:(CLLocationCoordinate2D) coordinates
                 searchTerm:(NSString *) searchTerm
                 completion:( void (^)(NSArray *results, NSError *error) )completion;
+
+- (void) getPhotosForVenue:(CREVenue *) venue
+                completion:( void (^)(NSArray *urls, NSError *error) )completion;
 @end

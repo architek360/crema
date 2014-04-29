@@ -14,7 +14,7 @@
 #import "CREVenueAnnotation.h"
 #import "ObjectiveSugar.h"
 #import "SVProgressHUD.h"
-
+#import "FSQFoursquareAPIClient.h"
 
 @interface CREReviewNewViewController : UIViewController
 
