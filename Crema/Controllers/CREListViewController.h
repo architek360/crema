@@ -15,7 +15,6 @@
 #import "CREVenue.h"
 #import "CREVenueDetailViewController.h"
 
-
 const int kLoadingCellTag = 1273;
 
 

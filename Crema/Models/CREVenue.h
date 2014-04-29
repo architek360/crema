@@ -27,6 +27,7 @@
 @property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic, copy) NSArray *photoUrls;
 @property (nonatomic, assign) BOOL animatesDrop;
+@property NSUInteger imageIndex;
 
 
 + (id)venueWithDictionary:(NSDictionary *)dictionary;

@@ -23,6 +23,7 @@
 @dynamic upvote_count;
 @dynamic photoUrls;
 
+@synthesize imageIndex;
 @synthesize animatesDrop;
 
 + (NSString *)parseClassName {
